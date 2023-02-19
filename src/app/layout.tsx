@@ -2,7 +2,7 @@
 import type Children from "types"
 
 /** components */
-import Navbar from "@/components/common/Navbar/Navbar"
+import Header from "@/components/common/Navbar/Header"
 
 /** style */
 import clsx from "clsx"
@@ -17,13 +17,14 @@ export default function RootLayout({ children }: Children) {
             <body
                 className={clsx(
                     inter.className,
-                    "bg-cover bg-center bg-no-repeat",
-                    "bg-[url('/assets/effects/blob-scene-haikei-sm.svg')]",
-                    "lg:bg-[url('/assets/effects/blob-scene-haikei.svg')]"
+                    "portrait:bg-[url('/assets/effects/blob-scene-haikei-blur-sm.svg')]",
+                    "landscape:bg-[url('/assets/effects/blob-scene-haikei-blur-lg.svg')]",
+                    "bg-neutral-focus",
+                    "bg-cover bg-fixed bg-no-repeat"
                 )}
             >
-                <Navbar />
-                <main className="container mx-auto py-12">{children}</main>
+                <Header />
+                <main className="container mx-auto space-y-12 px-6 py-12">{children}</main>
             </body>
         </html>
     )

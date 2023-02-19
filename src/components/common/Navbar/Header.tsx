@@ -16,7 +16,7 @@ import logo from "@/static/brand/wp4l.webp"
 
 /*********************************************************************************************/
 
-export default function Navbar() {
+export default function Header() {
     return (
         <header className="sticky top-0 z-40 text-primary-content">
             <nav

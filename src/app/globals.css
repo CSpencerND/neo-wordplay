@@ -9,4 +9,11 @@
     .bg-blur-200 {
         @apply bg-neutral-focus/60 backdrop-blur-lg backdrop-saturate-200;
     }
+    .bg-grayscale {
+        @apply bg-gradient-to-t from-base-300 to-base-content;
+    }
+}
+
+li.alice-carousel__stage-item {
+    @apply px-2;
 }

@@ -47,7 +47,7 @@ export function Hamburger() {
                     tabIndex={0}
                     className={cn(
                         "menu",
-                        "h-screen w-[85vw] p-4",
+                        "h-screen w-[80vw] p-4",
                         "bg-blur-200 border-r border-base-content/30 shadow-box"
                     )}
                 >
