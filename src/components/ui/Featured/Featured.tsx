@@ -28,7 +28,7 @@ export default function Featured() {
     }, [])
 
     return (
-        <div className="bg-blur-100 rounded-box space-y-6 py-6 shadow-lg">
+        <div className="bg-blur-100 rounded-box space-y-6 py-6 shadow-xl">
             <h2 className="text-center text-lg font-bold text-info/75">Featured Items</h2>
 
             <Loader
@@ -112,7 +112,7 @@ export default function Featured() {
 
 const images = [
     <div className="rounded-box relative">
-        <span className="rounded-box glass absolute inset-0 z-40 h-full w-full" />
+        <span className="rounded-box bg-grayscale absolute inset-0 z-40 h-full w-full" />
         <Image
             key={1}
             src={temp}
@@ -128,7 +128,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box glass"
+        className="rounded-box bg-grayscale"
     />,
     <Image
         key={3}
@@ -136,7 +136,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box glass"
+        className="rounded-box bg-grayscale"
     />,
     <Image
         key={4}
@@ -144,7 +144,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box glass"
+        className="rounded-box bg-grayscale"
     />,
     <Image
         key={5}
@@ -152,7 +152,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box glass"
+        className="rounded-box bg-grayscale"
     />,
     <Image
         key={6}
@@ -160,6 +160,6 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box glass"
+        className="rounded-box bg-grayscale"
     />,
 ]

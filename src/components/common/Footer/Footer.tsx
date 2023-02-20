@@ -8,7 +8,7 @@ export default function Footer() {
     return (
         <footer className="container mx-auto space-y-6">
             <section className="footer px-6 max-md:footer-center">
-                <div className="form-control">
+                <div className="form-control text-sm">
                     <label className="label">
                         <span className="footer-title">Sign Up To Our Newsletter!</span>
                     </label>
@@ -17,7 +17,7 @@ export default function Footer() {
                             type="email"
                             inputMode="email"
                             placeholder="username@site.com"
-                            className="input-bordered input h-8 w-full"
+                            className="input-bordered input h-8 w-full mb-2"
                         />
                         <button
                             className={cn(

@@ -5,7 +5,7 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 import Image from "next/image"
 
 const galleryImages = galleryImageData.map(({ src, alt }, i) => {
-    return <Image src={src} alt={alt} key={i} className="rounded-box shadow-lg" />
+    return <Image src={src} alt={alt} key={i} className="rounded-box shadow-xl" />
 })
 
 export default function Gallery() {

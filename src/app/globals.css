@@ -10,7 +10,7 @@
         @apply bg-neutral-focus/60 backdrop-blur-lg backdrop-saturate-200;
     }
     .bg-grayscale {
-        @apply bg-gradient-to-t from-base-300 to-base-content;
+        @apply bg-gradient-to-tl from-base-300 to-base-content/75 backdrop-blur-lg backdrop-saturate-200;
     }
 }
 

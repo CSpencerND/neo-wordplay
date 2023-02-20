@@ -44,7 +44,7 @@ export function Hamburger() {
                     className={cn(
                         "menu",
                         "h-screen w-[80vw] p-4",
-                        "bg-blur-200 border-r border-base-200 shadow-lg"
+                        "bg-blur-200 border-r border-base-200 shadow-xl"
                     )}
                 >
                     <li>
