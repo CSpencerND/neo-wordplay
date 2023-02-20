@@ -14,14 +14,6 @@ interface GalleryImage {
 
 const galleryImageData: GalleryImage[] = [
     {
-        src: blazin,
-        alt: "Blazin'",
-    },
-    {
-        src: city,
-        alt: "City Vibes",
-    },
-    {
         src: creativity,
         alt: "Creativity",
     },
@@ -32,6 +24,14 @@ const galleryImageData: GalleryImage[] = [
     {
         src: responsibility,
         alt: "Responsibility is why I drink",
+    },
+    {
+        src: city,
+        alt: "City Vibes",
+    },
+    {
+        src: blazin,
+        alt: "Blazin'",
     },
     {
         src: savage,
