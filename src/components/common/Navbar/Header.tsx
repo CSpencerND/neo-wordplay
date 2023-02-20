@@ -1,6 +1,3 @@
-/** types */
-import Children from "types"
-
 /** components */
 import Link from "next/link"
 import Image from "next/image"
@@ -18,21 +15,17 @@ import logo from "@/static/brand/wp4l.webp"
 
 export default function Header() {
     return (
-        <header className="sticky top-0 z-40 text-primary-content">
+        <header className="sticky top-0 z-40 text-primary-content shadow-lg">
             <nav
                 className={cn(
                     "navbar",
                     "mx-auto max-w-7xl",
-                    "bg-blur-200 border-b border-base-content/30"
+                    "bg-blur-200 border-b border-base-200"
                 )}
             >
                 <div className="navbar-start">
                     <Link href="/" className="btn-link btn hover:opacity-80">
-                        <Image
-                            src={logo}
-                            alt="WordPlay4Lyfe"
-                            className="h-full w-auto"
-                        />
+                        <Image src={logo} alt="WordPlay4Lyfe" className="h-full w-auto" />
                     </Link>
                 </div>
                 <div className="navbar-end">

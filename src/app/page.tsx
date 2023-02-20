@@ -1,5 +1,6 @@
 import Hero from "@/components/ui/Hero"
 import Featured from "@/components/ui/Featured"
+import Gallery from "@/components/ui/Gallery"
 
 export default function Home() {
     return (
@@ -14,7 +15,7 @@ export default function Home() {
 
             <section className="card bg-blur-100">
                 <article className="card-body !p-6 !space-y-2">
-                    <h3 className="card-title">Why we love what we do</h3>
+                    <h3 className="card-title text-base md:text-lg">Why we love what we do</h3>
                     <p>
                         When we think about WORDPLAY4LYFE, what comes to mind is Artistic Expression
                         - being able to express yourself freely and not be judged. We use our
@@ -30,6 +31,10 @@ export default function Home() {
                         brand (AEICC)
                     </p>
                 </article>
+            </section>
+
+            <section>
+                <Gallery />
             </section>
         </>
     )

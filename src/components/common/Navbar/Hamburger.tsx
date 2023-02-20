@@ -7,7 +7,7 @@ import { Spiral as HamburgerIcon } from "hamburger-react"
 
 /** utils */
 import { useRouter } from "next/router"
-import { ChangeEvent, useState } from "react"
+import {  useState } from "react"
 import cn from "clsx"
 
 export function Hamburger() {
@@ -38,17 +38,13 @@ export function Hamburger() {
                 leaveFrom="-translate-x-0"
                 leaveTo="-translate-x-[100vw]"
             >
-                {/* <label */}
-                {/*     htmlFor="menuToggle" */}
-                {/*     className="absolute top-0 left-0 h-screen w-screen" */}
-                {/* /> */}
                 <ul
                     id="navMenu"
                     tabIndex={0}
                     className={cn(
                         "menu",
                         "h-screen w-[80vw] p-4",
-                        "bg-blur-200 border-r border-base-content/30 shadow-box"
+                        "bg-blur-200 border-r border-base-200 shadow-lg"
                     )}
                 >
                     <li>

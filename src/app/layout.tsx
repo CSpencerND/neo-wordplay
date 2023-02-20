@@ -3,6 +3,7 @@ import type Children from "types"
 
 /** components */
 import Header from "@/components/common/Navbar/Header"
+import Footer from "@/components/common/Footer"
 
 /** style */
 import clsx from "clsx"
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: Children) {
             >
                 <Header />
                 <main className="container mx-auto space-y-12 px-6 py-12">{children}</main>
+                <Footer />
             </body>
         </html>
     )
