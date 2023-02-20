@@ -21,9 +21,9 @@ export default function Footer() {
                         />
                         <button
                             className={cn(
-                                "btn-sm btn",
+                                "btn-primary btn-sm btn",
                                 "absolute top-0 right-0",
-                                "rounded-l-none "
+                                "rounded-l-none"
                             )}
                         >
                             Sub
