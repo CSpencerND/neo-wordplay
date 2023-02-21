@@ -26,12 +26,12 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="0.934375"
-     inkscape:cx="14.448161"
-     inkscape:cy="594.51505"
-     inkscape:window-width="1380"
-     inkscape:window-height="956"
-     inkscape:window-x="2208"
-     inkscape:window-y="380"
+     inkscape:cx="116.1204"
+     inkscape:cy="520.13378"
+     inkscape:window-width="1699"
+     inkscape:window-height="1175"
+     inkscape:window-x="1835"
+     inkscape:window-y="487"
      inkscape:window-maximized="1"
      inkscape:current-layer="visual" />
   <rect
@@ -47,24 +47,24 @@
        inkscape:collect="always"
        id="linearGradient1032">
       <stop
-         style="stop-color:#3abff8;stop-opacity:1;"
+         style="stop-color:#d926aa;stop-opacity:1;"
          offset="0"
-         id="stop1026" />
-      <stop
-         style="stop-color:#7244ff;stop-opacity:1;"
-         offset="1"
          id="stop1028" />
+      <stop
+         style="stop-color:#3abff8;stop-opacity:1;"
+         offset="0.96184188"
+         id="stop1026" />
     </linearGradient>
     <linearGradient
        inkscape:collect="always"
        id="linearGradient1020">
       <stop
          style="stop-color:#7244ff;stop-opacity:1;"
-         offset="0.24764475"
+         offset="0.25277394"
          id="stop1016" />
       <stop
-         style="stop-color:#3abff8;stop-opacity:1;"
-         offset="1"
+         style="stop-color:#1fb2a5;stop-opacity:1;"
+         offset="0.75262719"
          id="stop1014" />
     </linearGradient>
     <linearGradient
@@ -204,6 +204,6 @@
        id="path22"
        style="opacity:0.599809;fill:url(#linearGradient1012);fill-opacity:1;filter:url(#filter1036)"
        sodipodi:nodetypes="ccccccc"
-       transform="matrix(0.89416006,0,0,0.89416006,-17.086247,17.086246)" />
+       transform="matrix(0.89416006,0,0,0.89416006,62.162347,42.922291)" />
   </g>
 </svg>
