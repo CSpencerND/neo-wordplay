@@ -3,17 +3,23 @@
 @tailwind utilities;
 
 @layer utilities {
+    .blur-sat {
+        @apply backdrop-blur-lg backdrop-saturate-[1.8];
+    }
     .bg-blur-100 {
-        @apply bg-base-300/60 backdrop-blur-lg backdrop-saturate-[1.80];
+        @apply bg-base-300/60 blur-sat;
     }
     .bg-blur-200 {
-        @apply bg-neutral-focus/60 backdrop-blur-lg backdrop-saturate-[1.80];
+        @apply bg-neutral-focus/60 blur-sat;
     }
     .bg-blur-300 {
-        @apply bg-black/60 backdrop-blur-lg backdrop-saturate-[1.80];
+        @apply bg-black/60 blur-sat;
+    }
+    .bg-glass {
+        @apply glass bg-opacity-60 bg-blur-100;
     }
     .bg-grayscale {
-        @apply bg-gradient-to-tl from-base-300 to-base-content/75 backdrop-blur-lg backdrop-saturate-[1.80];
+        @apply bg-gradient-to-tl from-base-300 to-base-content/75 blur-sat;
     }
 }
 

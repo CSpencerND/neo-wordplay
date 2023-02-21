@@ -70,8 +70,8 @@ const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
                     src={imgSrc}
                     alt="temp"
                     className={cn(
-                        "bg-grayscale rounded-box",
-                        imgSrc === logo && "h-full object-contain p-4"
+                        "bg-glass rounded-box",
+                        imgSrc === logo && "h-full object-contain p-4 brightness-[0.85]"
                     )}
                 />
                 <div
@@ -79,7 +79,7 @@ const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
                         "card-body",
                         "absolute bottom-0 w-full",
                         "p-1 sm:p-2",
-                        "bg-blur-200 rounded-b-box"
+                        "bg-blur-100 rounded-b-box"
                     )}
                 >
                     <h2 className="card-title mx-auto whitespace-nowrap text-sm text-primary">

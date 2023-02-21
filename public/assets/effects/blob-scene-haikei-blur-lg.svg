@@ -24,9 +24,9 @@
      showgrid="false"
      inkscape:zoom="0.45254834"
      inkscape:cx="1257.3242"
-     inkscape:cy="740.25241"
-     inkscape:window-width="1791"
-     inkscape:window-height="1231"
+     inkscape:cy="741.35727"
+     inkscape:window-width="1499"
+     inkscape:window-height="1236"
      inkscape:window-x="1608"
      inkscape:window-y="116"
      inkscape:window-maximized="1"
@@ -37,7 +37,8 @@
      width="1920"
      height="1080"
      fill="#111318"
-     id="rect2" />
+     id="rect2"
+     style="fill:#000000;fill-opacity:1" />
   <defs
      id="defs9">
     <linearGradient

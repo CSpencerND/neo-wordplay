@@ -15,7 +15,7 @@ import logo from "@/static/brand/wp4l.webp"
 
 export default function Header() {
     return (
-        <header className="bg-blur-200 sticky top-0 z-40">
+        <header className="bg-blur-300 sticky top-0 z-40">
             <nav
                 className={cn(
                     "navbar",

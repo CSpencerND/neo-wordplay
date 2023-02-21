@@ -17,7 +17,7 @@ export default function Footer() {
                             type="email"
                             inputMode="email"
                             placeholder="username@site.com"
-                            className="input-bordered input h-8 w-full mb-2"
+                            className="input-bordered input h-8 w-full mb-2 bg-blur-100"
                         />
                         <button
                             className={cn(

@@ -111,24 +111,32 @@ export default function Featured() {
 }
 
 const images = [
-    <div className="rounded-box relative">
-        <span className="rounded-box bg-grayscale absolute inset-0 z-40 h-full w-full" />
-        <Image
-            key={1}
-            src={temp}
-            alt="temp"
-            onDragStart={(e) => e.preventDefault()}
-            role="presentation"
-            className="rounded-box relative z-50 backdrop-blur-sm"
-        />
-    </div>,
+    // <div className="rounded-box relative">
+    //     <span className="rounded-box bg-grayscale absolute inset-0 z-40 h-full w-full" />
+    //     <Image
+    //         key={1}
+    //         src={temp}
+    //         alt="temp"
+    //         onDragStart={(e) => e.preventDefault()}
+    //         role="presentation"
+    //         className="rounded-box relative z-50 backdrop-blur-sm"
+    //     />
+    // </div>,
+    <Image
+        key={1}
+        src={temp}
+        alt="temp"
+        onDragStart={(e) => e.preventDefault()}
+        role="presentation"
+        className="rounded-box bg-glass"
+    />,
     <Image
         key={2}
         src={temp}
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-grayscale"
+        className="rounded-box bg-glass"
     />,
     <Image
         key={3}
@@ -136,7 +144,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-grayscale"
+        className="rounded-box bg-glass"
     />,
     <Image
         key={4}
@@ -144,7 +152,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-grayscale"
+        className="rounded-box bg-glass"
     />,
     <Image
         key={5}
@@ -152,7 +160,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-grayscale"
+        className="rounded-box bg-glass"
     />,
     <Image
         key={6}
@@ -160,6 +168,6 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-grayscale"
+        className="rounded-box bg-glass"
     />,
 ]
