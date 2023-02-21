@@ -10,7 +10,7 @@ export default function Footer() {
             <section className="footer px-6 max-md:footer-center">
                 <div className="form-control text-sm">
                     <label className="label">
-                        <span className="footer-title">Sign Up To Our Newsletter!</span>
+                        <span className="text-base-content/60 font-bold text-sm">Sign Up To Our Newsletter!</span>
                     </label>
                     <div className="relative">
                         <input
