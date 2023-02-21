@@ -8,7 +8,7 @@ export default function Collections() {
     return (
         <section className="mx-auto max-w-2xl space-y-12">
             <h1 className="text-center text-xl font-bold text-info">Collections Directory</h1>
-            <ul className={cn("grid grid-cols-2 gap-2", "md:grid-cols-3 md:gap-6")}>
+            <ul className={cn("grid gap-4 sm:gap-6", "grid-cols-2 md:grid-cols-3")}>
                 {CollectionCards}
             </ul>
         </section>
@@ -48,7 +48,7 @@ const links: CollectionLinkData[] = [
         imgSrc: temp,
     },
     {
-        title: "All",
+        title: "See All",
         href: "collections/all",
         imgSrc: logo,
     },
@@ -57,12 +57,28 @@ const links: CollectionLinkData[] = [
 const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
     return (
         <li key={i}>
-            <Link href={href} className="card relative">
-                <Image src={imgSrc} alt="temp" className="bg-grayscale rounded-box" />
+            <Link
+                href={href}
+                className={cn(
+                    "card relative h-full",
+                    "transition",
+                    "hover:scale-105 hover:brightness-150",
+                    "active:scale-90"
+                )}
+            >
+                <Image
+                    src={imgSrc}
+                    alt="temp"
+                    className={cn(
+                        "bg-grayscale rounded-box",
+                        imgSrc === logo && "h-full object-contain p-4"
+                    )}
+                />
                 <div
                     className={cn(
                         "card-body",
-                        "absolute bottom-0 w-full p-1",
+                        "absolute bottom-0 w-full",
+                        "p-1 sm:p-2",
                         "bg-blur-200 rounded-b-box"
                     )}
                 >
@@ -74,3 +90,28 @@ const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
         </li>
     )
 })
+
+// const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
+//     const seeAll = <Image src={imgSrc} alt="temp" className="bg-grayscale rounded-box" />
+//     const others = <Image src={imgSrc} alt="temp" className="bg-grayscale rounded-box" />
+
+//     return (
+//         <li key={i}>
+//             <Link href={href} className="card relative">
+//                 {imgSrc === logo ? seeAll : others}
+//                 <div
+//                     className={cn(
+//                         "card-body",
+//                         "absolute bottom-0 w-full",
+//                         "p-1 sm:p-2",
+//                         "bg-blur-200 rounded-b-box"
+//                     )}
+//                 >
+//                     <h2 className="card-title mx-auto whitespace-nowrap text-sm text-primary">
+//                         {title}
+//                     </h2>
+//                 </div>
+//             </Link>
+//         </li>
+//     )
+// })
