@@ -4,13 +4,16 @@
 
 @layer utilities {
     .bg-blur-100 {
-        @apply bg-base-300/60 backdrop-blur-lg backdrop-saturate-200;
+        @apply bg-base-300/60 backdrop-blur-lg backdrop-saturate-[1.80];
     }
     .bg-blur-200 {
-        @apply bg-neutral-focus/60 backdrop-blur-lg backdrop-saturate-200;
+        @apply bg-neutral-focus/60 backdrop-blur-lg backdrop-saturate-[1.80];
+    }
+    .bg-blur-300 {
+        @apply bg-black/60 backdrop-blur-lg backdrop-saturate-[1.80];
     }
     .bg-grayscale {
-        @apply bg-gradient-to-tl from-base-300 to-base-content/75 backdrop-blur-lg backdrop-saturate-200;
+        @apply bg-gradient-to-tl from-base-300 to-base-content/75 backdrop-blur-lg backdrop-saturate-[1.80];
     }
 }
 
