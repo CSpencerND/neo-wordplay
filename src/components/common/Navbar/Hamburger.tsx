@@ -99,6 +99,11 @@ const links: NavLinkData[] = [
         href: "collections/lifestyle",
         delay: "delay-[500ms]"
     },
+    {
+        title: "Full Catalog",
+        href: "collections/catalog",
+        delay: "delay-[580ms]"
+    },
 ]
 
 const NavLinks = links.map(({ title, href, delay }, i) => {

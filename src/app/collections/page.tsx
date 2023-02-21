@@ -48,8 +48,8 @@ const links: CollectionLinkData[] = [
         imgSrc: temp,
     },
     {
-        title: "See All",
-        href: "collections/all",
+        title: "Full Catalog",
+        href: "collections/catalog",
         imgSrc: logo,
     },
 ]
