@@ -35,13 +35,13 @@ module.exports = {
                     900: "#43302b",
                 },
             },
+            backgroundImage: {
+                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+            },
         },
     },
 
-    plugins: [
-        require("daisyui"),
-        require("@tailwindcss/typography")
-    ],
+    plugins: [require("daisyui"), require("@tailwindcss/typography")],
     daisyui: {
         styled: true,
         themes: true,
@@ -53,4 +53,3 @@ module.exports = {
         darkTheme: "dark",
     },
 }
-
