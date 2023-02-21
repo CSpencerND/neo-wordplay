@@ -90,28 +90,3 @@ const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
         </li>
     )
 })
-
-// const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
-//     const seeAll = <Image src={imgSrc} alt="temp" className="bg-grayscale rounded-box" />
-//     const others = <Image src={imgSrc} alt="temp" className="bg-grayscale rounded-box" />
-
-//     return (
-//         <li key={i}>
-//             <Link href={href} className="card relative">
-//                 {imgSrc === logo ? seeAll : others}
-//                 <div
-//                     className={cn(
-//                         "card-body",
-//                         "absolute bottom-0 w-full",
-//                         "p-1 sm:p-2",
-//                         "bg-blur-200 rounded-b-box"
-//                     )}
-//                 >
-//                     <h2 className="card-title mx-auto whitespace-nowrap text-sm text-primary">
-//                         {title}
-//                     </h2>
-//                 </div>
-//             </Link>
-//         </li>
-//     )
-// })

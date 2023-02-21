@@ -6,13 +6,11 @@ import { Transition } from "@headlessui/react"
 import { Spiral as HamburgerIcon } from "hamburger-react"
 
 /** utils */
-import { useRouter } from "next/router"
 import { useState } from "react"
 import cn from "clsx"
 
 export function Hamburger() {
     const [isShowing, setIsShowing] = useState<boolean>(false)
-    // const {collection} = useRouter().query
 
     return (
         <>
