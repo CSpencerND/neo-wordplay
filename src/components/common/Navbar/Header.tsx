@@ -15,12 +15,13 @@ import logo from "@/static/brand/wp4l.webp"
 
 export default function Header() {
     return (
-        <header className="sticky top-0 z-40 text-primary-content shadow-xl">
+        <header className="bg-blur-200 sticky top-0 z-40">
             <nav
                 className={cn(
                     "navbar",
                     "mx-auto max-w-7xl",
-                    "bg-blur-200 border-b border-base-200"
+                    "border-b border-base-200",
+                    "text-primary-content"
                 )}
             >
                 <div className="navbar-start">
