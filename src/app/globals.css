@@ -23,6 +23,10 @@
     }
 }
 
+.alice-carousel {
+    @apply hover:cursor-grab active:cursor-grabbing;
+}
+
 .alice-carousel__wrapper {
     @apply pb-1;
 }

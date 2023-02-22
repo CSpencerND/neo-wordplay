@@ -11,7 +11,7 @@ export default function Home() {
                 <Hero />
             </section>
 
-            <section>
+            <section className="bg-blur-100 rounded-box space-y-6 py-6 shadow-box">
                 <Featured />
             </section>
 
@@ -22,7 +22,7 @@ export default function Home() {
                     alt="hidden"
                     width={300}
                     height={300}
-                    className={cn("absolute w-full h-full inset-0 object-cover overflow-visible")}
+                    className={cn("absolute inset-0 h-full w-full overflow-visible object-cover")}
                 />
                 <article className="relative z-10">
                     <h3 className="text-base md:text-lg">Why we love what we do</h3>

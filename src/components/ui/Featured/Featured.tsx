@@ -16,22 +16,12 @@ import { ChevronRight, ChevronLeft } from "react-iconly"
 
 export default function Featured() {
     const sliderRef = useRef<AliceCarousel>(null)
+    const innerWidth = useInnerWidth()
+
     const [loading, setLoading] = useState<boolean>(true)
-    const [infinite, setInfinite] = useState<boolean>(false)
-
-    useEffect(() => {
-        setTimeout(() => {
-            setInfinite(true)
-        }, 5000)
-
-        return () => {
-            setInfinite(false)
-            setLoading(true)
-        }
-    }, [])
 
     return (
-        <div className="bg-blur-100 rounded-box space-y-6 py-6 shadow-box">
+        <>
             <h2 className="text-center text-lg font-bold text-info/75">Featured Items</h2>
 
             <Loader
@@ -47,16 +37,17 @@ export default function Featured() {
                 onInitialized={() => setLoading(false)}
                 ref={sliderRef}
                 items={images}
-                infinite={infinite}
+                infinite
                 keyboardNavigation
                 disableDotsControls
                 disableButtonsControls
                 mouseTracking
                 paddingLeft={70}
                 paddingRight={70}
-                // autoPlay
+                autoPlay
                 autoPlayStrategy="all"
                 autoPlayInterval={1250}
+                innerWidth={innerWidth}
                 responsive={{
                     0: {
                         items: 1,
@@ -109,22 +100,11 @@ export default function Featured() {
                     </button>
                 </span>
             </div>
-        </div>
+        </>
     )
 }
 
 const images = [
-    // <div className="rounded-box relative">
-    //     <span className="rounded-box bg-grayscale absolute inset-0 z-40 h-full w-full" />
-    //     <Image
-    //         key={1}
-    //         src={temp}
-    //         alt="temp"
-    //         onDragStart={(e) => e.preventDefault()}
-    //         role="presentation"
-    //         className="rounded-box relative z-50 backdrop-blur-sm"
-    //     />
-    // </div>,
     <Image
         key={1}
         src={temp}
@@ -174,3 +154,21 @@ const images = [
         className="bg-glass rounded-box shadow-box"
     />,
 ]
+
+function useInnerWidth() {
+    const [innerWidth, setInnerWidth] = useState<number>(0)
+
+    useEffect(() => {
+        setInnerWidth(window.innerWidth)
+
+        const handleResize = () => {
+            setInnerWidth(window.innerWidth)
+        }
+
+        window.addEventListener("resize", handleResize)
+
+        return () => window.removeEventListener("resize", handleResize)
+    }, [])
+
+    return innerWidth
+}
