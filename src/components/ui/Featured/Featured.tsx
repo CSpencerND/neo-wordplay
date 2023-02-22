@@ -20,7 +20,10 @@ export default function Featured() {
     const [infinite, setInfinite] = useState<boolean>(false)
 
     useEffect(() => {
-        setInfinite(true)
+        setTimeout(() => {
+            setInfinite(true)
+        }, 5000)
+
         return () => {
             setInfinite(false)
             setLoading(true)
@@ -28,11 +31,11 @@ export default function Featured() {
     }, [])
 
     return (
-        <div className="bg-blur-100 rounded-box space-y-6 py-6 shadow-xl">
+        <div className="bg-blur-100 rounded-box space-y-6 py-6 shadow-box">
             <h2 className="text-center text-lg font-bold text-info/75">Featured Items</h2>
 
             <Loader
-                className="mx-auto !h-36"
+                className="mx-auto"
                 color="#3abff8"
                 size={72}
                 loading={loading}
@@ -51,7 +54,7 @@ export default function Featured() {
                 mouseTracking
                 paddingLeft={70}
                 paddingRight={70}
-                autoPlay
+                // autoPlay
                 autoPlayStrategy="all"
                 autoPlayInterval={1250}
                 responsive={{
@@ -128,7 +131,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-glass"
+        className="bg-glass rounded-box shadow-box"
     />,
     <Image
         key={2}
@@ -136,7 +139,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-glass"
+        className="bg-glass rounded-box shadow-box"
     />,
     <Image
         key={3}
@@ -144,7 +147,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-glass"
+        className="bg-glass rounded-box shadow-box"
     />,
     <Image
         key={4}
@@ -152,7 +155,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-glass"
+        className="bg-glass rounded-box shadow-box"
     />,
     <Image
         key={5}
@@ -160,7 +163,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-glass"
+        className="bg-glass rounded-box shadow-box"
     />,
     <Image
         key={6}
@@ -168,6 +171,6 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="rounded-box bg-glass"
+        className="bg-glass rounded-box shadow-box"
     />,
 ]

@@ -61,8 +61,8 @@ const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
                 href={href}
                 className={cn(
                     "card relative h-full",
-                    "transition",
-                    "hover:scale-105 hover:brightness-150",
+                    "text-primary transition",
+                    "hover:scale-105 hover:text-secondary-focus hover:brightness-150",
                     "active:scale-90"
                 )}
             >
@@ -82,9 +82,7 @@ const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
                         "bg-blur-100 rounded-b-box"
                     )}
                 >
-                    <h2 className="card-title mx-auto whitespace-nowrap text-sm text-primary">
-                        {title}
-                    </h2>
+                    <h2 className="card-title mx-auto whitespace-nowrap text-sm">{title}</h2>
                 </div>
             </Link>
         </li>

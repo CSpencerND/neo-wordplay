@@ -1,3 +1,5 @@
+const plugin = require("tailwindcss/plugin")
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ["./src/**/*.{js,ts,jsx,tsx}"],
@@ -15,7 +17,7 @@ module.exports = {
                 "6xl": ["clamp(2.57rem, calc(0.78rem + 8.95vw), 7.15rem)", "1"],
             },
             boxShadow: {
-                box: "0 4px 6px 2px rgb(0 0 0 / 0.2), 0 2px 4px -1px rgb(0 0 0 / 0.2)",
+                box: "0 0 10px rgb(0 0 0 / 0.2), 0 0 5px rgb(0 0 0 / 0.2)",
             },
             transitionProperty: {
                 height: "height",
@@ -35,13 +37,11 @@ module.exports = {
                     900: "#43302b",
                 },
             },
-            backgroundImage: {
-                "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-            },
         },
     },
 
     plugins: [require("daisyui"), require("@tailwindcss/typography")],
+
     daisyui: {
         styled: true,
         themes: true,

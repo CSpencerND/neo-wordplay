@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
+@layer base {
     .blur-sat {
         @apply backdrop-blur-lg backdrop-saturate-[1.8];
     }
     .bg-blur-100 {
-        @apply bg-base-300/60 blur-sat;
+        @apply bg-base-100/60 blur-sat;
     }
     .bg-blur-200 {
         @apply bg-neutral-focus/60 blur-sat;
@@ -21,6 +21,10 @@
     .bg-grayscale {
         @apply bg-gradient-to-tl from-base-300 to-base-content/75 blur-sat;
     }
+}
+
+.alice-carousel__wrapper {
+    @apply pb-1;
 }
 
 li.alice-carousel__stage-item {

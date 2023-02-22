@@ -13,7 +13,7 @@ import cn from "clsx"
 
 export default function Hero() {
     return (
-        <div className="hero rounded-box text-primary-content shadow-xl">
+        <div className="hero rounded-box text-primary-content shadow-box">
             <Image
                 className={cn(
                     "rounded-box aspect-video",
