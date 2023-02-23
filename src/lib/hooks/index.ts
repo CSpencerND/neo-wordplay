@@ -1,1 +1,2 @@
-export {default} from "./useInnerWidth"
+export {useInnerWidth} from "./useInnerWidth"
+export {useLoader} from "./useLoader"

@@ -4,11 +4,10 @@
 import Image from "next/image"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
-import Loader from "react-spinners/HashLoader"
 
 /** utils */
-import { useRef, useState } from "react"
-import useInnerWidth from "@/lib/hooks/useInnerWidth"
+import { useRef } from "react"
+import { useInnerWidth, useLoader } from "@/lib"
 import cn from "clsx"
 
 /** assets */
@@ -18,21 +17,13 @@ import { ChevronRight, ChevronLeft } from "react-iconly"
 export default function Featured() {
     const sliderRef = useRef<AliceCarousel>(null)
     const innerWidth = useInnerWidth()
-
-    const [loading, setLoading] = useState<boolean>(true)
+    const { loaderComponent, setLoading } = useLoader()
 
     return (
         <>
             <h2 className="text-center text-lg font-bold text-info/75">Featured Items</h2>
 
-            <Loader
-                className="mx-auto"
-                color="#3abff8"
-                size={72}
-                loading={loading}
-                aria-label="Loading Spinner"
-                data-testid="loader"
-            />
+            {loaderComponent}
 
             <AliceCarousel
                 onInitialized={() => setLoading(false)}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-export default function useInnerWidth() {
+export function useInnerWidth(): number {
     const [innerWidth, setInnerWidth] = useState<number>(0)
 
     useEffect(() => {
