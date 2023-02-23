@@ -14,13 +14,8 @@ export default function Home() {
                 <Featured />
             </section>
 
-            <section className={cn("prose max-w-none", "bg-blur-300")}>
-                <article
-                    style={{
-                        backgroundImage: `url("/assets/effects/about-bg.svg")`,
-                    }}
-                    className="bg-cover bg-clip-text bg-center bg-no-repeat"
-                >
+            <section className={cn("prose max-w-none")}>
+                <article>
                     <h3 className="text-base md:text-lg">Why we love what we do</h3>
                     <p>
                         When we think about WORDPLAY4LYFE, what comes to mind is Artistic Expression

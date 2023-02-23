@@ -12,7 +12,6 @@ import cn from "clsx"
 
 export function Hamburger() {
     const [isShowing, setIsShowing] = useState<boolean>(false)
-    let delay = 100
 
     const pathname = usePathname()
     useEffect(() => {
@@ -54,18 +53,12 @@ export function Hamburger() {
                         tabIndex={0}
                         className={cn("menu self-center", "w-[80vw] p-4")}
                     >
-                        {links.map(({ title, href }, i) => {
-                            const delayClass: string = `delay-[${delay}ms]`
-                            delay += 80
-
+                        {links.map(({ title, href, delay }, i) => {
                             return (
                                 <Transition.Child
                                     as="li"
                                     key={i}
-                                    enter={cn(
-                                        "transition ease-in duration-200 transform",
-                                        delayClass
-                                    )}
+                                    enter={cn("transition ease-in duration-200 transform", delay)}
                                     enterFrom="-translate-x-[100vw]"
                                     enterTo="-translate-x-0"
                                     leave="transition ease-in duration-200 transform"
@@ -108,35 +101,43 @@ export function Hamburger() {
 type NavLinkData = {
     title: string
     href: string
+    delay: string
 }
 
 const links: NavLinkData[] = [
     {
         title: "Collections Directory",
         href: "collections",
+        delay: "delay-[100ms]",
     },
     {
         title: "Staff Picks",
         href: "collections/staff-picks",
+        delay: "delay-[180ms]",
     },
     {
         title: "Summer '22",
         href: "collections/summer-22",
+        delay: "delay-[260ms]",
     },
     {
         title: "Mindset",
         href: "collections/mindset",
+        delay: "delay-[340ms]",
     },
     {
         title: "Creativity",
         href: "collections/creativity",
+        delay: "delay-[420ms]",
     },
     {
         title: "Lifestyle",
         href: "collections/lifestyle",
+        delay: "delay-[500ms]",
     },
     {
         title: "Full Catalog",
         href: "collections/catalog",
+        delay: "delay-[580ms]",
     },
 ]
