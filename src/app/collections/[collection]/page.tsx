@@ -10,7 +10,42 @@ export default function Collections() {
         <section className="mx-auto max-w-2xl space-y-12">
             <CollectionHeading />
             <ul className={cn("grid gap-4 sm:gap-6", "grid-cols-2 md:grid-cols-3")}>
-                {CollectionCards}
+                {links.map(({ title, href, imgSrc }, i) => {
+                    return (
+                        <li key={i}>
+                            <Link
+                                href={href}
+                                className={cn(
+                                    "card relative h-full",
+                                    "transition",
+                                    "hover:scale-105 hover:brightness-150",
+                                    "active:scale-90"
+                                )}
+                            >
+                                <Image
+                                    src={imgSrc}
+                                    alt="temp"
+                                    className={cn(
+                                        "bg-grayscale rounded-box",
+                                        imgSrc === logo && "h-full object-contain p-4"
+                                    )}
+                                />
+                                <div
+                                    className={cn(
+                                        "card-body",
+                                        "absolute bottom-0 w-full",
+                                        "p-1 sm:p-2",
+                                        "bg-blur-200 rounded-b-box"
+                                    )}
+                                >
+                                    <h2 className="card-title mx-auto whitespace-nowrap text-sm text-primary">
+                                        {title}
+                                    </h2>
+                                </div>
+                            </Link>
+                        </li>
+                    )
+                })}
             </ul>
         </section>
     )
@@ -54,40 +89,3 @@ const links: CollectionLinkData[] = [
         imgSrc: logo,
     },
 ]
-
-const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
-    return (
-        <li key={i}>
-            <Link
-                href={href}
-                className={cn(
-                    "card relative h-full",
-                    "transition",
-                    "hover:scale-105 hover:brightness-150",
-                    "active:scale-90"
-                )}
-            >
-                <Image
-                    src={imgSrc}
-                    alt="temp"
-                    className={cn(
-                        "bg-grayscale rounded-box",
-                        imgSrc === logo && "h-full object-contain p-4"
-                    )}
-                />
-                <div
-                    className={cn(
-                        "card-body",
-                        "absolute bottom-0 w-full",
-                        "p-1 sm:p-2",
-                        "bg-blur-200 rounded-b-box"
-                    )}
-                >
-                    <h2 className="card-title mx-auto whitespace-nowrap text-sm text-primary">
-                        {title}
-                    </h2>
-                </div>
-            </Link>
-        </li>
-    )
-})
