@@ -7,7 +7,8 @@ import "react-alice-carousel/lib/alice-carousel.css"
 import Loader from "react-spinners/HashLoader"
 
 /** utils */
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState } from "react"
+import useInnerWidth from "@/lib/hooks/useInnerWidth"
 import cn from "clsx"
 
 /** assets */
@@ -154,21 +155,3 @@ const images = [
         className="bg-glass rounded-box shadow-box"
     />,
 ]
-
-function useInnerWidth() {
-    const [innerWidth, setInnerWidth] = useState<number>(0)
-
-    useEffect(() => {
-        setInnerWidth(window.innerWidth)
-
-        const handleResize = () => {
-            setInnerWidth(window.innerWidth)
-        }
-
-        window.addEventListener("resize", handleResize)
-
-        return () => window.removeEventListener("resize", handleResize)
-    }, [])
-
-    return innerWidth
-}
