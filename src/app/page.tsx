@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Hero from "@/components/ui/Hero"
 import Featured from "@/components/ui/Featured"
 import Gallery from "@/components/ui/Gallery"
@@ -11,20 +10,17 @@ export default function Home() {
                 <Hero />
             </section>
 
-            <section className="bg-blur-100 rounded-box space-y-6 py-6 shadow-box">
+            <section className="bg-blur-100 card space-y-6 py-6">
                 <Featured />
             </section>
 
-            <section className={cn("prose max-w-none", "relative")}>
-                <Image
-                    aria-hidden
-                    src="/assets/effects/about-bg.svg"
-                    alt="hidden"
-                    width={300}
-                    height={300}
-                    className={cn("absolute inset-0 h-full w-full overflow-visible object-cover")}
-                />
-                <article className="relative z-10">
+            <section className={cn("prose max-w-none", "bg-blur-300")}>
+                <article
+                    style={{
+                        backgroundImage: `url("/assets/effects/about-bg.svg")`,
+                    }}
+                    className="bg-cover bg-clip-text bg-center bg-no-repeat"
+                >
                     <h3 className="text-base md:text-lg">Why we love what we do</h3>
                     <p>
                         When we think about WORDPLAY4LYFE, what comes to mind is Artistic Expression
