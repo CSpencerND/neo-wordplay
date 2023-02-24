@@ -32,18 +32,20 @@ export default function RootLayout({ children }: Children) {
     return (
         <html lang="en" className="text-base" data-theme="dark">
             <head />
-            <body
-                className={clsx(
-                    inter.className,
-                    "portrait:bg-[url('/assets/effects/blob-scene-haikei-blur-sm.svg')]",
-                    "landscape:bg-[url('/assets/effects/blob-scene-haikei-blur-lg.svg')]",
-                    "bg-cover bg-fixed bg-no-repeat",
-                    "bg-black min-h-screen overflow-x-hidden",
-                )}
-            >
-                <Header />
-                <main className="container mx-auto space-y-12 px-6 py-12">{children}</main>
-                <Footer />
+            <body>
+                <div
+                    className={clsx(
+                        inter.className,
+                        "portrait:bg-[url('/assets/effects/blob-scene-haikei-blur-sm.svg')]",
+                        "landscape:bg-[url('/assets/effects/blob-scene-haikei-blur-lg.svg')]",
+                        "bg-cover bg-fixed bg-no-repeat",
+                        "h-screen overflow-x-hidden bg-black"
+                    )}
+                >
+                    <Header />
+                    <main className="container mx-auto space-y-12 px-6 py-12">{children}</main>
+                    <Footer />
+                </div>
             </body>
         </html>
     )

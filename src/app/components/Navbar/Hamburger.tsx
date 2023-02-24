@@ -16,7 +16,7 @@ export function Hamburger() {
     const pathname = usePathname()
     useEffect(() => {
         isShowing === true && setIsShowing(false)
-    }, [pathname]) /** eslint-disable */
+    }, [pathname]) /** eslint-disable-line */
 
     let delayAmount: number = 100
 
