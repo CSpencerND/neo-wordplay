@@ -16,7 +16,7 @@
         @apply bg-black/60 bg-blur-base;
     }
     .bg-glass {
-        @apply glass bg-opacity-60 bg-blur-100 hover:ring-0;
+        @apply glass bg-opacity-60 hover:ring-0;
     }
     .bg-grayscale {
         @apply bg-gradient-to-tl from-base-300 to-base-content/75 bg-blur-base;
