@@ -18,6 +18,8 @@ export function Hamburger() {
         isShowing === true && setIsShowing(false)
     }, [pathname])
 
+    let delayAmount: number = 100
+
     return (
         <>
             <button
@@ -53,7 +55,11 @@ export function Hamburger() {
                         tabIndex={0}
                         className={cn("menu self-center", "w-[80vw] p-4")}
                     >
-                        {links.map(({ title, href, delay }, i) => {
+                        {/* {links.map(({ title, href, delay }, i) => { */}
+                        {links.map(({ title, href }, i) => {
+                            const delay: string = `delay-[${delayAmount}ms]`
+                            delayAmount += 80
+
                             return (
                                 <Transition.Child
                                     as="li"

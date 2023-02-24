@@ -1,7 +1,7 @@
-import type {Dispatch, SetStateAction} from "react"
+import type { Dispatch, SetStateAction } from "react"
 
 import { useState } from "react"
-import Loader from "react-spinners/HashLoader"
+import LoadingSpinner from "@/components/LoadingSpinner"
 
 type UseLoaderReturnType = {
     loaderComponent: JSX.Element
@@ -12,13 +12,10 @@ export function useLoader(size: number = 96, color: string = "#3abff8"): UseLoad
     const [loading, setLoading] = useState<boolean>(true)
 
     const loaderComponent = (
-        <Loader
-            className="mx-auto"
+        <LoadingSpinner
             color={color}
             size={size}
             loading={loading}
-            aria-label="Loading Spinner"
-            data-testid="loader"
         />
     )
 
