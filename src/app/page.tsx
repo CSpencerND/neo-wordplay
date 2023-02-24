@@ -1,6 +1,7 @@
-import Hero from "@/components/ui/Hero"
-import Featured from "@/components/ui/Featured"
-import Gallery from "@/components/ui/Gallery"
+import Hero from "./components/Hero"
+import Featured from "./components/Featured"
+import Gallery from "./components/Gallery"
+
 import cn from "clsx"
 
 export default function Home() {

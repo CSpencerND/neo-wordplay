@@ -11,8 +11,6 @@ import cn from "clsx"
 /** assets */
 import logo from "@/static/brand/wp4l.webp"
 
-/*********************************************************************************************/
-
 export default function Header() {
     return (
         <header className="bg-blur-300 sticky top-0 z-40">
