@@ -37,8 +37,8 @@ export default function RootLayout({ children }: Children) {
                     inter.className,
                     "portrait:bg-[url('/assets/effects/blob-scene-haikei-blur-sm.svg')]",
                     "landscape:bg-[url('/assets/effects/blob-scene-haikei-blur-lg.svg')]",
-                    "bg-neutral-focus",
-                    "bg-cover bg-fixed bg-no-repeat"
+                    "bg-cover bg-fixed bg-no-repeat",
+                    "bg-black min-h-screen overflow-x-hidden",
                 )}
             >
                 <Header />

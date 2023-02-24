@@ -16,7 +16,7 @@ export function Hamburger() {
     const pathname = usePathname()
     useEffect(() => {
         isShowing === true && setIsShowing(false)
-    }, [pathname])
+    }, [pathname]) /** eslint-disable */
 
     let delayAmount: number = 100
 
