@@ -1,1 +1,2 @@
-export {useInnerWidth, useLoader} from "./hooks"
+export { useInnerWidth } from "./useInnerWidth"
+export { useLoader } from "./useLoader"

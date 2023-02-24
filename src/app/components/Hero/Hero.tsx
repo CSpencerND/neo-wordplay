@@ -5,7 +5,7 @@ import Image from "next/image"
 import hero from "@/static/brand/hero.webp"
 import localFont from "@next/font/local"
 const graffiti = localFont({
-    src: "../../../static/font/don_graffiti/DonGraffiti.otf",
+    src: "../../static/font/don_graffiti/DonGraffiti.otf",
 })
 
 /** utils */
@@ -27,7 +27,7 @@ export default function Hero() {
             <div aria-hidden className="hero-overlay rounded-box bg-opacity-30" />
             <div className="hero-content">
                 <h1
-                    className={cn(graffiti.className, "text-5xl")}
+                    className={cn(graffiti.className, "text-3xl")}
                     style={{
                         textShadow: "1px 2px 2px black, -1px -2px 2px black",
                     }}

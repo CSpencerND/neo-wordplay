@@ -3,8 +3,8 @@ import type { Metadata } from "next"
 import type Children from "types"
 
 /** components */
-import Header from "./components/common/Navbar/Header"
-import Footer from "./components/common/Footer"
+import Header from "./components/Navbar/Header"
+import Footer from "./components/Footer"
 
 /** style */
 import clsx from "clsx"
@@ -12,6 +12,7 @@ import "./globals.css"
 import { Inter } from "@next/font/google"
 const inter = Inter({ subsets: ["latin"] })
 
+/** metadata */
 export const metadata: Metadata = {
     title: "WordPlay4Lyfe",
     description: "Graphic tees that play with words",
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
     manifest: "/site.webmanifest",
 }
 
+/** content */
 export default function RootLayout({ children }: Children) {
     return (
         <html lang="en" className="text-base" data-theme="dark">
