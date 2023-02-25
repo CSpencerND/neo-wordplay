@@ -21,6 +21,14 @@
     .bg-grayscale {
         @apply bg-gradient-to-tl from-base-300 to-base-content/75 bg-blur-base;
     }
+    .before-blur-300 {
+        @apply before:absolute before:-z-10 before:content-[''];
+        @apply before:bg-blur-300 before:h-full before:w-full;
+    }
+    .after-blur-300 {
+        @apply after:absolute after:-z-10 after:content-[''];
+        @apply after:bg-blur-300 after:h-full after:w-full;
+    }
 }
 
 .alice-carousel {

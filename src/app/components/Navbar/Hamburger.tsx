@@ -41,7 +41,7 @@ export function Hamburger() {
                     className={cn(
                         "absolute top-0 left-0 z-40",
                         "flex h-screen flex-row",
-                        "bg-blur-300 border-r border-base-200 shadow-box"
+                        "after-blur-300 border-r border-base-200 shadow-box"
                     )}
                     enter="transition ease-out duration-300 transform"
                     enterFrom="-translate-x-[100vw]"
