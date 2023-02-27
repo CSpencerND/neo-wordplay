@@ -17,14 +17,14 @@ export default function Hero() {
             <Image
                 className={cn(
                     "rounded-box aspect-video",
-                    "max-h-[calc(100dvh-196px)] object-cover object-top"
+                    "max-h-[calc(100vh-196px)] object-cover object-top"
                 )}
                 src={hero}
                 alt="We Play With Words"
                 placeholder="blur"
                 priority
             />
-            <div aria-hidden className="hero-overlay rounded-box bg-opacity-30" />
+            <div aria-hidden className="hero-overlay rounded-box bg-black/30" />
             <div className="hero-content">
                 <h1
                     className={cn(graffiti.className, "text-3xl")}

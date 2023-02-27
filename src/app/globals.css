@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
+@layer utilities {
     .bg-blur-base {
         @apply backdrop-blur-lg backdrop-saturate-[1.8];
     }
@@ -10,13 +10,13 @@
         @apply bg-base-100/60 bg-blur-base;
     }
     .bg-blur-200 {
-        @apply bg-neutral/60 bg-blur-base;
+        @apply bg-base-200/60 bg-blur-base;
     }
     .bg-blur-300 {
-        @apply bg-neutral-focus/60 bg-blur-base;
+        @apply bg-black/60 bg-blur-base;
     }
     .bg-glass {
-        @apply glass bg-opacity-60 hover:ring-0;
+        @apply glass bg-opacity-60 ring-0 hover:ring-0;
     }
     .bg-grayscale {
         @apply bg-gradient-to-tl from-base-300 to-base-content/75 bg-blur-base;
@@ -28,6 +28,15 @@
     .after-blur-300 {
         @apply after:absolute after:-z-10 after:content-[''];
         @apply after:bg-blur-300 after:h-full after:w-full;
+    }
+    .btn-primary {
+        @apply bg-primary/10 font-bold text-primary hover:bg-primary/20;
+    }
+    .btn-secondary {
+        @apply bg-secondary/10 font-bold text-secondary hover:bg-secondary/20;
+    }
+    .btn-accent {
+        @apply bg-accent/10 font-bold text-accent hover:bg-accent/20;
     }
 }
 

@@ -21,7 +21,7 @@ export default function Featured() {
 
     return (
         <>
-            <h2 className="text-center text-lg font-bold text-info">Featured Items</h2>
+            <h2 className="text-center text-lg font-bold text-primary">Featured Items</h2>
 
             {loaderComponent}
 
@@ -58,21 +58,16 @@ export default function Featured() {
             <div className="flex items-center justify-evenly">
                 <button
                     className={cn(
-                        "btn",
-                        "border-none btn-info",
+                        "btn btn-primary",
                     )}
                 >
                     See More
                 </button>
 
-                <span className="btn-group">
+                <span className="flex gap-2">
                     <button
                         aria-controls="alice-carousel"
-                        className={cn(
-                            "btn btn-square btn-sm",
-                            "bg-neutral-content/20",
-                            "hover:bg-neutral-content/40"
-                        )}
+                        className={cn("btn-square btn-sm btn", "bg-base-100")}
                         onClick={() => sliderRef?.current?.slidePrev() || null}
                     >
                         <ChevronLeft set="curved" />
@@ -81,11 +76,7 @@ export default function Featured() {
                     <button
                         aria-controls="alice-carousel"
                         onClick={() => sliderRef?.current?.slideNext() || null}
-                        className={cn(
-                            "btn btn-square btn-sm",
-                            "bg-neutral-content/20",
-                            "hover:bg-neutral-content/40"
-                        )}
+                        className={cn("btn-square btn-sm btn", "bg-base-100")}
                     >
                         <ChevronRight set="curved" />
                     </button>
@@ -102,7 +93,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box shadow-box"
+        className="bg-glass rounded-box"
     />,
     <Image
         key={2}
@@ -110,7 +101,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box shadow-box"
+        className="bg-glass rounded-box"
     />,
     <Image
         key={3}
@@ -118,7 +109,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box shadow-box"
+        className="bg-glass rounded-box"
     />,
     <Image
         key={4}
@@ -126,7 +117,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box shadow-box"
+        className="bg-glass rounded-box"
     />,
     <Image
         key={5}
@@ -134,7 +125,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box shadow-box"
+        className="bg-glass rounded-box"
     />,
     <Image
         key={6}
@@ -142,6 +133,6 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box shadow-box"
+        className="bg-glass rounded-box"
     />,
 ]

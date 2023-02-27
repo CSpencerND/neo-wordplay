@@ -1,8 +1,7 @@
 import Hero from "./components/Hero"
 import Featured from "./components/Featured"
 import Gallery from "./components/Gallery"
-
-import cn from "clsx"
+import Blob from "./components/Blob"
 
 export default function Home() {
     return (
@@ -11,17 +10,16 @@ export default function Home() {
                 <Hero />
             </section>
 
-            <section className="bg-blur-100 card space-y-6 py-6">
+            <section className="bg-blur-200 card space-y-6 py-6">
                 <Featured />
             </section>
 
-            <section
-                style={{
-                    backgroundImage: `url("/assets/effects/circle-scatter-haikei.svg")`,
-                }}
-            >
-                {/* <section className={cn("bg-blur-100 card p-6")}> */}
-                <article className="prose max-w-none">
+            <section className="relative">
+                <Blob size="md" opacity={30} />
+                <Blob size="lg" placement="right" opacity={20} />
+                <Blob size="sm" placement="bottom" opacity={50} />
+
+                <article className="prose relative max-w-none">
                     <h3 className="text-base md:text-lg">Why we love what we do</h3>
                     <p>
                         When we think about WORDPLAY4LYFE, what comes to mind is Artistic Expression

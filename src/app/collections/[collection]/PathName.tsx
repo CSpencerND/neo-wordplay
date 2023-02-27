@@ -15,5 +15,5 @@ export default function CollectionHeading() {
     const pathname = usePathname() as string
     const title = pathData[pathname]
 
-    return <h1 className="text-center text-xl font-bold text-info">{title}</h1>
+    return <h1 className="text-center text-xl font-bold text-primary">{title}</h1>
 }

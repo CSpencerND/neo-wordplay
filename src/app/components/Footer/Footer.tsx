@@ -10,18 +10,28 @@ export default function Footer() {
             <section className="footer px-6 max-md:footer-center">
                 <div className="form-control text-sm">
                     <label className="label">
-                        <span className="text-base-content/60 font-bold text-sm">Sign Up To Our Newsletter!</span>
+                        <span className="text-sm font-bold text-base-content/60">
+                            Sign Up To Our Newsletter!
+                        </span>
                     </label>
-                    <div className="relative">
+                    <div className="relative isolate">
+                        <div
+                            aria-hidden
+                            className={cn(
+                                "absolute -inset-x-0.5 -top-1 bottom-1 -z-10",
+                                "bg-gradient-to-bl from-accent/30 to-secondary/40",
+                                "rounded-box blur-md"
+                            )}
+                        ></div>
                         <input
                             type="email"
                             inputMode="email"
                             placeholder="username@site.com"
-                            className="input-bordered input h-8 w-full mb-2 bg-blur-100"
+                            className={cn("input", "mb-2 w-full", "bg-base-300")}
                         />
                         <button
                             className={cn(
-                                "btn-primary btn-sm btn",
+                                "btn-secondary btn",
                                 "absolute top-0 right-0",
                                 "rounded-l-none"
                             )}

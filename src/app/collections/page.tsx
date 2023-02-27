@@ -7,7 +7,7 @@ import logo from "@/static/brand/wp4l.webp"
 export default function Collections() {
     return (
         <section className="mx-auto max-w-2xl space-y-12">
-            <h1 className="text-center text-xl font-bold text-info">Collections Directory</h1>
+            <h1 className="text-center text-xl font-bold text-primary">Collections Directory</h1>
             <ul className={cn("grid gap-4 sm:gap-6", "grid-cols-2 md:grid-cols-3")}>
                 {CollectionCards}
             </ul>
