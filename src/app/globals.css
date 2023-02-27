@@ -10,10 +10,10 @@
         @apply bg-base-100/60 bg-blur-base;
     }
     .bg-blur-200 {
-        @apply bg-neutral-focus/60 bg-blur-base;
+        @apply bg-neutral/60 bg-blur-base;
     }
     .bg-blur-300 {
-        @apply bg-black/60 bg-blur-base;
+        @apply bg-neutral-focus/60 bg-blur-base;
     }
     .bg-glass {
         @apply glass bg-opacity-60 hover:ring-0;

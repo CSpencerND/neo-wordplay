@@ -21,7 +21,7 @@ export default function Featured() {
 
     return (
         <>
-            <h2 className="text-center text-lg font-bold text-info/75">Featured Items</h2>
+            <h2 className="text-center text-lg font-bold text-info">Featured Items</h2>
 
             {loaderComponent}
 
@@ -59,8 +59,7 @@ export default function Featured() {
                 <button
                     className={cn(
                         "btn",
-                        "border-none bg-info-content text-info",
-                        "hover:bg-info hover:text-info-content"
+                        "border-none btn-info",
                     )}
                 >
                     See More

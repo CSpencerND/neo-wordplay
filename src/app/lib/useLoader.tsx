@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react"
 
 import { useState } from "react"
-import LoadingSpinner from "@/components/LoadingSpinner"
+import { LoadingSpinner } from "@/components/LoadingSpinner"
 
 type UseLoaderReturnType = {
     loaderComponent: JSX.Element
@@ -11,13 +11,7 @@ type UseLoaderReturnType = {
 export function useLoader(size: number = 96, color: string = "#3abff8"): UseLoaderReturnType {
     const [loading, setLoading] = useState<boolean>(true)
 
-    const loaderComponent = (
-        <LoadingSpinner
-            color={color}
-            size={size}
-            loading={loading}
-        />
-    )
+    const loaderComponent = <LoadingSpinner color={color} size={size} loading={loading} />
 
     return { loaderComponent, setLoading }
 }

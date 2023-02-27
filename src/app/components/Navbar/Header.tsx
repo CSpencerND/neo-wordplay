@@ -29,7 +29,7 @@ export default function Header() {
             >
                 <div className="navbar-start">
                     <Link href="/" className="btn-link btn hover:opacity-80">
-                        <Image src={logo} alt="WordPlay4Lyfe" className="h-full w-auto" />
+                        <Image src={logo} alt="WordPlay4Lyfe" className="h-5/6 w-auto" />
                     </Link>
                 </div>
                 <div className="navbar-end">
