@@ -33,17 +33,16 @@ export default function RootLayout({ children }: Children) {
         <html lang="en" className="text-base" data-theme="next">
             <head />
             <body
-                className={cn(
-                    inter.className,
-                    "relative min-h-screen overflow-x-hidden bg-black",
-                    "bg-gradient-to-bl from-sky-900/40 via-black to-slate-900/60 bg-fixed"
-                )}
                 style={{
                     backgroundImage:
                         "linear-gradient(25deg, rgba(30,30,50,1) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(20,50,70,1) 100%)",
                 }}
+                className={cn(
+                    inter.className,
+                    "relative flex min-h-screen flex-col overflow-x-hidden",
+                    "bg-black bg-cover bg-fixed"
+                )}
             >
-                {/* <Blob /> */}
                 <Header />
                 <main className={cn("container relative", "mx-auto space-y-12 px-6 py-12")}>
                     {children}
@@ -53,15 +52,3 @@ export default function RootLayout({ children }: Children) {
         </html>
     )
 }
-
-// const Blob = () => (
-//     <div
-//         aria-hidden
-//         className={cn(
-//             "fixed h-72 w-72",
-//             "top-0 right-0 translate-x-1/2 -translate-y-1/2",
-//             "rounded-full bg-primary",
-//             "opacity-60 blur-3xl"
-//         )}
-//     ></div>
-// )
