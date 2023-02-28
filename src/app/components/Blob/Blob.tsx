@@ -32,7 +32,7 @@ export default function Blob({ size, placement, opacity }: BlobProps) {
             aria-hidden
             className={cn(
                 "absolute",
-                "rounded-full bg-accent/60",
+                "rounded-full bg-accent/80",
                 "blur-3xl",
                 sizes[size],
                 placement && placements[placement],
