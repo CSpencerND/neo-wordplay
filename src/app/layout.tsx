@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
     },
     manifest: "/site.webmanifest",
-    themeColor: "hsl(204, 55%, 7%)", // ios
+    themeColor: "hsl(204, 55%, 5%)", // ios
 }
 
 /** content */
