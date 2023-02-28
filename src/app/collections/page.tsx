@@ -61,8 +61,8 @@ const CollectionCards = links.map(({ title, href, imgSrc }, i) => {
                 href={href}
                 className={cn(
                     "card relative h-full",
-                    "text-primary transition",
-                    "hover:scale-105 hover:text-secondary-focus hover:brightness-150",
+                    "text-primary transition-all",
+                    "hover:scale-105 hover:brightness-150",
                     "active:scale-90"
                 )}
             >

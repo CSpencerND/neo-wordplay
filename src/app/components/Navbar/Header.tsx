@@ -1,7 +1,8 @@
 /** components */
 import Link from "next/link"
 import Image from "next/image"
-import { Hamburger } from "./Hamburger"
+// import { Hamburger } from "./Hamburger"
+import { NavMenu } from "./NavMenu"
 import { Cart } from "./Cart"
 import { Login } from "./Login"
 
@@ -13,20 +14,8 @@ import logo from "@/static/brand/wp4l.webp"
 
 export default function Header() {
     return (
-        <header
-            className={cn(
-                "sticky top-0 z-40",
-                "before-blur-300"
-            )}
-        >
-            <nav
-                className={cn(
-                    "navbar",
-                    "mx-auto max-w-7xl",
-                    "border-b border-base-200",
-                    "text-primary-content",
-                )}
-            >
+        <header className={cn("sticky top-0 z-40", "before-blur-300")}>
+            <nav className={cn("navbar", "mx-auto max-w-7xl", "border-b border-base-200")}>
                 <div className="navbar-start">
                     <Link href="/" className="btn-link btn hover:opacity-80">
                         <Image src={logo} alt="WordPlay4Lyfe" className="h-5/6 w-auto" />
@@ -39,7 +28,7 @@ export default function Header() {
                     <label className="btn-ghost btn-square btn">
                         <Login set="curved" />
                     </label>
-                    <Hamburger />
+                    <NavMenu />
                 </div>
             </nav>
         </header>

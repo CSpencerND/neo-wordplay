@@ -10,7 +10,7 @@ import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import cn from "clsx"
 
-export function Hamburger() {
+export function NavMenu() {
     const [isShowing, setIsShowing] = useState<boolean>(false)
 
     const pathname = usePathname()

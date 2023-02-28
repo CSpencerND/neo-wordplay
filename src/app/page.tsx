@@ -15,8 +15,8 @@ export default function Home() {
             </section>
 
             <section className="relative">
-                <Blob size="md" opacity={30} />
-                <Blob size="lg" placement="right" opacity={20} />
+                <Blob size="md" opacity={40} />
+                <Blob size="lg" placement="right" opacity={30} />
                 <Blob size="sm" placement="bottom" opacity={50} />
 
                 <article className="prose relative max-w-none space-y-6">
