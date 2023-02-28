@@ -33,20 +33,25 @@ export default function RootLayout({ children }: Children) {
         <html lang="en" className={cn("bg-black text-base", inter.className)} data-theme="next">
             <head />
             <body
-                style={{
-                    backgroundImage: `
+                className={cn(
+                    "relative min-h-screen",
+                    "isolate overflow-x-hidden",
+                    "flex flex-col bg-black"
+                )}
+            >
+                <div
+                    aria-hidden
+                    style={{
+                        backgroundImage: `
                         linear-gradient(25deg,
                         rgba(30,30,50,1) 0%,
                         rgba(0,0,0,1) 20%,
                         rgba(0,0,0,1) 80%,
                         rgba(20,50,70,1) 100%)
                     `,
-                }}
-                className={cn(
-                    "relative flex min-h-screen flex-col overflow-x-hidden",
-                    "bg-black bg-contain bg-fixed"
-                )}
-            >
+                    }}
+                    className="fixed -z-10 h-full w-full bg-center bg-no-repeat"
+                ></div>
                 <Header />
                 <main className={cn("container relative", "mx-auto space-y-12 px-6 py-12")}>
                     {children}
