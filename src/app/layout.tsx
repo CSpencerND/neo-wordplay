@@ -30,17 +30,21 @@ export const metadata: Metadata = {
 /** content */
 export default function RootLayout({ children }: Children) {
     return (
-        <html lang="en" className="text-base" data-theme="next">
+        <html lang="en" className={cn("bg-black text-base", inter.className)} data-theme="next">
             <head />
             <body
                 style={{
-                    backgroundImage:
-                        "linear-gradient(25deg, rgba(30,30,50,1) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(20,50,70,1) 100%)",
+                    backgroundImage: `
+                        linear-gradient(25deg,
+                        rgba(30,30,50,1) 0%,
+                        rgba(0,0,0,1) 20%,
+                        rgba(0,0,0,1) 80%,
+                        rgba(20,50,70,1) 100%)
+                    `,
                 }}
                 className={cn(
-                    inter.className,
                     "relative flex min-h-screen flex-col overflow-x-hidden",
-                    "bg-black bg-cover bg-fixed"
+                    "bg-black bg-contain bg-fixed"
                 )}
             >
                 <Header />
