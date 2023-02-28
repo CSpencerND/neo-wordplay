@@ -25,6 +25,7 @@ export const metadata: Metadata = {
         apple: { url: "/apple-touch-icon.png", sizes: "180x180" },
     },
     manifest: "/site.webmanifest",
+    themeColor: "#1E293B", // ios
 }
 
 /** content */
@@ -38,6 +39,9 @@ export default function RootLayout({ children }: Children) {
                     "isolate overflow-x-hidden",
                     "flex flex-col bg-black"
                 )}
+                style={{
+                    paddingBottom: "env(safe-area-inset-bottom)", // ios
+                }}
             >
                 <div
                     aria-hidden
