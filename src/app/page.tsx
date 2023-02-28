@@ -19,7 +19,7 @@ export default function Home() {
                 <Blob size="lg" placement="right" opacity={20} />
                 <Blob size="sm" placement="bottom" opacity={50} />
 
-                <article className="prose relative max-w-none">
+                <article className="prose relative max-w-none space-y-6">
                     <h3 className="text-base md:text-lg">Why we love what we do</h3>
                     <p>
                         When we think about WORDPLAY4LYFE, what comes to mind is Artistic Expression
