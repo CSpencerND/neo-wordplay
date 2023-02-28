@@ -41,7 +41,7 @@ export function NavMenu() {
                     className={cn(
                         "absolute top-0 left-0 z-40",
                         "flex h-screen flex-row",
-                        "after-blur-300 border-r border-base-200 shadow-box"
+                        "border-r border-base-200 bg-black/60"
                     )}
                     enter="transition ease-out duration-300 transform"
                     enterFrom="-translate-x-[100vw]"
@@ -53,9 +53,8 @@ export function NavMenu() {
                     <ul
                         id="navMenu"
                         tabIndex={0}
-                        className={cn("menu self-center", "w-[80vw] p-4")}
+                        className={cn("menu self-center p-4", `w-[calc(100vw-1rem-58px)]`)}
                     >
-                        {/* {links.map(({ title, href, delay }, i) => { */}
                         {links.map(({ title, href }, i) => {
                             const delay: string = `delay-[${delayAmount}ms]`
                             delayAmount += 80
@@ -88,9 +87,9 @@ export function NavMenu() {
                     onClick={() => setIsShowing(false)}
                     className={cn(
                         "absolute top-0 right-0",
-                        "h-screen w-[20vw]",
-                        "bg-blur-300 opacity-80",
-                        "transition-all hover:cursor-pointer hover:opacity-40"
+                        "h-screen w-screen",
+                        "after-blur-clear",
+                        "hover:cursor-pointer"
                     )}
                     enter="transition ease-out duration-300 transform"
                     enterFrom="translate-x-full"

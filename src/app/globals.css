@@ -13,6 +13,9 @@
         @apply bg-base-200/60 bg-blur-base;
     }
     .bg-blur-300 {
+        @apply bg-base-300/60 bg-blur-base;
+    }
+    .bg-blur-black {
         @apply bg-black/60 bg-blur-base;
     }
     .bg-glass {
@@ -21,6 +24,10 @@
     .bg-grayscale {
         @apply bg-gradient-to-tl from-base-300 to-base-content/75 bg-blur-base;
     }
+    .bg-blur-clear {
+        @apply bg-transparent bg-blur-base;
+    }
+
     .before-blur-300 {
         @apply before:absolute before:-z-10 before:content-[''];
         @apply before:bg-blur-300 before:h-full before:w-full;
@@ -29,6 +36,23 @@
         @apply after:absolute after:-z-10 after:content-[''];
         @apply after:bg-blur-300 after:h-full after:w-full;
     }
+    .before-blur-black {
+        @apply before:absolute before:-z-10 before:content-[''];
+        @apply before:bg-blur-black before:h-full before:w-full;
+    }
+    .after-blur-black {
+        @apply after:absolute after:-z-10 after:content-[''];
+        @apply after:bg-blur-black after:h-full after:w-full;
+    }
+    .before-blur-clear {
+        @apply before:absolute before:-z-10 before:content-[''];
+        @apply before:bg-blur-clear before:h-full before:w-full;
+    }
+    .after-blur-clear {
+        @apply after:absolute after:-z-10 after:content-[''];
+        @apply after:bg-blur-clear after:h-full after:w-full;
+    }
+
     .btn-primary {
         @apply bg-primary/20 font-bold text-primary hover:bg-primary/30;
     }
