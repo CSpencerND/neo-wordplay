@@ -8,7 +8,7 @@ const pathData: { [x: string]: string } = {
     "/collections/mindset": "Mindset",
     "/collections/lifestyle": "Lifestyle",
     "/collections/creativity": "Creativity",
-    "/collections/catalog":"Full Catalog"
+    "/collections/catalog": "Full Catalog",
 }
 
 export default function CollectionHeading() {
