@@ -82,11 +82,6 @@
   dependencies:
     glob "7.1.7"
 
-"@next/font@13.1.6":
-  version "13.1.6"
-  resolved "https://registry.yarnpkg.com/@next/font/-/font-13.1.6.tgz#2bf99e3321ec9b4d65781c0d0ebff072e8752e1a"
-  integrity sha512-AITjmeb1RgX1HKMCiA39ztx2mxeAyxl4ljv2UoSBUGAbFFMg8MO7YAvjHCgFhD39hL7YTbFjol04e/BPBH5RzQ==
-
 "@next/swc-android-arm-eabi@13.2.1":
   version "13.2.1"
   resolved "https://registry.yarnpkg.com/@next/swc-android-arm-eabi/-/swc-android-arm-eabi-13.2.1.tgz#67f2580fbbe05ee006220688972c5e3a555fc741"
@@ -190,16 +185,16 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.2.0.tgz#8be36a1f66f3265389e90b5f9c9962146758f728"
   integrity sha512-sXo/qW2/pAcmT43VoRKOJbDOfV3cYpq3szSVfIThQXNt+E4DfKj361vaAt3c88U5tPUxzEswam7GW48PJqtKAg==
 
-"@shopify/storefront-kit-react@^2023.1.3":
-  version "2023.1.3"
-  resolved "https://registry.yarnpkg.com/@shopify/storefront-kit-react/-/storefront-kit-react-2023.1.3.tgz#826c16064ab3ca2614381999d0ad9035565f3a1b"
-  integrity sha512-eCvGJ2oRYgWwNf7CgsFBqqKhc4bhuIRcjKCr0V+70EuY7qwa49TXZ2Ch5lDdrogisTMAnRLjeVi5CuuGy5+Htw==
+"@shopify/hydrogen-react@^2023.1.6":
+  version "2023.1.6"
+  resolved "https://registry.yarnpkg.com/@shopify/hydrogen-react/-/hydrogen-react-2023.1.6.tgz#3b5a2368c48df27c21329efa58d45dd68ccc6353"
+  integrity sha512-LkAxEajqxha9nvaHJWSn9QQI1Vuh40fBjqzUrMnzhncyfQ4QBzaTUrJPkIrtIKv4ViVvxuyrePFmtXwkFgwtXg==
   dependencies:
     "@google/model-viewer" "^1.12.1"
     "@xstate/fsm" "^2.0.0"
-    "@xstate/react" "^3.0.1"
+    "@xstate/react" "^3.2.1"
     graphql "^16.6.0"
-    type-fest "^3.5.1"
+    type-fest "^3.6.0"
     worktop "^0.7.3"
 
 "@swc/helpers@0.4.14":
@@ -316,7 +311,7 @@
   resolved "https://registry.yarnpkg.com/@xstate/fsm/-/fsm-2.0.0.tgz#221db16b606df3f4675f5be6058b633ec4b8b44a"
   integrity sha512-p/zcvBMoU2ap5byMefLkR+AM+Eh99CU/SDEQeccgKlmFNOMDwphaRGqdk+emvel/SaGZ7Rf9sDvzAplLzLdEVQ==
 
-"@xstate/react@^3.0.1":
+"@xstate/react@^3.2.1":
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/@xstate/react/-/react-3.2.1.tgz#ac7b78e8c1d6d3802dfb29a6499f18e48b3dfdb3"
   integrity sha512-L/mqYRxyBWVdIdSaXBHacfvS8NKn3sTKbPb31aRADbE9spsJ1p+tXil0GVQHPlzrmjGeozquLrxuYGiXsFNU7g==
@@ -2453,10 +2448,10 @@ type-fest@^0.20.2:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.20.2.tgz#1bf207f4b28f91583666cb5fbd327887301cd5f4"
   integrity sha512-Ne+eE4r0/iWnpAxD852z3A+N0Bt5RN//NjJwRd2VFHEmrywxf5vsZlh4R6lixl6B+wz/8d+maTSAkN1FIkI3LQ==
 
-type-fest@^3.5.1:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.6.0.tgz#827c36c0e7fcff0cb2d55d091a5c4cf586432b8a"
-  integrity sha512-RqTRtKTzvPpNdDUp1dVkKQRunlPITk4mXeqFlAZoJsS+fLRn8AdPK0TcQDumGayhU7fjlBfiBjsq3pe3rIfXZQ==
+type-fest@^3.6.0:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-3.6.1.tgz#cf8025edeebfd6cf48de73573a5e1423350b9993"
+  integrity sha512-htXWckxlT6U4+ilVgweNliPqlsVSSucbxVexRYllyMVJDtf5rTjv6kF/s+qAd4QSL1BZcnJPEJavYBPQiWuZDA==
 
 typed-array-length@^1.0.4:
   version "1.0.4"

@@ -3,7 +3,7 @@ import Image from "next/image"
 
 /** assets */
 import hero from "@/static/brand/hero.webp"
-import localFont from "@next/font/local"
+import localFont from "next/font/local"
 const graffiti = localFont({
     src: "../../static/font/don_graffiti/DonGraffiti.otf",
 })
