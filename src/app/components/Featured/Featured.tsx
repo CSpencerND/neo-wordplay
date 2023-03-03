@@ -3,7 +3,6 @@
 /** components */
 import Image from "next/image"
 import AliceCarousel from "react-alice-carousel"
-import "react-alice-carousel/lib/alice-carousel.css"
 
 /** utils */
 import { useRef } from "react"
@@ -13,6 +12,10 @@ import cn from "clsx"
 /** assets */
 import temp from "@/static/brand/placeholder.webp"
 import { ChevronRight, ChevronLeft } from "react-iconly"
+
+/** styles */
+import "react-alice-carousel/lib/alice-carousel.css"
+import "./carousel.css"
 
 export default function Featured() {
     const sliderRef = useRef<AliceCarousel>(null)
