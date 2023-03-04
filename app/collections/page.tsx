@@ -3,8 +3,12 @@ import Image, { StaticImageData } from "next/image"
 import cn from "clsx"
 import temp from "@/static/brand/placeholder.webp"
 import logo from "@/static/brand/wp4l.webp"
+import storefrontQuery from "@/lib/shopifyClient"
+import collectionQuery from "./collectionQuery"
 
-export default function Collections() {
+export default async function Collections() {
+    const data = await storefrontQuery(collectionQuery)
+    console.log(data)
     return (
         <section className="mx-auto max-w-2xl space-y-12">
             <h1 className="text-center text-xl font-bold text-primary">Collections Directory</h1>
@@ -49,7 +53,7 @@ const links: CollectionLinkData[] = [
     },
     {
         title: "Full Catalog",
-        href: "collections/catalog",
+        href: "collections/full-catalog",
         imgSrc: logo,
     },
 ]

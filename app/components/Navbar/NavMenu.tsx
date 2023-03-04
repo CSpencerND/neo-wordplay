@@ -106,43 +106,35 @@ export function NavMenu() {
 type NavLinkData = {
     title: string
     href: string
-    delay: string
 }
 
 const links: NavLinkData[] = [
     {
         title: "Collections Directory",
         href: "collections",
-        delay: "delay-[100ms]",
     },
     {
         title: "Staff Picks",
         href: "collections/staff-picks",
-        delay: "delay-[180ms]",
     },
     {
         title: "Summer '22",
         href: "collections/summer-22",
-        delay: "delay-[260ms]",
     },
     {
         title: "Mindset",
         href: "collections/mindset",
-        delay: "delay-[340ms]",
     },
     {
         title: "Creativity",
         href: "collections/creativity",
-        delay: "delay-[420ms]",
     },
     {
         title: "Lifestyle",
         href: "collections/lifestyle",
-        delay: "delay-[500ms]",
     },
     {
         title: "Full Catalog",
-        href: "collections/catalog",
-        delay: "delay-[580ms]",
+        href: "collections/full-catalog",
     },
 ]

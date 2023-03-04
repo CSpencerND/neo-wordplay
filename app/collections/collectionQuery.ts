@@ -2,10 +2,7 @@ const gql = String.raw
 
 const collectionQuery = gql`
     {
-        collections(
-            first: 9
-            after: "eyJsYXN0X2lkIjoyODEwMjc4NzA5MTQsImxhc3RfdmFsdWUiOjI4MTAyNzg3MDkxNH0"
-        ) {
+        collections(first: 5, reverse: true) {
             edges {
                 node {
                     id
