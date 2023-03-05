@@ -2,30 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-    .bg-blur-base {
-        @apply backdrop-blur-lg backdrop-saturate-[1.8];
+@layer components {
+    .btn-primary {
+        @apply bg-primary/20 font-bold text-primary hover:bg-primary/30;
     }
-    .bg-blur-100 {
-        @apply bg-base-100/60 bg-blur-base;
+    .btn-secondary {
+        @apply bg-secondary/20 font-bold text-secondary hover:bg-secondary/30;
     }
-    .bg-blur-200 {
-        @apply bg-base-200/60 bg-blur-base;
-    }
-    .bg-blur-300 {
-        @apply bg-base-300/60 bg-blur-base;
-    }
-    .bg-blur-black {
-        @apply bg-black/60 bg-blur-base;
-    }
-    .bg-glass {
-        @apply glass bg-opacity-60 ring-0 hover:ring-0;
-    }
-    .bg-grayscale {
-        @apply bg-gradient-to-tl from-base-300 to-base-content/75 bg-blur-base;
-    }
-    .bg-blur-clear {
-        @apply bg-transparent bg-blur-base;
+    .btn-accent {
+        @apply bg-accent/20 font-bold text-accent hover:bg-accent/30;
     }
 
     .before-blur-300 {
@@ -52,14 +37,31 @@
         @apply after:absolute after:-z-10 after:content-[''];
         @apply after:bg-blur-clear after:h-full after:w-full;
     }
+}
 
-    .btn-primary {
-        @apply bg-primary/20 font-bold text-primary hover:bg-primary/30;
+@layer utilities {
+    .bg-blur-base {
+        @apply backdrop-blur-lg backdrop-saturate-[1.8];
     }
-    .btn-secondary {
-        @apply bg-secondary/20 font-bold text-secondary hover:bg-secondary/30;
+    .bg-blur-100 {
+        @apply bg-base-100/60 bg-blur-base;
     }
-    .btn-accent {
-        @apply bg-accent/20 font-bold text-accent hover:bg-accent/30;
+    .bg-blur-200 {
+        @apply bg-base-200/60 bg-blur-base;
+    }
+    .bg-blur-300 {
+        @apply bg-base-300/60 bg-blur-base;
+    }
+    .bg-blur-black {
+        @apply bg-black/60 bg-blur-base;
+    }
+    .bg-glass {
+        @apply glass bg-opacity-60 ring-0 hover:ring-0;
+    }
+    .bg-grayscale {
+        @apply bg-gradient-to-tl from-base-300 to-base-content/75 bg-blur-base;
+    }
+    .bg-blur-clear {
+        @apply bg-transparent bg-blur-base;
     }
 }

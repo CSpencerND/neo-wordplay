@@ -4,8 +4,6 @@ import cn from "clsx"
 import temp from "@/static/brand/placeholder.webp"
 import storefrontQuery from "@/lib/shopifyClient"
 import collectionQuery from "./collectionQuery"
-import blurLogo from "@/static/brand/wp4l-blur.webp"
-import blurShirt from "@/static/brand/white-shirt-blur.webp"
 
 export default async function Collections() {
     const edges = await storefrontQuery(collectionQuery)
@@ -32,8 +30,6 @@ export default async function Collections() {
                                     alt={image?.altText || "temp"}
                                     width={image?.width || 1024}
                                     height={image?.height || 1024}
-                                    placeholder="blur"
-                                    blurDataURL={blurShirt.src}
                                     className="bg-glass rounded-box"
                                 />
                                 <div
