@@ -2,11 +2,10 @@ import Link from "next/link"
 import Image from "next/image"
 import cn from "clsx"
 import temp from "@/static/brand/placeholder.webp"
-import storefrontQuery from "@/lib/shopifyClient"
-import collectionQuery from "./collectionQuery"
+import collectionsQuery from "@/lib/collectionsQuery"
 
 export default async function Collections() {
-    const edges = await storefrontQuery(collectionQuery)
+    const edges = await collectionsQuery()
 
     return (
         <section className="mx-auto max-w-2xl space-y-12">
@@ -27,7 +26,7 @@ export default async function Collections() {
                             >
                                 <Image
                                     src={image?.url || temp}
-                                    alt={image?.altText || "temp"}
+                                    alt={image?.altText || "placeholder image"}
                                     width={image?.width || 1024}
                                     height={image?.height || 1024}
                                     className="bg-glass rounded-box"
