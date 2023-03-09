@@ -1,38 +1,42 @@
 "use client"
 
-import { ProductProvider } from "@shopify/hydrogen-react"
-import type { ProductEdge } from "@shopify/hydrogen-react/storefront-api-types"
+import { ProductProvider, ProductPrice, useProduct } from "@shopify/hydrogen-react"
+import type { ProductEdge, Product } from "@shopify/hydrogen-react/storefront-api-types"
 import Image from "next/image"
 import { SwatchGroup, SwatchButton } from "../Swatch"
 import temp from "@/static/brand/placeholder.webp"
 import cn from "clsx"
 
-interface ProductProps {
-    products: ProductEdge[]
-}
-
-export default function Products({ products }: ProductProps) {
+export default function Products({ products }: {products: ProductEdge[]}) {
     return (
         <ul className={cn("grid gap-4 sm:gap-6", "grid-cols-2 md:grid-cols-3")}>
             {products.map(({ node }) => {
                 const {
                     id,
-                    handle,
                     title,
+                    handle,
                     featuredImage,
-                    description,
+                    descriptionHtml,
                     priceRange,
                     images,
                     variants,
                     options,
-                } = node
+                    metafield,
+                } = node satisfies Product
+
+                const swatchColors: string[] = metafield ? JSON.parse(metafield.value) : ["#000000"]
+                const colorOptions: string[] | undefined = options.find(
+                    (option) => option.name === "Color"
+                )?.values
+                const sizeOptions = options.find((option) => option.name === "Size")
+                    ?.values as string[]
 
                 return (
-                    <ProductProvider data={node}>
-                        <li
-                            key={id}
-                            className={cn("bg-blur-100 card h-full", "transition hover:scale-105")}
-                        >
+                    <li
+                        key={id}
+                        className={cn("bg-blur-100 card h-full", "transition hover:scale-105")}
+                    >
+                        <ProductProvider data={node}>
                             <label
                                 className={cn("transition", "hover:brightness-125 active:scale-95")}
                             >
@@ -56,16 +60,28 @@ export default function Products({ products }: ProductProps) {
                                     </h2>
                                 </figure>
                             </label>
-                            <SwatchGroup>
-                                <SwatchButton />
-                                <SwatchButton />
-                                <SwatchButton />
-                                <SwatchButton />
+                            <SwatchGroup id={id} handle={handle} initialColor={colorOptions![0]}>
+                                {swatchColors.map((colorCode, i) => {
+                                    return (
+                                        <SwatchButton
+                                            colorCode={colorCode}
+                                            colorName={colorOptions![i]}
+                                            key={i}
+                                            index={i}
+                                        />
+                                    )
+                                })}
                             </SwatchGroup>
-                        </li>
-                    </ProductProvider>
+                        </ProductProvider>
+                    </li>
                 )
             })}
         </ul>
     )
+}
+{
+    /* <ProductProvider data={node}> */
+}
+{
+    /* </ProductProvider> */
 }

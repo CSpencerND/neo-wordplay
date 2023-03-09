@@ -37,10 +37,11 @@ const query = gql`
                         id
                         handle
                         title
-                        description
+                        descriptionHtml
                         priceRange {
-                            minVariantPrice {
+                            maxVariantPrice {
                                 amount
+                                currencyCode
                             }
                         }
                         featuredImage {
@@ -66,16 +67,9 @@ const query = gql`
                                 node {
                                     id
                                     title
-                                    metafield(namespace: "color", key: "color") {
-                                        key
+                                    selectedOptions {
+                                        name
                                         value
-                                    }
-                                    image {
-                                        url
-                                        altText
-                                        width
-                                        height
-                                        id
                                     }
                                 }
                             }
@@ -84,6 +78,9 @@ const query = gql`
                             id
                             name
                             values
+                        }
+                        metafield(namespace: "swatch", key: "colors") {
+                            value
                         }
                     }
                 }
