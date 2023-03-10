@@ -8,27 +8,28 @@ import { RadioGroup, Transition } from "@headlessui/react"
 import { useProduct } from "@shopify/hydrogen-react"
 
 interface SwatchGroupProps {
-    children: JSX.Element | JSX.Element[]
-    initialColor: string
     handle?: string
     id?: string
+    swatchColors?: string[]
+    colorOptions?: string[]
 }
 
-export function SwatchGroup({ children, initialColor, handle, id }: SwatchGroupProps) {
+export function SwatchGroup({ handle, id, swatchColors }: SwatchGroupProps) {
     const { options, setSelectedOption } = useProduct()
+
+    const colorOptions = options?.find((option) => option?.name === "Color")?.values as string[]
+    const initialColor = colorOptions![0] ?? "#000000"
+
     const [selectedColor, setSelectedColor] = useState<string>(initialColor)
 
-    useEffect(() => {
-        console.log(selectedColor)
-    }, [])
+    // useEffect(() => {
+    //     console.log(selectedColor)
+    // }, [selectedColor])
 
     return (
         <RadioGroup
             value={selectedColor}
-            onChange={() => {
-                setSelectedColor
-                console.log(selectedColor)
-            }}
+            onChange={setSelectedColor}
             role="radiogroup"
             as="span"
             className={cn(
@@ -37,7 +38,18 @@ export function SwatchGroup({ children, initialColor, handle, id }: SwatchGroupP
                 "[&>label]:swatch [&>input]:hidden"
             )}
         >
-            {children}
+            {swatchColors
+                ? swatchColors.map((colorCode, i) => {
+                      return (
+                          <SwatchButton
+                              colorCode={colorCode}
+                              colorName={colorOptions[i]}
+                              key={i}
+                              index={i}
+                          />
+                      )
+                  })
+                : null}
         </RadioGroup>
     )
 }
@@ -57,12 +69,10 @@ export function SwatchButton({ colorCode, colorName, index }: SwatchButtonProps)
             className={({ checked }) =>
                 cn(
                     "cursor-pointer rounded sm:rounded-md",
-                    "outline outline-1 outline-base-content/80",
-                    "p-2 sm:p-3",
-                    "focus:outline-none",
-                    checked
-                        ? "outline-0 ring-1 ring-base-content/80 ring-offset-2 ring-offset-base-200"
-                        : ""
+                    "p-2 sm:p-3 transition-all duration-200",
+                    "outline outline-1 outline-white/80",
+                    "focus:outline focus:outline-1 focus:outline-white/80",
+                    checked ? "outline-offset-[3px]" : ""
                 )
             }
         />

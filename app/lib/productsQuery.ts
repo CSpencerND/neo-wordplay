@@ -65,17 +65,33 @@ const query = gql`
                         variants(first: 99) {
                             edges {
                                 node {
-                                    id
                                     title
+                                    price {
+                                        currencyCode
+                                        amount
+                                    }
+                                    image {
+                                        url
+                                        altText
+                                        width
+                                        height
+                                    }
                                     selectedOptions {
                                         name
                                         value
+                                    }
+                                    product {
+                                        title
+                                        handle
+                                        descriptionHtml
+                                        metafield(namespace: "swatch", key: "colors") {
+                                            value
+                                        }
                                     }
                                 }
                             }
                         }
                         options(first: 99) {
-                            id
                             name
                             values
                         }
