@@ -15,8 +15,8 @@ export function NavMenu() {
 
     const pathname = usePathname()
     useEffect(() => {
-        isShowing === true && setIsShowing(false)
-    }, [pathname]) /** eslint-disable-line */
+        setIsShowing(false)
+    }, [pathname])
 
     return (
         <>

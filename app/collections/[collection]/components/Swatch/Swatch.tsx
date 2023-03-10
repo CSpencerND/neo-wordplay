@@ -22,10 +22,6 @@ export function SwatchGroup({ handle, id, swatchColors }: SwatchGroupProps) {
 
     const [selectedColor, setSelectedColor] = useState<string>(initialColor)
 
-    // useEffect(() => {
-    //     console.log(selectedColor)
-    // }, [selectedColor])
-
     return (
         <RadioGroup
             value={selectedColor}
