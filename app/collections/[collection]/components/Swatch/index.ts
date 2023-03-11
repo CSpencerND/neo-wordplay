@@ -1,1 +1,1 @@
-export { SwatchGroup, SwatchButton } from "./Swatch"
+export { SwatchGroup } from "./Swatch"
