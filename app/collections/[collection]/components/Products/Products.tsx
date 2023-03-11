@@ -1,26 +1,29 @@
 "use client"
 
-import { ProductProvider, ProductPrice, useProduct } from "@shopify/hydrogen-react"
-import type {
-    ProductEdge,
-    Product,
-    Image,
-    ImageConnection,
-    Maybe,
-} from "@shopify/hydrogen-react/storefront-api-types"
+import type { ProductEdge, Product, Image } from "@shopify/hydrogen-react/storefront-api-types"
+
+/** components */
+import { ProductProvider, useProduct, flattenConnection } from "@shopify/hydrogen-react"
+import { RadioGroup, Transition } from "@headlessui/react"
 import NextImage from "next/image"
-import { SwatchGroup } from "../Swatch"
+
+/** utils */
 import temp from "@/static/brand/placeholder.webp"
 import cn from "clsx"
+import { useEffect, useState } from "react"
+import { useLoader } from "@/lib"
 
 export default function Products({ products }: { products: ProductEdge[] }) {
     return (
         <ul className={cn("grid gap-4 sm:gap-6", "grid-cols-2 md:grid-cols-3")}>
             {products.map(({ node }) => {
-                const { id, title, handle, featuredImage, descriptionHtml, metafield } =
+                const { id, title, handle, images, descriptionHtml, metafield } =
                     node satisfies Product
 
-                const swatchColors: string[] = metafield ? JSON.parse(metafield.value) : ["#000000"]
+                const swatchColors: string[] = metafield
+                    ? JSON.parse(metafield.value)
+                    : ["#000000"]
+                const imageArray = flattenConnection(images)
 
                 return (
                     <li
@@ -32,7 +35,7 @@ export default function Products({ products }: { products: ProductEdge[] }) {
                                 id={id}
                                 title={title}
                                 handle={handle}
-                                featuredImage={featuredImage}
+                                images={imageArray}
                                 descriptionHtml={descriptionHtml}
                                 swatchColors={swatchColors}
                             />
@@ -45,50 +48,95 @@ export default function Products({ products }: { products: ProductEdge[] }) {
 }
 
 interface ProductProps {
-    id: string
+    id?: string
     title: string
-    handle: string
-    featuredImage: Maybe<Image> | undefined
-    descriptionHtml: string
+    handle?: string
+    images: Image[]
+    descriptionHtml?: string
     swatchColors: string[]
 }
 
-function Product({
-    id,
-    title,
-    handle,
-    featuredImage,
-    descriptionHtml,
-    swatchColors,
-}: ProductProps) {
-    const { options } = useProduct()
+function Product({ title, images, descriptionHtml, swatchColors }: ProductProps) {
+    /** image setting */
 
-    const sizeOptions = options?.find((option) => option?.name === "Size")?.values
+    const [currentImage, setCurrentImage] = useState<Image | null>(images[0])
+
+    /** option setting */
+    const { options, setSelectedOption } = useProduct()
+    const colorOptions = options?.find((option) => option?.name === "Color")?.values as string[]
+    const [selectedColor, setSelectedColor] = useState<string>(colorOptions[0])
+    // const sizeOptions = options?.find((option) => option?.name === "Size")?.values
+
+    /** utility */
+    const { loaderComponent, setLoading } = useLoader()
 
     return (
         <>
             <label className={cn("transition", "hover:brightness-125 active:scale-95")}>
-                <figure className="relative cursor-pointer">
-                    <NextImage
-                        src={featuredImage?.url || temp.src}
-                        alt={featuredImage?.altText || "placeholder image"}
-                        width={featuredImage?.width || 1024}
-                        height={featuredImage?.height || 1024}
-                        className="bg-glass rounded-t-box"
-                    />
+                <figure className="bg-glass rounded-t-box relative cursor-pointer">
+                    {loaderComponent}
+
+                    {currentImage !== null ? (
+                        <NextImage
+                            onLoadingComplete={() => setLoading(false)}
+                            src={currentImage.url}
+                            alt={currentImage.altText || "placeholder image"}
+                            width={currentImage.width || 1024}
+                            height={currentImage.height || 1024}
+                        />
+                    ) : (
+                        <p>loading...</p>
+                    )}
                     <h2
                         className={cn(
                             "absolute bottom-0 left-0",
                             "overflow-hidden text-ellipsis whitespace-nowrap",
                             "w-full px-2 py-1 text-xs font-bold sm:text-sm",
-                            "bg-blur-clear text-base-content/80"
+                            "bg-blur-200 text-base-content/80"
                         )}
                     >
                         {title}
                     </h2>
                 </figure>
             </label>
-            <SwatchGroup id={id} handle={handle} swatchColors={swatchColors} />
+
+            {/** Swatches *******************************************************************/}
+            <RadioGroup
+                value={selectedColor}
+                onChange={setSelectedColor}
+                role="radiogroup"
+                as="span"
+                className={cn(
+                    "rounded-lg bg-base-100",
+                    "inline-flex h-fit w-fit gap-2",
+                    "m-2 p-1.5 sm:p-2"
+                )}
+            >
+                {swatchColors.map((colorCode, i) => {
+                    return (
+                        <RadioGroup.Option
+                            key={i}
+                            role="radio"
+                            value={colorOptions[i]}
+                            style={{ backgroundColor: colorCode }}
+                            className={({ checked }) =>
+                                cn(
+                                    "cursor-pointer rounded-[4px] sm:rounded",
+                                    "p-2 transition-all duration-200 sm:p-3",
+                                    "outline outline-1 outline-white/80",
+                                    "focus:outline focus:outline-1 focus:outline-white/80",
+                                    checked ? "outline-offset-[3px]" : ""
+                                )
+                            }
+                            onClick={() => {
+                                setCurrentImage(null)
+                                setLoading(true)
+                                setCurrentImage(images[i])
+                            }}
+                        />
+                    )
+                })}
+            </RadioGroup>
         </>
     )
 }
