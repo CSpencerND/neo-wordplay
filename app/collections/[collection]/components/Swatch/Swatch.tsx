@@ -45,6 +45,7 @@ export function SwatchGroup({
             {swatchColors.map((colorCode, i) => {
                 return (
                     <RadioGroup.Option
+                        key={i}
                         role="radio"
                         value={colorOptions[i]}
                         style={{ backgroundColor: colorCode }}
