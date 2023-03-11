@@ -5,13 +5,15 @@ import temp from "@/static/brand/placeholder.webp"
 import collectionsQuery from "@/lib/collectionsQuery"
 
 export default async function Collections() {
-    const edges = await collectionsQuery()
+    const collections = await collectionsQuery()
 
     return (
         <section className="mx-auto max-w-2xl space-y-12">
-            <h1 className="text-center text-xl font-bold text-primary">Collections Directory</h1>
+            <h1 className="text-center text-xl font-bold text-primary">
+                Collections Directory
+            </h1>
             <ul className={cn("grid gap-4 sm:gap-6", "grid-cols-2 md:grid-cols-3")}>
-                {edges.map(({ node }) => {
+                {collections.map(({ node }) => {
                     const { id, handle, title, image } = node
                     return (
                         <li key={id}>

@@ -59,13 +59,7 @@ export default function Featured() {
                 }}
             />
             <div className="flex items-center justify-evenly">
-                <button
-                    className={cn(
-                        "btn btn-primary",
-                    )}
-                >
-                    See More
-                </button>
+                <button className={cn("btn-primary btn")}>See More</button>
 
                 <span className="flex gap-2">
                     <button
