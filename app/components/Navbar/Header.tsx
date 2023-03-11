@@ -17,7 +17,7 @@ import cn from "clsx"
 /** assets */
 import logo from "@/static/brand/wp4l.webp"
 
-export default async function Header() {
+export default function Header() {
     const getLinkData = (): NavLinkData[] => {
         const linkData: Partial<NavLinkData>[] = [
             {
@@ -54,7 +54,6 @@ export default async function Header() {
 
         for (let i = 1; i < linkData.length; i++) {
             linkData[i].delay = `${300 + i * 50}ms`
-            console.log(linkData[i].delay)
         }
 
         return linkData as NavLinkData[]
