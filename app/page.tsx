@@ -3,7 +3,7 @@ import Featured from "./components/Featured"
 import Gallery from "./components/Gallery"
 import Blob from "./components/Blob"
 
-export default function Home() {
+export default function HomePage() {
     return (
         <>
             <section>

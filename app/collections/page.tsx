@@ -4,7 +4,7 @@ import cn from "clsx"
 import temp from "@/static/brand/placeholder.webp"
 import collectionsQuery from "@/lib/collectionsQuery"
 
-export default async function Collections() {
+export default async function CollectionDirectoryPage() {
     const collections = await collectionsQuery()
 
     return (

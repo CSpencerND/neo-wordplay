@@ -16,7 +16,7 @@ export async function generateStaticParams() {
     }))
 }
 
-export default async function Collections({ params }: { params: { collection: string } }) {
+export default async function CollectionPage({ params }: { params: { collection: string } }) {
     const { collection } = params
     const { collectionTitle, productEdges } = await productsQuery(collection)
 

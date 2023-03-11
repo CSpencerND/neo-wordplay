@@ -3,15 +3,16 @@
 import type { ProductEdge, Product, Image } from "@shopify/hydrogen-react/storefront-api-types"
 
 /** components */
-import { ProductProvider, useProduct, flattenConnection } from "@shopify/hydrogen-react"
-import { RadioGroup, Transition } from "@headlessui/react"
+import { ProductProvider } from "@shopify/hydrogen-react"
+import { RadioGroup } from "@headlessui/react"
 import NextImage from "next/image"
 
 /** utils */
-import temp from "@/static/brand/placeholder.webp"
+// import temp from "@/static/brand/placeholder.webp"
 import cn from "clsx"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { useLoader } from "@/lib"
+import { useProduct, flattenConnection } from "@shopify/hydrogen-react"
 
 export default function Products({ products }: { products: ProductEdge[] }) {
     return (
@@ -83,6 +84,7 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                             alt={currentImage.altText || "placeholder image"}
                             width={currentImage.width || 1024}
                             height={currentImage.height || 1024}
+                            key={currentImage.id}
                         />
                     ) : (
                         <p>loading...</p>
