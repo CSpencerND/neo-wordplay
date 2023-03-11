@@ -1,5 +1,11 @@
 "use client"
 
+type NavLinkData = {
+    title: string
+    href: string
+    delay: string
+}
+
 /** components */
 import Link from "next/link"
 import { Transition } from "@headlessui/react"
@@ -10,7 +16,7 @@ import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
 import cn from "clsx"
 
-export function NavMenu() {
+export function NavMenu({ links }: { links: NavLinkData[] }) {
     const [isShowing, setIsShowing] = useState<boolean>(false)
 
     const pathname = usePathname()
@@ -58,12 +64,13 @@ export function NavMenu() {
                                 <Transition.Child
                                     as="li"
                                     key={i}
-                                    enter={cn("transition ease-in duration-200 transform", delay)}
-                                    enterFrom="-translate-x-[100vw]"
-                                    enterTo="-translate-x-0"
-                                    leave="transition ease-in duration-200 transform"
-                                    leaveFrom="-translate-x-0"
-                                    leaveTo="-translate-x-[100vw]"
+                                    enter={cn("transition-all ease-out")}
+                                    enterFrom="opacity-0 -translate-x-6"
+                                    enterTo="opacity-100 -translate-x-0"
+                                    leave="transition-all"
+                                    leaveFrom="opacity-100 -translate-x-0"
+                                    leaveTo="opacity-0 -translate-x-6"
+                                    style={{ transitionDelay: delay }}
                                 >
                                     <Link
                                         className="font-bold"
@@ -86,58 +93,14 @@ export function NavMenu() {
                         "after-blur-clear",
                         "hover:cursor-pointer"
                     )}
-                    enter="transition ease-out duration-300 transform"
-                    enterFrom="translate-x-full"
-                    enterTo="translate-x-0"
-                    leave="transition ease-out duration-300 transform"
-                    leaveFrom="translate-x-0"
-                    leaveTo="translate-x-full"
+                    enter="transition-opacity duration-75"
+                    enterFrom="opacity-0"
+                    enterTo="opacity-100"
+                    leave="transition-opacity duration-150"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
                 />
             </Transition>
         </>
     )
 }
-
-type NavLinkData = {
-    title: string
-    href: string
-    delay: string
-}
-
-const links: NavLinkData[] = [
-    {
-        title: "Collections Directory",
-        href: "collections",
-        delay: "delay-[100ms]",
-    },
-    {
-        title: "Staff Picks",
-        href: "collections/staff-picks",
-        delay: "delay-[180ms]",
-    },
-    {
-        title: "Summer '22",
-        href: "collections/summer-22",
-        delay: "delay-[260ms]",
-    },
-    {
-        title: "Mindset",
-        href: "collections/mindset",
-        delay: "delay-[340ms]",
-    },
-    {
-        title: "Creativity",
-        href: "collections/creativity",
-        delay: "delay-[420ms]",
-    },
-    {
-        title: "Lifestyle",
-        href: "collections/lifestyle",
-        delay: "delay-[500ms]",
-    },
-    {
-        title: "Full Catalog",
-        href: "collections/full-catalog",
-        delay: "delay-[580ms]",
-    },
-]
