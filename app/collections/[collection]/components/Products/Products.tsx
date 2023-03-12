@@ -16,7 +16,7 @@ import { useProduct, flattenConnection } from "@shopify/hydrogen-react"
 
 export default function Products({ products }: { products: ProductEdge[] }) {
     return (
-        <ul className={cn("grid gap-4 sm:gap-6", "grid-cols-2 md:grid-cols-3")}>
+        <>
             {products.map(({ node }) => {
                 const { id, title, handle, images, descriptionHtml, metafield } =
                     node satisfies Product
@@ -44,7 +44,7 @@ export default function Products({ products }: { products: ProductEdge[] }) {
                     </li>
                 )
             })}
-        </ul>
+        </>
     )
 }
 

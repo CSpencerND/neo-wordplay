@@ -1,4 +1,5 @@
 import Products from "./components/Products"
+import Blob from "@/components/Blob"
 import { productsQuery } from "@/lib/productsQuery"
 
 export async function generateStaticParams() {
@@ -23,7 +24,38 @@ export default async function CollectionPage({ params }: { params: { collection:
     return (
         <section className="mx-auto max-w-2xl space-y-12">
             <h1 className="text-center text-xl font-bold text-primary">{collectionTitle}</h1>
-            <Products products={productEdges} />
+
+            <ul className="relative grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
+                <Blob
+                    size="md"
+                    opacity={80}
+                    from="green"
+                    to="accent"
+                />
+                <Blob
+                    size="lg"
+                    placement="right"
+                    opacity={60}
+                    from="accent"
+                    to="cyan"
+                />
+                <Blob
+                    size="md"
+                    opacity={80}
+                    placement="left"
+                    from="primary"
+                    to="secondary"
+                />
+                <Blob
+                    size="sm"
+                    placement="bottom"
+                    opacity={80}
+                    from="cyan"
+                    to="secondary"
+                />
+
+                <Products products={productEdges} />
+            </ul>
         </section>
     )
 }
