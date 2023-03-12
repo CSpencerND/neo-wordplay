@@ -101,6 +101,9 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
         [currentImage, images]
     )
 
+    const parser = new DOMParser
+    const productDescription = parser.parseFromString(descriptionHtml!, "text/html").body.textContent
+
     return (
         <>
             <label
@@ -338,7 +341,7 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                         </RadioGroup>
                                     </section>
                                     <Dialog.Description className="prose">
-                                        {descriptionHtml}
+                                        {productDescription}
                                     </Dialog.Description>
                                 </Dialog.Panel>
                             </Transition.Child>
