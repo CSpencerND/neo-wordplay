@@ -53,7 +53,7 @@ export default async function CollectionDirectoryPage() {
                                 className={cn(
                                     "card relative h-full",
                                     "text-primary transition-all",
-                                    "hover:scale-105 hover:brightness-125",
+                                    "hover:scale-105 hover:brightness-105",
                                     "active:scale-95"
                                 )}
                             >
