@@ -197,8 +197,8 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                         <button
                                             type="button"
                                             className={cn(
-                                                "btn-ghost btn-square btn-sm btn text-base-content/80",
-                                                "absolute right-2 top-2"
+                                                "btn-square btn-sm btn text-base-content/80",
+                                                "absolute right-2 top-2 rounded-xl bg-base-300 focus:outline-base-100"
                                             )}
                                             onClick={closeModal}
                                         >
