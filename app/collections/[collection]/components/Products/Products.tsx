@@ -5,7 +5,7 @@ import type { ProductEdge, Product, Image } from "@shopify/hydrogen-react/storef
 /** components */
 import { ProductProvider } from "@shopify/hydrogen-react"
 import { RadioGroup, Dialog, Transition } from "@headlessui/react"
-import { Fragment } from "react"
+import { Fragment, useCallback } from "react"
 import NextImage from "next/image"
 import { CloseSquare } from "react-iconly"
 
@@ -29,7 +29,10 @@ export default function Products({ products }: { products: ProductEdge[] }) {
                 return (
                     <li
                         key={id}
-                        className={cn("bg-blur-100 card h-full", "transition hover:scale-105")}
+                        className={cn(
+                            "bg-blur-100 card relative h-full",
+                            "transition hover:scale-105"
+                        )}
                     >
                         <ProductProvider data={node}>
                             <Product
@@ -65,7 +68,19 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
     const { options, setSelectedOption } = useProduct()
     const colorOptions = options?.find((option) => option?.name === "Color")?.values as string[]
     const [selectedColor, setSelectedColor] = useState<string>(colorOptions[0])
-    // const sizeOptions = options?.find((option) => option?.name === "Size")?.values
+    const sizeOptions = options?.find((option) => option?.name === "Size")?.values as string[]
+
+    const sizeText: { [size: string]: string } = {
+        XS: "XS",
+        S: "S",
+        M: "M",
+        L: "L",
+        XL: "XL",
+        "2XL": "2X",
+        "3XL": "3X",
+        "4XL": "4X",
+        "5XL": "5X",
+    }
 
     /** modal */
     const [isOpen, setIsOpen] = useState(false)
@@ -74,6 +89,17 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
 
     /** utility */
     const { loaderComponent, setLoading } = useLoader()
+
+    const changeImage = useCallback(
+        (i: number) => {
+            if (currentImage !== images[i] && images.length > 1) {
+                setCurrentImage(null)
+                setLoading(true)
+                setCurrentImage(images[i])
+            }
+        },
+        [currentImage, images]
+    )
 
     return (
         <>
@@ -88,11 +114,10 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                         <NextImage
                             onLoadingComplete={() => setLoading(false)}
                             src={currentImage.url}
-                            alt={currentImage.altText || "placeholder image"}
+                            alt={currentImage.altText || "placeholder"}
                             width={currentImage.width || 1024}
                             height={currentImage.height || 1024}
                             key={currentImage.id}
-                            onChange={() => {}}
                         />
                     ) : null}
                     <h2
@@ -108,7 +133,7 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                 </figure>
             </label>
 
-            {/** Swatches *******************************************************************/}
+            {/** Swatches */}
             <RadioGroup
                 value={selectedColor}
                 onChange={setSelectedColor}
@@ -116,9 +141,9 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                 as="span"
                 className={cn(
                     "rounded-lg bg-base-100 transition",
-                    "inline-flex h-fit w-fit gap-2",
-                    "m-2 p-1.5 sm:p-2",
-                    "focus-within:brightness-150"
+                    "inline-flex h-fit max-w-fit gap-2",
+                    "m-2 overflow-x-scroll p-2 sm:p-3",
+                    "focus-within:bg-neutral-focus/60"
                 )}
             >
                 {swatchColors.map((colorCode, i) => {
@@ -137,11 +162,7 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                     checked ? "outline-offset-[3px]" : ""
                                 )
                             }
-                            onClick={() => {
-                                setCurrentImage(null)
-                                setLoading(true)
-                                setCurrentImage(images[i])
-                            }}
+                            onFocus={() => changeImage(i)}
                         />
                     )
                 })}
@@ -193,11 +214,12 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                         "text-left align-middle shadow-box transition-all"
                                     )}
                                 >
+                                    {/** Close Modal Button */}
                                     <div className="absolute top-0 right-0">
                                         <button
                                             type="button"
                                             className={cn(
-                                                "btn-square btn-sm btn text-base-content/80",
+                                                "btn-square btn-sm btn text-base-content/60",
                                                 "absolute right-2 top-2 rounded-xl bg-base-300 focus:outline-base-100"
                                             )}
                                             onClick={closeModal}
@@ -210,17 +232,114 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                     </div>
                                     <Dialog.Title
                                         as="h3"
-                                        className="card-title"
+                                        className="card-title !mt-0"
                                     >
-                                        Payment successful
+                                        {title}
                                     </Dialog.Title>
-                                    <div className="mt-2">
-                                        <p className="">
-                                            Your payment has been successfully submitted. We’ve
-                                            sent you an email with all of the details of your
-                                            order.
-                                        </p>
-                                    </div>
+                                    <figure className="bg-glass rounded-box">
+                                        {loaderComponent}
+
+                                        {currentImage !== null ? (
+                                            <NextImage
+                                                onLoadingComplete={() => setLoading(false)}
+                                                src={currentImage.url}
+                                                alt={currentImage.altText || "placeholder"}
+                                                width={currentImage.width || 1024}
+                                                height={currentImage.height || 1024}
+                                                key={currentImage.id}
+                                            />
+                                        ) : null}
+                                    </figure>
+                                    <section className="flex justify-between">
+                                        {/** Swatches */}
+                                        <RadioGroup
+                                            value={selectedColor}
+                                            onChange={setSelectedColor}
+                                            role="radiogroup"
+                                            as="span"
+                                            className={cn(
+                                                "rounded-xl bg-base-100 transition",
+                                                "inline-flex h-fit w-fit gap-3 p-2",
+                                                "focus-within:bg-neutral-focus/40",
+                                                "sm:gap-4 sm:rounded-2xl sm:p-4"
+                                            )}
+                                        >
+                                            {swatchColors.map((colorCode, i) => {
+                                                return (
+                                                    <RadioGroup.Option
+                                                        key={i}
+                                                        role="radio"
+                                                        value={colorOptions[i]}
+                                                        style={{ backgroundColor: colorCode }}
+                                                        className={({ checked }) =>
+                                                            cn(
+                                                                "cursor-pointer rounded-md",
+                                                                "p-3 transition-all duration-200",
+                                                                "outline outline-1 outline-white/60",
+                                                                "focus:outline focus:outline-1 focus:outline-white/60",
+                                                                "sm:rounded-[0.4375rem] sm:p-4",
+                                                                checked
+                                                                    ? "outline-offset-[5px] sm:outline-offset-[7px]"
+                                                                    : ""
+                                                            )
+                                                        }
+                                                        onFocus={() => changeImage(i)}
+                                                    />
+                                                )
+                                            })}
+                                        </RadioGroup>
+                                        {/** Price */}
+                                        <span className="self-center text-sm font-bold text-info sm:text-base">
+                                            $30
+                                        </span>
+                                    </section>
+                                    <section>
+                                        {/** Size Selection */}
+                                        <RadioGroup
+                                            // value={selectedColor}
+                                            // onChange={setSelectedColor}
+                                            // role="radiogroup"
+                                            as="span"
+                                            className={cn(
+                                                "grid grid-cols-4 gap-3 p-2",
+                                                "rounded-xl bg-base-100 transition",
+                                                "focus-within:bg-neutral-focus/40",
+                                                "sm:gap-4 sm:rounded-2xl sm:p-4"
+                                            )}
+                                        >
+                                            {sizeOptions.map((size, i) => {
+                                                return (
+                                                    <RadioGroup.Option
+                                                        key={i}
+                                                        role="radio"
+                                                        value={size}
+                                                        // style={{ backgroundColor: colorCode }}
+                                                        className={({ checked }) =>
+                                                            cn(
+                                                                "btn-square btn-sm btn bg-base-200",
+                                                                "cursor-pointer rounded-md text-sm",
+                                                                "transition-all duration-200",
+                                                                "focus:outline focus:outline-1 focus:outline-white/60",
+                                                                "sm:rounded-[0.4375rem] sm:p-4 sm:text-base",
+                                                                checked ? "!bg-secondary" : ""
+                                                                // checked
+                                                                //     ? "outline-offset-[5px] sm:outline-offset-[7px]"
+                                                                //     : ""
+                                                            )
+                                                        }
+                                                        onClick={(
+                                                            e: React.MouseEvent<HTMLDivElement>
+                                                        ) => console.log(e.target)}
+                                                    >
+                                                        {sizeText[size]}
+                                                    </RadioGroup.Option>
+                                                )
+                                            })}
+                                        </RadioGroup>
+                                    </section>
+                                    <Dialog.Description className="prose">
+                                        {descriptionHtml}
+                                    </Dialog.Description>
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
