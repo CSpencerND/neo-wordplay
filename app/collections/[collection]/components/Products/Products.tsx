@@ -21,9 +21,7 @@ export default function Products({ products }: { products: ProductEdge[] }) {
                 const { id, title, handle, images, descriptionHtml, metafield } =
                     node satisfies Product
 
-                const swatchColors: string[] = metafield
-                    ? JSON.parse(metafield.value)
-                    : ["#000000"]
+                const swatchColors: string[] = JSON.parse(metafield!.value)
                 const imageArray = flattenConnection(images)
 
                 return (
@@ -85,16 +83,15 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                             width={currentImage.width || 1024}
                             height={currentImage.height || 1024}
                             key={currentImage.id}
+                            onChange={() => {}}
                         />
-                    ) : (
-                        <p>loading...</p>
-                    )}
+                    ) : null}
                     <h2
                         className={cn(
                             "absolute bottom-0 left-0",
                             "overflow-hidden text-ellipsis whitespace-nowrap",
                             "w-full px-2 py-1 text-xs font-bold sm:text-sm",
-                            "bg-blur-200 text-base-content/80"
+                            "bg-blur-clear text-base-content/80"
                         )}
                     >
                         {title}
