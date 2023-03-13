@@ -5,7 +5,7 @@ import type { ProductEdge, Product, Image } from "@shopify/hydrogen-react/storef
 /** components */
 import { ProductProvider } from "@shopify/hydrogen-react"
 import { RadioGroup, Dialog, Transition } from "@headlessui/react"
-import { Fragment, useCallback } from "react"
+import { Fragment, useCallback, useEffect } from "react"
 import NextImage from "next/image"
 import { CloseSquare } from "react-iconly"
 
@@ -15,6 +15,7 @@ import cn from "clsx"
 import { useState } from "react"
 import { useLoader } from "@/lib"
 import { useProduct, flattenConnection } from "@shopify/hydrogen-react"
+import { sanitize } from "dompurify"
 
 export default function Products({ products }: { products: ProductEdge[] }) {
     return (
@@ -56,14 +57,11 @@ interface ProductProps {
     title: string
     handle?: string
     images: Image[]
-    descriptionHtml?: string
+    descriptionHtml: string
     swatchColors: string[]
 }
 
 function Product({ title, images, descriptionHtml, swatchColors }: ProductProps) {
-    /** image setting */
-    const [currentImage, setCurrentImage] = useState<Image | null>(images[0])
-
     /** option setting */
     const { options, setSelectedOption } = useProduct()
     const colorOptions = options?.find((option) => option?.name === "Color")?.values as string[]
@@ -87,9 +85,11 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
     const closeModal = () => setIsOpen(false)
     const openModal = () => setIsOpen(true)
 
-    /** utility */
+    /** loading spinner */
     const { loaderComponent, setLoading } = useLoader()
 
+    /** swatch functionality */
+    const [currentImage, setCurrentImage] = useState<Image | null>(images[0])
     const changeImage = useCallback(
         (i: number) => {
             if (currentImage !== images[i] && images.length > 1) {
@@ -101,8 +101,12 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
         [currentImage, images]
     )
 
-    const parser = new DOMParser
-    const productDescription = parser.parseFromString(descriptionHtml!, "text/html").body.textContent
+    /** product description*/
+    const [sanitizedDescription, setSanitizedDescription] = useState<string>()
+    useEffect(() => {
+        const desc = sanitize(descriptionHtml)
+        setSanitizedDescription(desc)
+    }, [])
 
     return (
         <>
@@ -340,9 +344,13 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                             })}
                                         </RadioGroup>
                                     </section>
-                                    <Dialog.Description className="prose">
-                                        {productDescription}
-                                    </Dialog.Description>
+                                    <Dialog.Description
+                                        as="article"
+                                        className="prose"
+                                        dangerouslySetInnerHTML={{
+                                            __html: sanitizedDescription!,
+                                        }}
+                                    />
                                 </Dialog.Panel>
                             </Transition.Child>
                         </div>
