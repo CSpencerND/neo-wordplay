@@ -7,7 +7,7 @@ import { ProductProvider } from "@shopify/hydrogen-react"
 import { RadioGroup, Dialog, Transition } from "@headlessui/react"
 import { Fragment, useCallback, useEffect } from "react"
 import NextImage from "next/image"
-import { CloseSquare } from "react-iconly"
+import { CloseSquare, Plus } from "react-iconly"
 
 /** utils */
 // import temp from "@/static/brand/placeholder.webp"
@@ -164,9 +164,9 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                 cn(
                                     "cursor-pointer rounded-[4px] sm:rounded",
                                     "p-2 transition-all duration-200 sm:p-3",
-                                    "outline outline-1 outline-white/60",
-                                    "focus:outline focus:outline-1 focus:outline-white/60",
-                                    checked ? "outline-offset-[3px]" : ""
+                                    "ring-1 ring-white/60 ring-offset-black/60",
+                                    "focus-visible:ring-1 focus-visible:ring-white/60",
+                                    checked ? "ring-offset-[3px]" : ""
                                 )
                             }
                             onFocus={() => changeImage(i)}
@@ -184,7 +184,7 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                 <Dialog
                     role="dialog"
                     as="div"
-                    className="relative z-50"
+                    className="relative z-40"
                     onClose={closeModal}
                 >
                     <Transition.Child
@@ -226,14 +226,15 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                         <button
                                             type="button"
                                             className={cn(
-                                                "btn-square btn-sm btn text-base-content/60",
-                                                "absolute right-2 top-2 rounded-xl bg-base-300 focus:outline-base-100"
+                                                "btn-ghost btn-square btn text-base-content/80",
+                                                "rounded-box absolute right-2 top-2",
+                                                "focus-visible:bg-base-100 focus-visible:outline-none focus-visible:ring-0"
                                             )}
                                             onClick={closeModal}
                                         >
                                             <CloseSquare
                                                 set="curved"
-                                                size="large"
+                                                size="xlarge"
                                             />
                                         </button>
                                     </div>
@@ -282,11 +283,11 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                                             cn(
                                                                 "cursor-pointer rounded-md",
                                                                 "p-3 transition-all duration-200",
-                                                                "outline outline-1 outline-white/60",
-                                                                "focus:outline focus:outline-1 focus:outline-white/60",
+                                                                "ring-1 ring-white/60",
+                                                                "ring-offset-black/60 focus-visible:ring-1 focus-visible:ring-white/60",
                                                                 "sm:rounded-[0.4375rem] sm:p-4",
                                                                 checked
-                                                                    ? "outline-offset-[5px] sm:outline-offset-[7px]"
+                                                                    ? "ring-offset-[5px] sm:ring-offset-[7px]"
                                                                     : ""
                                                             )
                                                         }
@@ -300,18 +301,18 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                             $30
                                         </span>
                                     </section>
-                                    <section>
+                                    <section className="space-y-6">
                                         {/** Size Selection */}
                                         <RadioGroup
                                             // value={selectedColor}
                                             // onChange={setSelectedColor}
-                                            // role="radiogroup"
+                                            role="radiogroup"
                                             as="span"
                                             className={cn(
-                                                "grid grid-cols-4 gap-3 p-2",
+                                                "mx-auto grid max-w-fit grid-cols-5 gap-3 p-2",
                                                 "rounded-xl bg-base-100 transition",
                                                 "focus-within:bg-neutral-focus/40",
-                                                "sm:gap-4 sm:rounded-2xl sm:p-4"
+                                                "sm:gap-4 sm:rounded-2xl sm:p-4 md:rounded-2xl"
                                             )}
                                         >
                                             {sizeOptions.map((size, i) => {
@@ -320,18 +321,14 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                                         key={i}
                                                         role="radio"
                                                         value={size}
-                                                        // style={{ backgroundColor: colorCode }}
                                                         className={({ checked }) =>
                                                             cn(
                                                                 "btn-square btn-sm btn bg-base-200",
                                                                 "cursor-pointer rounded-md text-sm",
                                                                 "transition-all duration-200",
-                                                                "focus:outline focus:outline-1 focus:outline-white/60",
-                                                                "sm:rounded-[0.4375rem] sm:p-4 sm:text-base",
+                                                                "hover:bg-secondary-focus focus-visible:ring-1 focus-visible:ring-white/60",
+                                                                "md:btn-md sm:rounded-lg md:rounded-lg md:text-base",
                                                                 checked ? "!bg-secondary" : ""
-                                                                // checked
-                                                                //     ? "outline-offset-[5px] sm:outline-offset-[7px]"
-                                                                //     : ""
                                                             )
                                                         }
                                                         onClick={(
@@ -343,6 +340,15 @@ function Product({ title, images, descriptionHtml, swatchColors }: ProductProps)
                                                 )
                                             })}
                                         </RadioGroup>
+                                        <span className="flex w-full justify-center">
+                                            <button className="btn-info btn flex gap-2">
+                                                <Plus
+                                                    set="curved"
+                                                    size="large"
+                                                />
+                                                Add to Bag
+                                            </button>
+                                        </span>
                                     </section>
                                     <Dialog.Description
                                         as="article"
