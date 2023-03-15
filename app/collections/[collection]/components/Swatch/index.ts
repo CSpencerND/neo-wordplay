@@ -1,1 +1,1 @@
-export { SwatchGroup } from "./Swatch"
+export { default } from "./Swatch"

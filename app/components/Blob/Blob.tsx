@@ -67,3 +67,37 @@ export default function Blob({ size, placement, opacity, from, to }: BlobProps) 
         />
     )
 }
+
+export function BlobScene() {
+    return (
+        <>
+            <Blob
+                size="md"
+                opacity={80}
+                from="green"
+                to="accent"
+            />
+            <Blob
+                size="lg"
+                placement="right"
+                opacity={60}
+                from="accent"
+                to="cyan"
+            />
+            <Blob
+                size="md"
+                opacity={80}
+                placement="left"
+                from="primary"
+                to="secondary"
+            />
+            <Blob
+                size="sm"
+                placement="bottom"
+                opacity={80}
+                from="cyan"
+                to="secondary"
+            />
+        </>
+    )
+}

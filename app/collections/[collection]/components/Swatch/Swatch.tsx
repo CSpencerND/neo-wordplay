@@ -1,34 +1,17 @@
 "use client"
 
+import { RadioGroup } from "@headlessui/react"
+import useProduct from "../../context/ProductContext"
 import cn from "clsx"
-// import "./swatch.css"
 
-import { useEffect, useState } from "react"
-import { RadioGroup, Transition } from "@headlessui/react"
-import { useProduct } from "@shopify/hydrogen-react"
-import type { Image } from "@shopify/hydrogen-react/storefront-api-types"
-
-interface SwatchGroupProps {
-    handle?: string
-    id?: string
-    swatchColors: string[]
-    images: Image[]
-    changeImage: React.Dispatch<React.SetStateAction<number>>
-}
-
-export function SwatchGroup({
-    handle,
-    id,
-    swatchColors,
-    images,
-    changeImage,
-}: SwatchGroupProps) {
-    const { options, setSelectedOption } = useProduct()
-
-    const colorOptions = options?.find((option) => option?.name === "Color")?.values as string[]
-    const initialColor = colorOptions![0] ?? "#000000"
-
-    const [selectedColor, setSelectedColor] = useState<string>(initialColor)
+export default function Swatch() {
+    const {
+        selectedColor,
+        setSelectedColor,
+        hexCodes,
+        colorOptions,
+        changeImage
+    } = useProduct() // prettier-ignore
 
     return (
         <RadioGroup
@@ -37,28 +20,29 @@ export function SwatchGroup({
             role="radiogroup"
             as="span"
             className={cn(
-                "rounded-lg bg-base-100",
-                "inline-flex h-fit w-fit gap-2",
-                "m-2 p-1.5 sm:p-2"
+                "rounded-lg bg-base-100 transition",
+                "inline-flex h-fit max-w-fit gap-2",
+                "m-2 overflow-x-scroll p-2 sm:p-3",
+                "focus-within:bg-neutral-focus/60"
             )}
         >
-            {swatchColors.map((colorCode, i) => {
+            {hexCodes.map((code, i) => {
                 return (
                     <RadioGroup.Option
                         key={i}
                         role="radio"
                         value={colorOptions[i]}
-                        style={{ backgroundColor: colorCode }}
+                        style={{ backgroundColor: code }}
                         className={({ checked }) =>
                             cn(
                                 "cursor-pointer rounded-[4px] sm:rounded",
                                 "p-2 transition-all duration-200 sm:p-3",
-                                "outline outline-1 outline-white/80",
-                                "focus:outline focus:outline-1 focus:outline-white/80",
-                                checked ? "outline-offset-[3px]" : ""
+                                "ring-1 ring-white/60 ring-offset-black/60",
+                                "focus-visible:ring-1 focus-visible:ring-white/60",
+                                checked ? "ring-offset-[3px]" : ""
                             )
                         }
-                        onClick={() => changeImage(i)}
+                        onFocus={() => changeImage(i)}
                     />
                 )
             })}

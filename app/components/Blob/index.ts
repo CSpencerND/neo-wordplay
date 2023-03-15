@@ -1,1 +1,1 @@
-export { default } from "./Blob"
+export { default, BlobScene } from "./Blob"

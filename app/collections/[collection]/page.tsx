@@ -1,6 +1,9 @@
-import Products from "./components/Products"
-import Blob from "@/components/Blob"
+import { BlobScene } from "@/components/Blob"
 import { productsQuery } from "@/lib/productsQuery"
+
+import { ProductProvider } from "./context"
+import ProductLabel from "./components/ProductLabel"
+import Swatch from "./components/Swatch"
 
 export async function generateStaticParams() {
     const collectionHandles = [
@@ -18,43 +21,27 @@ export async function generateStaticParams() {
 }
 
 export default async function CollectionPage({ params }: { params: { collection: string } }) {
-    const { collection } = params
-    const { collectionTitle, productEdges } = await productsQuery(collection)
+    const { collectionTitle, productEdges } = await productsQuery(params.collection)
 
     return (
         <section className="mx-auto max-w-2xl space-y-12">
             <h1 className="text-center text-xl font-bold text-primary">{collectionTitle}</h1>
 
             <ul className="relative grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
-                <Blob
-                    size="md"
-                    opacity={80}
-                    from="green"
-                    to="accent"
-                />
-                <Blob
-                    size="lg"
-                    placement="right"
-                    opacity={60}
-                    from="accent"
-                    to="cyan"
-                />
-                <Blob
-                    size="md"
-                    opacity={80}
-                    placement="left"
-                    from="primary"
-                    to="secondary"
-                />
-                <Blob
-                    size="sm"
-                    placement="bottom"
-                    opacity={80}
-                    from="cyan"
-                    to="secondary"
-                />
-
-                <Products products={productEdges} />
+                <BlobScene />
+                {productEdges.map(({ node }) => {
+                    return (
+                        <ProductProvider product={node}>
+                            <li
+                                key={node.id}
+                                className="bg-blur-100 card relative h-full transition hover:scale-105"
+                            >
+                                <ProductLabel />
+                                <Swatch />
+                            </li>
+                        </ProductProvider>
+                    )
+                })}
             </ul>
         </section>
     )
