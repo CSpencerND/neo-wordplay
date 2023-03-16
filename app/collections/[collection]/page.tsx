@@ -32,9 +32,8 @@ export default async function CollectionPage({ params }: { params: { collection:
                 <BlobScene />
                 {productEdges.map(({ node }) => {
                     return (
-                        <ProductProvider product={node}>
+                        <ProductProvider product={node} key={node.id}>
                             <li
-                                key={node.id}
                                 className="bg-blur-100 card relative h-full transition hover:scale-105"
                             >
                                 <ProductLabel />

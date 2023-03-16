@@ -153,7 +153,7 @@ function ExtendedProductProvider({ children, info, images, hexCodes }: ExtendedP
 
     const setSelectedColor = useCallback(
         (color: string) => dispatch({ type: ACTION.SELECT_COLOR, colorPayload: color }),
-        [colorOptions]
+        []
     )
     const openModal = useCallback(() => dispatch({ type: ACTION.OPEN_MODAL }), [])
     const closeModal = useCallback(() => dispatch({ type: ACTION.CLOSE_MODAL }), [])
@@ -167,21 +167,21 @@ function ExtendedProductProvider({ children, info, images, hexCodes }: ExtendedP
             dispatch({ type: ACTION.SET_LOADING })
             dispatch({ type: ACTION.SET_IMAGE, imagePayload: images[i] })
         },
-        [images]
+        [images] // eslint-disable-line react-hooks/exhaustive-deps
     )
 
     useEffect(() => {
         dispatch({ type: ACTION.SET_IMAGE, imagePayload: images[0] })
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         dispatch({ type: ACTION.SELECT_COLOR, colorPayload: colorOptions[0] })
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         const desc = sanitize(info.description)
         dispatch({ type: ACTION.SANITIZE, descriptionPayload: desc })
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const value = {
         currentImage,
