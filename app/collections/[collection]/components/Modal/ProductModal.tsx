@@ -4,6 +4,7 @@ import { RadioGroup, Dialog, Transition } from "@headlessui/react"
 import { Fragment } from "react"
 import { CloseSquare, Plus } from "react-iconly"
 import NextImage from "next/image"
+import { useRouter, usePathname } from "next/navigation"
 import { useLoader } from "@/lib"
 import useProduct from "../../context/ProductContext"
 import cn from "clsx"
@@ -25,6 +26,14 @@ export default function ProductModal() {
     } = useProduct()
     const { loaderComponent, setLoading } = useLoader()
 
+    const router = useRouter()
+    const pathname = usePathname()
+
+    const handleClose = () => {
+        closeModal()
+        router.push(pathname)
+    }
+
     return (
         <Transition
             appear
@@ -36,7 +45,7 @@ export default function ProductModal() {
                 role="dialog"
                 as="div"
                 className="relative z-40"
-                onClose={closeModal}
+                onClose={handleClose}
             >
                 <Transition.Child
                     as={Fragment}
@@ -81,7 +90,7 @@ export default function ProductModal() {
                                             "rounded-box absolute right-2 top-2",
                                             "focus-visible:bg-base-100 focus-visible:outline-none focus-visible:ring-0"
                                         )}
-                                        onClick={closeModal}
+                                        onClick={handleClose}
                                     >
                                         <CloseSquare
                                             set="curved"

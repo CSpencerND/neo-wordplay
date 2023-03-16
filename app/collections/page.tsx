@@ -1,6 +1,6 @@
 import Link from "next/link"
 import Image from "next/image"
-import Blob from "@/components/Blob"
+import { BlobScene } from "@/components/Blob"
 
 import cn from "clsx"
 import temp from "@/static/brand/placeholder.webp"
@@ -16,33 +16,7 @@ export default async function CollectionDirectoryPage() {
             </h1>
 
             <ul className={cn("relative grid gap-4 sm:gap-6", "grid-cols-2 md:grid-cols-3")}>
-                <Blob
-                    size="md"
-                    opacity={80}
-                    from="green"
-                    to="accent"
-                />
-                <Blob
-                    size="lg"
-                    placement="right"
-                    opacity={60}
-                    from="accent"
-                    to="cyan"
-                />
-                <Blob
-                    size="md"
-                    opacity={80}
-                    placement="left"
-                    from="primary"
-                    to="secondary"
-                />
-                <Blob
-                    size="sm"
-                    placement="bottom"
-                    opacity={80}
-                    from="cyan"
-                    to="secondary"
-                />
+                <BlobScene />
 
                 {collections.map(({ node }) => {
                     const { id, handle, title, image } = node

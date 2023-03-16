@@ -1,5 +1,6 @@
 import { BlobScene } from "@/components/Blob"
 import { productsQuery } from "@/lib/productsQuery"
+import collectionsQuery from "@/lib/collectionsQuery"
 
 import { ProductProvider } from "./context"
 import ProductLabel from "./components/ProductLabel"
@@ -7,17 +8,10 @@ import Swatch from "./components/Swatch"
 import ProductModal from "./components/Modal/ProductModal"
 
 export async function generateStaticParams() {
-    const collectionHandles = [
-        "staff-picks",
-        "summer-22",
-        "mindset",
-        "lifestyle",
-        "creativity",
-        "full-catalog",
-    ]
+    const collections = await collectionsQuery()
 
-    return collectionHandles.map((pathName) => ({
-        collection: pathName,
+    return collections.map(({node}) => ({
+        collection: node.handle
     }))
 }
 
