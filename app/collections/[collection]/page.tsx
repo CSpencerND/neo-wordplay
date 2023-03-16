@@ -4,6 +4,7 @@ import { productsQuery } from "@/lib/productsQuery"
 import { ProductProvider } from "./context"
 import ProductLabel from "./components/ProductLabel"
 import Swatch from "./components/Swatch"
+import ProductModal from "./components/Modal/ProductModal"
 
 export async function generateStaticParams() {
     const collectionHandles = [
@@ -38,6 +39,7 @@ export default async function CollectionPage({ params }: { params: { collection:
                             >
                                 <ProductLabel />
                                 <Swatch />
+                                <ProductModal />
                             </li>
                         </ProductProvider>
                     )

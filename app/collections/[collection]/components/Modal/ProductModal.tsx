@@ -1,6 +1,9 @@
+"use client"
+
 import { RadioGroup, Dialog, Transition } from "@headlessui/react"
 import { Fragment } from "react"
 import { CloseSquare, Plus } from "react-iconly"
+import NextImage from "next/image"
 import { useLoader } from "@/lib"
 import useProduct from "../../context/ProductContext"
 import cn from "clsx"
@@ -13,11 +16,14 @@ export default function ProductModal() {
         changeImage,
         selectedColor,
         setSelectedColor,
+        sizeOptions,
+        colorOptions,
+        sizeText,
+        hexCodes,
+        sanitizedDescription,
         info: { title, handle },
     } = useProduct()
     const { loaderComponent, setLoading } = useLoader()
-
-    // The modal should be populated with the data from the ProductLabel component that is clicked.
 
     return (
         <Transition
@@ -117,13 +123,13 @@ export default function ProductModal() {
                                             "sm:gap-4 sm:rounded-2xl sm:p-4"
                                         )}
                                     >
-                                        {swatchColors.map((colorCode, i) => {
+                                        {hexCodes.map((code, i) => {
                                             return (
                                                 <RadioGroup.Option
                                                     key={i}
                                                     role="radio"
                                                     value={colorOptions[i]}
-                                                    style={{ backgroundColor: colorCode }}
+                                                    style={{ backgroundColor: code }}
                                                     className={({ checked }) =>
                                                         cn(
                                                             "cursor-pointer rounded-md",

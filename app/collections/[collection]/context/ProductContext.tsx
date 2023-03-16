@@ -4,6 +4,7 @@ import { createContext, useContext, useCallback, useMemo, useReducer, useEffect 
 import { ProductProvider as ShopifyProductProvider } from "@shopify/hydrogen-react"
 import { useProduct as useShopifyProduct, flattenConnection } from "@shopify/hydrogen-react"
 import { sanitize } from "dompurify"
+import { useRouter, usePathname } from "next/navigation"
 
 import type { Image, Maybe, Product } from "@shopify/hydrogen-react/storefront-api-types"
 import type { ReactElement, ReactNode } from "react"
@@ -109,14 +110,16 @@ const reducer = (state: ProductState, action: ReducerAction): ProductState => {
     }
 }
 
-function ExtendedProductProvider({
-    children,
-    info,
-    images,
-    hexCodes,
-}: ExtendedProviderProps): ReactElement {
+function ExtendedProductProvider({ children, info, images, hexCodes }: ExtendedProviderProps): ReactElement {
     const [
-        { currentImage, sanitizedDescription, isOpen, isLoading, selectedSize, selectedColor },
+        {
+            currentImage,
+            sanitizedDescription,
+            isOpen,
+            isLoading,
+            selectedSize,
+            selectedColor,
+        },
         dispatch,
     ] = useReducer(reducer, initialReducerState)
 
