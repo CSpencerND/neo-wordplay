@@ -13,18 +13,21 @@ import cn from "clsx"
 
 export default function Hero() {
     return (
-        <div className="hero rounded-box text-primary-content shadow-box">
+        <div className="hero rounded-box shadow-box">
             <Image
-                className={cn(
-                    "rounded-box aspect-video",
-                    "max-h-[calc(100vh-196px)] object-cover object-top"
-                )}
+                className={`
+                    rounded-box aspect-video
+                    max-h-[calc(100vh-196px)] object-cover object-top
+                `}
                 src={hero}
                 alt="We Play With Words"
                 placeholder="blur"
                 priority
             />
-            <div aria-hidden className="hero-overlay rounded-box bg-black/30" />
+            <div
+                aria-hidden
+                className="hero-overlay rounded-box bg-black/30"
+            />
             <div className="hero-content">
                 <h1
                     className={cn(graffiti.className, "text-3xl")}
