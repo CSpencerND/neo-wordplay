@@ -1,1 +1,1 @@
-export { default, ProductProvider } from "./ProductContext"
+export { default, ProductProvider, ProductPrice } from "./ProductContext"

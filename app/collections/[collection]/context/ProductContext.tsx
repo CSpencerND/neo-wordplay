@@ -1,10 +1,12 @@
 "use client"
 
 import { createContext, useContext, useCallback, useMemo, useReducer, useEffect } from "react"
-import { ProductProvider as ShopifyProductProvider } from "@shopify/hydrogen-react"
+import {
+    ProductProvider as ShopifyProductProvider,
+    ProductPrice,
+} from "@shopify/hydrogen-react"
 import { useProduct as useShopifyProduct, flattenConnection } from "@shopify/hydrogen-react"
 import { sanitize } from "dompurify"
-import { useRouter, usePathname } from "next/navigation"
 
 import type { Image, Maybe, Product } from "@shopify/hydrogen-react/storefront-api-types"
 import type { ReactElement, ReactNode } from "react"
@@ -47,7 +49,7 @@ const ACTION = {
     SELECT_SIZE: "SelectSize",
 } as const
 
-type Action = typeof ACTION[keyof typeof ACTION]
+type Action = (typeof ACTION)[keyof typeof ACTION]
 
 type ReducerAction = {
     type: Action
@@ -74,10 +76,17 @@ const inititalProductState = {
     colorOptions: [] as string[],
     sizeOptions: [] as string[],
     sizeText: {} as { [size: string]: string },
-    openModal: () => { },
-    closeModal: () => { },
-    changeImage: (i: number) => { i },
-    setSelectedColor: (color: string) => { color },
+    openModal: () => {},
+    closeModal: () => {},
+    changeImage: (i: number) => {
+        i
+    },
+    setSelectedColor: (color: string) => {
+        color
+    },
+    setSelectedSize: (size: string) => {
+        size
+    },
 }
 
 const ProductContext = createContext<typeof inititalProductState>(inititalProductState)
@@ -110,20 +119,18 @@ const reducer = (state: ProductState, action: ReducerAction): ProductState => {
     }
 }
 
-function ExtendedProductProvider({ children, info, images, hexCodes }: ExtendedProviderProps): ReactElement {
+function ExtendedProductProvider({
+    children,
+    info,
+    images,
+    hexCodes,
+}: ExtendedProviderProps): ReactElement {
     const [
-        {
-            currentImage,
-            sanitizedDescription,
-            isOpen,
-            isLoading,
-            selectedSize,
-            selectedColor,
-        },
+        { currentImage, sanitizedDescription, isOpen, isLoading, selectedSize, selectedColor },
         dispatch,
     ] = useReducer(reducer, initialReducerState)
 
-    const { variants, options } = useShopifyProduct()
+    const { variants, options, setSelectedOption } = useShopifyProduct()
     // if (!variants || !options || !info || !images || !hexCodes) {
     //     alert("An error has occured")
     //     return {
@@ -151,11 +158,18 @@ function ExtendedProductProvider({ children, info, images, hexCodes }: ExtendedP
         []
     )
 
-    const setSelectedColor = useCallback(
-        (color: string) => dispatch({ type: ACTION.SELECT_COLOR, colorPayload: color }),
-        []
-    )
+    const setSelectedSize = useCallback((size: string) => {
+        dispatch({ type: ACTION.SELECT_SIZE, sizePayload: size })
+        setSelectedOption("Size", size)
+    }, [])
+
+    const setSelectedColor = useCallback((color: string) => {
+        dispatch({ type: ACTION.SELECT_COLOR, colorPayload: color })
+        setSelectedOption("Color", color)
+    }, [])
+
     const openModal = useCallback(() => dispatch({ type: ACTION.OPEN_MODAL }), [])
+
     const closeModal = useCallback(() => dispatch({ type: ACTION.CLOSE_MODAL }), [])
 
     const changeImage = useCallback(
@@ -179,6 +193,10 @@ function ExtendedProductProvider({ children, info, images, hexCodes }: ExtendedP
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
+        dispatch({ type: ACTION.SELECT_SIZE, sizePayload: sizeOptions[0] })
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+    useEffect(() => {
         const desc = sanitize(info.description)
         dispatch({ type: ACTION.SANITIZE, descriptionPayload: desc })
     }, []) // eslint-disable-line react-hooks/exhaustive-deps
@@ -190,6 +208,7 @@ function ExtendedProductProvider({ children, info, images, hexCodes }: ExtendedP
         colorOptions,
         sizeOptions,
         sizeText,
+        setSelectedSize,
         selectedSize,
         selectedColor,
         setSelectedColor,
@@ -210,12 +229,12 @@ export function ProductProvider({ children, product }: ProductProviderProps) {
 
     const info = useMemo(
         () =>
-        ({
-            id,
-            title,
-            handle,
-            description: descriptionHtml,
-        } as Info),
+            ({
+                id,
+                title,
+                handle,
+                description: descriptionHtml,
+            } as Info),
         [id, title, handle, descriptionHtml]
     )
     const imageNodes = useMemo(() => flattenConnection(images), [images])
@@ -241,3 +260,5 @@ export default function useProduct() {
     }
     return context
 }
+
+export { ProductPrice }

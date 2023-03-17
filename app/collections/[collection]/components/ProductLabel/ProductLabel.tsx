@@ -20,9 +20,11 @@ export default function ProductLabel() {
 
     const handleLabelClick = () => {
         const idPath = `${pathname}#${handle}`
-
-        openModal()
         router.push(idPath)
+
+        setTimeout(() => {
+            openModal()
+        }, 300)
     }
 
     useEffect(() => {

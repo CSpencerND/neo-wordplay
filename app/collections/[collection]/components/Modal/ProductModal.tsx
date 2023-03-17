@@ -2,14 +2,17 @@
 
 import { RadioGroup, Dialog, Transition } from "@headlessui/react"
 import { Fragment } from "react"
-import { CloseSquare, Plus } from "react-iconly"
+import { ArrowLeftSquare, CloseSquare, Plus } from "react-iconly"
 import NextImage from "next/image"
 import { useRouter, usePathname } from "next/navigation"
 import { useLoader } from "@/lib"
 import useProduct from "../../context/ProductContext"
 import cn from "clsx"
+import { useProduct as useShopifyProduct } from "@shopify/hydrogen-react"
+import { SelectedOptions } from "@shopify/hydrogen-react/dist/types/ProductProvider"
+import Children from "types"
 
-export default function ProductModal() {
+export default function ProductModal({ children }: Children) {
     const {
         isOpen,
         closeModal,
@@ -17,9 +20,11 @@ export default function ProductModal() {
         changeImage,
         selectedColor,
         setSelectedColor,
-        sizeOptions,
         colorOptions,
+        sizeOptions,
         sizeText,
+        selectedSize,
+        setSelectedSize,
         hexCodes,
         sanitizedDescription,
         info: { title, handle },
@@ -30,9 +35,15 @@ export default function ProductModal() {
     const pathname = usePathname()
 
     const handleClose = () => {
-        closeModal()
         router.push(pathname)
+        setTimeout(() => {
+            closeModal()
+        }, 300)
     }
+
+    const selectedOptions = useShopifyProduct().selectedOptions as SelectedOptions
+    const colorOptionString = selectedOptions.Size
+    const sizeOptionString = selectedOptions.Color
 
     return (
         <Transition
@@ -86,7 +97,7 @@ export default function ProductModal() {
                                     <button
                                         type="button"
                                         className={cn(
-                                            "btn-ghost btn-square btn text-base-content/80",
+                                            "btn-ghost btn-square btn text-primary-focus",
                                             "rounded-box absolute right-2 top-2",
                                             "focus-visible:bg-base-100 focus-visible:outline-none focus-visible:ring-0"
                                         )}
@@ -158,14 +169,14 @@ export default function ProductModal() {
                                     </RadioGroup>
                                     {/** Price */}
                                     <span className="self-center text-sm font-bold text-info sm:text-base">
-                                        $30
+                                        {children}
                                     </span>
                                 </section>
                                 <section className="space-y-6">
                                     {/** Size Selection */}
                                     <RadioGroup
-                                        // value={selectedColor}
-                                        // onChange={setSelectedColor}
+                                        value={selectedSize}
+                                        onChange={setSelectedSize}
                                         role="radiogroup"
                                         as="span"
                                         className={cn(
@@ -186,29 +197,36 @@ export default function ProductModal() {
                                                             "btn-square btn-sm btn bg-base-200",
                                                             "cursor-pointer rounded-md text-sm",
                                                             "transition-all duration-200",
-                                                            "hover:bg-secondary-focus focus-visible:ring-1 focus-visible:ring-white/60",
+                                                            "hover:!bg-info/60 focus-visible:ring-1 focus-visible:ring-white/60",
                                                             "md:btn-md sm:rounded-lg md:rounded-lg md:text-base",
-                                                            checked ? "!bg-secondary" : ""
+                                                            checked
+                                                                ? "bg-info text-info-content"
+                                                                : ""
                                                         )
                                                     }
-                                                    onClick={(
-                                                        e: React.MouseEvent<HTMLDivElement>
-                                                    ) => console.log(e.target)}
                                                 >
                                                     {sizeText[size]}
                                                 </RadioGroup.Option>
                                             )
                                         })}
                                     </RadioGroup>
-                                    <span className="flex w-full justify-center">
-                                        <button className="btn-info btn flex gap-2">
+                                    <section className="space-y-2 transition-all">
+                                        <div className="mx-auto max-w-fit divide-x divide-neutral font-bold text-info">
+                                            <span className="whitespace-nowrap px-2">
+                                                {sizeOptionString}
+                                            </span>
+                                            <span className="whitespace-nowrap px-2">
+                                                {colorOptionString}
+                                            </span>
+                                        </div>
+                                        <button className="btn-primary btn mx-auto flex gap-2">
                                             <Plus
                                                 set="curved"
                                                 size="large"
                                             />
                                             Add to Bag
                                         </button>
-                                    </span>
+                                    </section>
                                 </section>
                                 <Dialog.Description
                                     as="article"
@@ -217,6 +235,21 @@ export default function ProductModal() {
                                         __html: sanitizedDescription!,
                                     }}
                                 />
+                                {/** Close Modal Button */}
+                                <button
+                                    type="button"
+                                    className={cn(
+                                        "btn-ghost btn-square btn text-primary-focus",
+                                        "rounded-box",
+                                        "focus-visible:bg-base-100 focus-visible:outline-none focus-visible:ring-0"
+                                    )}
+                                    onClick={handleClose}
+                                >
+                                    <ArrowLeftSquare
+                                        set="curved"
+                                        size="xlarge"
+                                    />
+                                </button>
                             </Dialog.Panel>
                         </Transition.Child>
                     </div>

@@ -2,16 +2,17 @@ import { BlobScene } from "@/components/Blob"
 import { productsQuery } from "@/lib/productsQuery"
 import collectionsQuery from "@/lib/collectionsQuery"
 
-import { ProductProvider } from "./context"
+import { ProductProvider, ProductPrice } from "./context"
 import ProductLabel from "./components/ProductLabel"
 import Swatch from "./components/Swatch"
 import ProductModal from "./components/Modal/ProductModal"
+import { Fragment } from "react"
 
 export async function generateStaticParams() {
     const collections = await collectionsQuery()
 
-    return collections.map(({node}) => ({
-        collection: node.handle
+    return collections.map(({ node }) => ({
+        collection: node.handle,
     }))
 }
 
@@ -26,13 +27,22 @@ export default async function CollectionPage({ params }: { params: { collection:
                 <BlobScene />
                 {productEdges.map(({ node }) => {
                     return (
-                        <ProductProvider product={node} key={node.id}>
-                            <li
-                                className="bg-blur-100 card relative h-full transition hover:scale-105"
-                            >
+                        <ProductProvider
+                            product={node}
+                            key={node.id}
+                        >
+                            <li className="bg-blur-100 card relative h-full transition hover:scale-105">
                                 <ProductLabel />
                                 <Swatch />
-                                <ProductModal />
+                                <ProductModal>
+                                    <ProductPrice
+                                        as={Fragment}
+                                        data={node}
+                                        priceType="regular"
+                                        valueType="max"
+                                        withoutTrailingZeros
+                                    />
+                                </ProductModal>
                             </li>
                         </ProductProvider>
                     )
