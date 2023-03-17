@@ -131,16 +131,6 @@ function ExtendedProductProvider({
     ] = useReducer(reducer, initialReducerState)
 
     const { variants, options, setSelectedOption } = useShopifyProduct()
-    // if (!variants || !options || !info || !images || !hexCodes) {
-    //     alert("An error has occured")
-    //     return {
-    //         currentImage: {} as Image,
-    //         openModal: () => {},
-    //         closeModal: () => {},
-    //         changeImage: () => {},
-    //     }
-    // }
-
     const colorOptions = options!.find((option) => option!.name === "Color")!.values as string[]
     const sizeOptions = options!.find((option) => option!.name === "Size")!.values as string[]
     const sizeText: { [size: string]: string } = useMemo(

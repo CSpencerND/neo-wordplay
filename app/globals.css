@@ -4,13 +4,13 @@
 
 @layer components {
     .btn-primary {
-        @apply bg-primary/20 font-bold text-primary hover:bg-primary/30;
+        @apply bg-primary-focus font-bold text-primary hover:bg-primary-focus/60;
     }
     .btn-secondary {
-        @apply bg-secondary/20 font-bold text-secondary hover:bg-secondary/30;
+        @apply bg-secondary-focus font-bold text-secondary hover:bg-secondary-focus/60;
     }
     .btn-accent {
-        @apply bg-accent/20 font-bold text-accent hover:bg-accent/30;
+        @apply bg-accent-focus font-bold text-accent hover:bg-accent-focus/60;
     }
 
     .before-blur-300 {
@@ -37,6 +37,10 @@
         @apply after:absolute after:-z-10 after:content-[''];
         @apply after:bg-blur-clear after:h-full after:w-full;
     }
+
+    /* .btn, button { */
+    /*     @apply shadow-box; */
+    /* } */
 
     .card {
         @apply shadow-box;

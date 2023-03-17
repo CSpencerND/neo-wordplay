@@ -34,15 +34,17 @@ export default async function CollectionPage({ params }: { params: { collection:
                             <li className="bg-blur-100 card relative h-full transition hover:scale-105">
                                 <ProductLabel />
                                 <Swatch />
-                                <ProductModal>
-                                    <ProductPrice
-                                        as={Fragment}
-                                        data={node}
-                                        priceType="regular"
-                                        valueType="max"
-                                        withoutTrailingZeros
-                                    />
-                                </ProductModal>
+                                <ProductModal
+                                    price={
+                                        <ProductPrice
+                                            as={Fragment}
+                                            data={node}
+                                            priceType="regular"
+                                            valueType="max"
+                                            withoutTrailingZeros
+                                        />
+                                    }
+                                />
                             </li>
                         </ProductProvider>
                     )

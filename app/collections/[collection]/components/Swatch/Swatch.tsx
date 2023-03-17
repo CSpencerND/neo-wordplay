@@ -19,12 +19,11 @@ export default function Swatch() {
             onChange={setSelectedColor}
             role="radiogroup"
             as="span"
-            className={cn(
-                "rounded-lg bg-base-100 transition",
-                "inline-flex h-fit max-w-fit gap-2",
-                "m-2 overflow-x-scroll p-2 sm:p-3",
-                "focus-within:bg-neutral-focus/60"
-            )}
+            className={`
+                m-2 inline-flex h-fit max-w-fit gap-2
+                overflow-x-scroll rounded-lg p-2 transition
+                focus-within:bg-neutral-focus/60 sm:p-3
+            `}
         >
             {hexCodes.map((code, i) => {
                 return (
@@ -32,14 +31,21 @@ export default function Swatch() {
                         key={i}
                         role="radio"
                         value={colorOptions[i]}
-                        style={{ backgroundColor: code }}
+                        style={{
+                            backgroundColor:
+                                code === "#212226" || code === "0D0D0D" ? "#070707" : code,
+                        }}
                         className={({ checked }) =>
                             cn(
-                                "cursor-pointer rounded-[4px] sm:rounded",
-                                "p-2 transition-all duration-200 sm:p-3",
-                                "ring-1 ring-white/60 ring-offset-black/60",
-                                "focus-visible:ring-1 focus-visible:ring-white/60",
-                                checked ? "ring-offset-[3px]" : ""
+                                `
+                                cursor-pointer rounded-[4px] p-2
+                                ring-1 ring-white ring-offset-base-100
+                                transition-all duration-200
+                                focus-visible:ring-1 focus-visible:ring-white
+                                sm:rounded sm:p-3`,
+                                checked
+                                    ? "ring-white ring-offset-[3px] sm:ring-offset-[5px]"
+                                    : ""
                             )
                         }
                         onFocus={() => changeImage(i)}
