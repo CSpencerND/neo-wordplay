@@ -236,10 +236,10 @@ function SizeSelect() {
                                 "btn-square btn-sm btn bg-base-100",
                                 "cursor-pointer rounded-md !text-xs",
                                 "transition-all duration-200",
-                                "hover:!bg-secondary-focus/60",
+                                "hover:!bg-secondary-focus",
                                 "focus-visible:ring-1 focus-visible:ring-white",
                                 "sm:rounded-lg md:text-base",
-                                checked ? "bg-secondary-focus text-secondary" : ""
+                                checked ? "bg-secondary text-secondary-content" : ""
                             )
                         }
                     >
@@ -255,7 +255,7 @@ function AddToBag({ size, color }: OptionStrings) {
     return (
         <section className="space-y-2 p-2 transition-all">
             {size && color ? (
-                <div className="mx-auto max-w-fit divide-x divide-neutral font-bold text-secondary">
+                <div className="mx-auto max-w-fit divide-x divide-neutral font-bold text-secondary-content">
                     <span className="whitespace-nowrap px-2">{size}</span>
                     <span className="whitespace-nowrap px-2">{color}</span>
                 </div>
@@ -279,7 +279,7 @@ function Description() {
     return (
         <Dialog.Description
             as="article"
-            className="prose p-2 [&_strong]:text-accent/80"
+            className="prose p-2 [&_strong]:text-accent-content"
             dangerouslySetInnerHTML={{
                 __html: sanitizedDescription,
             }}
@@ -292,8 +292,8 @@ function CloseButtonArrow({ handleClose }: HandleClose) {
         <button
             type="button"
             className={`
-                btn-ghost btn-square btn-sm btn rounded-xl text-primary hover:bg-primary-focus
-                focus-visible:bg-primary-focus focus-visible:outline-none focus-visible:ring-0
+                btn-ghost btn-square btn-sm btn rounded-xl text-primary-content hover:bg-primary
+                focus-visible:bg-primary focus-visible:outline-none focus-visible:ring-0
             `}
             onClick={handleClose}
         >
@@ -311,8 +311,8 @@ function CloseButtonX({ handleClose }: HandleClose) {
             <button
                 type="button"
                 className={`
-                    btn-ghost btn-square btn-sm btn rounded-xl text-primary hover:bg-primary-focus
-                    focus-visible:bg-primary-focus focus-visible:outline-none focus-visible:ring-0
+                    btn-ghost btn-square btn-sm btn rounded-xl text-primary-content hover:bg-primary
+                    focus-visible:bg-primary focus-visible:outline-none focus-visible:ring-0
                 `}
                 onClick={handleClose}
             >

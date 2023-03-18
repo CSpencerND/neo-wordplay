@@ -10,7 +10,7 @@ export default function Footer() {
             <section className="footer px-6 max-md:footer-center">
                 <div className="form-control text-sm">
                     <label className="label">
-                        <span className="text-sm font-bold text-base-content/60">
+                        <span className="text-sm font-bold text-base-content/80">
                             Sign Up To Our Newsletter!
                         </span>
                     </label>
@@ -19,7 +19,7 @@ export default function Footer() {
                             aria-hidden
                             className={cn(
                                 "absolute -inset-x-0.5 -top-1 bottom-1 -z-10",
-                                "bg-gradient-to-bl from-accent/30 to-secondary/40",
+                                "bg-gradient-to-bl from-accent-content/40 to-primary-content/30",
                                 "rounded-box blur-md"
                             )}
                         ></div>

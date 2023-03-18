@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 @layer components {
-    .btn-primary {
-        @apply bg-primary-focus font-bold text-primary hover:bg-primary-focus/60;
-    }
-    .btn-secondary {
-        @apply bg-secondary-focus font-bold text-secondary hover:bg-secondary-focus/60;
-    }
-    .btn-accent {
-        @apply bg-accent-focus font-bold text-accent hover:bg-accent-focus/60;
-    }
+    /* .btn-primary { */
+    /*     @apply bg-primary font-bold text-primary-focus hover:bg-primary/60; */
+    /* } */
+    /* .btn-secondary { */
+    /*     @apply bg-secondary font-bold text-secondary-focus hover:bg-secondary/60; */
+    /* } */
+    /* .btn-accent { */
+    /*     @apply bg-accent font-bold text-accent-focus hover:bg-accent/60; */
+    /* } */
 
     .before-blur-300 {
         @apply before:absolute before:-z-10 before:content-[''];
