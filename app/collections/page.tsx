@@ -11,7 +11,7 @@ export default async function CollectionDirectoryPage() {
 
     return (
         <section className="mx-auto max-w-2xl space-y-12">
-            <h1 className="text-center text-xl font-bold text-primary">
+            <h1 className="text-center text-xl font-bold text-accent-content">
                 Collections Directory
             </h1>
 
@@ -26,7 +26,7 @@ export default async function CollectionDirectoryPage() {
                                 href={`collections/${handle}`}
                                 className={cn(
                                     "card relative h-full",
-                                    "text-primary transition-all",
+                                    "text-primary-content transition-all",
                                     "hover:scale-105 hover:brightness-105",
                                     "active:scale-95"
                                 )}

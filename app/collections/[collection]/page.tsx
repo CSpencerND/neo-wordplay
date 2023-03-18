@@ -21,7 +21,7 @@ export default async function CollectionPage({ params }: { params: { collection:
 
     return (
         <section className="mx-auto max-w-2xl space-y-12">
-            <h1 className="text-center text-xl font-bold text-primary">{collectionTitle}</h1>
+            <h1 className="text-center text-xl font-bold text-accent-content">{collectionTitle}</h1>
 
             <ul className="relative grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
                 <BlobScene />

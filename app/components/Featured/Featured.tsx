@@ -24,7 +24,7 @@ export default function Featured() {
 
     return (
         <>
-            <h2 className="text-center text-lg font-bold text-primary-content">Featured Items</h2>
+            <h2 className="text-center text-lg font-bold text-accent-content">Featured Items</h2>
 
             {loaderComponent}
 
