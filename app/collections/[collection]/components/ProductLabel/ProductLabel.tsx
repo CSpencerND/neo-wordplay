@@ -6,6 +6,9 @@ import { useLoader } from "@/lib"
 import { useRouter, usePathname } from "next/navigation"
 import cn from "clsx"
 import { useEffect } from "react"
+import temp from "@/static/brand/placeholder.webp"
+
+import type { StaticImageData } from "next/image"
 
 export default function ProductLabel() {
     const { loaderComponent, setLoading } = useLoader()
@@ -46,10 +49,12 @@ export default function ProductLabel() {
                     <NextImage
                         onLoadingComplete={() => setLoading(false)}
                         src={currentImage.url ?? ""}
-                        alt={currentImage.altText ?? ""}
-                        width={currentImage.width ?? 0}
-                        height={currentImage.height ?? 0}
+                        alt={currentImage.altText ?? "temporary placeholder image"}
+                        width={currentImage.width ?? temp.width}
+                        height={currentImage.height ?? temp.height}
                         key={currentImage.id ?? ""}
+                        placeholder="blur"
+                        blurDataURL={temp.blurDataURL}
                     />
                 ) : null}
                 <h2

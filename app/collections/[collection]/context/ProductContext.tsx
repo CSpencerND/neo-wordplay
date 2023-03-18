@@ -7,9 +7,11 @@ import {
 } from "@shopify/hydrogen-react"
 import { useProduct as useShopifyProduct, flattenConnection } from "@shopify/hydrogen-react"
 import { sanitize } from "dompurify"
+import temp from "@/static/brand/placeholder.webp"
 
-import type { Image, Maybe, Product } from "@shopify/hydrogen-react/storefront-api-types"
+import type { Image, Product } from "@shopify/hydrogen-react/storefront-api-types"
 import type { ReactElement, ReactNode } from "react"
+import type { StaticImageData } from "next/image"
 
 type ProductProviderProps = {
     children: ReactNode
@@ -26,7 +28,7 @@ type Info = {
 type ProductState = {
     isOpen: boolean
     isLoading: boolean
-    currentImage: Maybe<Image>
+    currentImage: Image
     sanitizedDescription: string
     selectedColor: string
     selectedSize: string
@@ -37,6 +39,15 @@ type ExtendedProviderProps = {
     info: Info
     images: Image[]
     hexCodes: string[]
+}
+
+const placeholder: StaticImageData = {
+    src: "",
+    blurDataURL: temp.blurDataURL,
+    width: temp.width,
+    height: temp.height,
+    blurHeight: temp.blurHeight,
+    blurWidth: temp.blurWidth,
 }
 
 const ACTION = {
@@ -62,7 +73,7 @@ type ReducerAction = {
 const initialReducerState: ProductState = {
     isOpen: false,
     isLoading: false,
-    currentImage: null,
+    currentImage: placeholder as Image,
     sanitizedDescription: "",
     selectedColor: "",
     selectedSize: "",
@@ -103,7 +114,7 @@ const reducer = (state: ProductState, action: ReducerAction): ProductState => {
             return { ...state, isLoading: true }
 
         case ACTION.SET_IMAGE:
-            return { ...state, currentImage: action.imagePayload ?? null }
+            return { ...state, currentImage: action.imagePayload ?? placeholder as Image }
 
         case ACTION.SANITIZE:
             return { ...state, sanitizedDescription: action.descriptionPayload ?? "" }
