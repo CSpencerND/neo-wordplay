@@ -42,7 +42,7 @@ type ExtendedProviderProps = {
 }
 
 const placeholder: StaticImageData = {
-    src: "",
+    src: temp.blurDataURL as string,
     blurDataURL: temp.blurDataURL,
     width: temp.width,
     height: temp.height,

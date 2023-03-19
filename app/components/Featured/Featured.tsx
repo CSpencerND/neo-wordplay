@@ -90,7 +90,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box"
+        className="bg-glass rounded-lg"
     />,
     <Image
         key={2}
@@ -98,7 +98,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box"
+        className="bg-glass rounded-lg"
     />,
     <Image
         key={3}
@@ -106,7 +106,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box"
+        className="bg-glass rounded-lg"
     />,
     <Image
         key={4}
@@ -114,7 +114,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box"
+        className="bg-glass rounded-lg"
     />,
     <Image
         key={5}
@@ -122,7 +122,7 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box"
+        className="bg-glass rounded-lg"
     />,
     <Image
         key={6}
@@ -130,6 +130,6 @@ const images = [
         alt="temp"
         onDragStart={(e) => e.preventDefault()}
         role="presentation"
-        className="bg-glass rounded-box"
+        className="bg-glass rounded-lg"
     />,
 ]

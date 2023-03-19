@@ -47,13 +47,6 @@ const query = gql`
                                 currencyCode
                             }
                         }
-                        featuredImage {
-                            url
-                            altText
-                            width
-                            height
-                            id
-                        }
                         images(first: 99) {
                             edges {
                                 node {
@@ -68,28 +61,11 @@ const query = gql`
                         variants(first: 99) {
                             edges {
                                 node {
+                                    id
                                     title
-                                    price {
-                                        currencyCode
-                                        amount
-                                    }
-                                    image {
-                                        url
-                                        altText
-                                        width
-                                        height
-                                    }
                                     selectedOptions {
                                         name
                                         value
-                                    }
-                                    product {
-                                        title
-                                        handle
-                                        descriptionHtml
-                                        metafield(namespace: "swatch", key: "colors") {
-                                            value
-                                        }
                                     }
                                 }
                             }
@@ -100,6 +76,13 @@ const query = gql`
                         }
                         metafield(namespace: "swatch", key: "colors") {
                             value
+                        }
+                        collections(first: 9) {
+                            edges {
+                                node {
+                                    title
+                                }
+                            }
                         }
                     }
                 }

@@ -8,7 +8,6 @@ import cn from "clsx"
 import { useEffect } from "react"
 import temp from "@/static/brand/placeholder.webp"
 
-import type { StaticImageData } from "next/image"
 
 export default function ProductLabel() {
     const { loaderComponent, setLoading } = useLoader()
@@ -36,6 +35,8 @@ export default function ProductLabel() {
         openModal()
     }, [])
 
+    const nullImage = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3C/svg%3E`
+
     return (
         <label
             id={handle}
@@ -48,7 +49,7 @@ export default function ProductLabel() {
                 {currentImage !== null ? (
                     <NextImage
                         onLoadingComplete={() => setLoading(false)}
-                        src={currentImage.url ?? ""}
+                        src={currentImage.url ?? nullImage}
                         alt={currentImage.altText ?? "temporary placeholder image"}
                         width={currentImage.width ?? temp.width}
                         height={currentImage.height ?? temp.height}

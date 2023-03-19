@@ -7,10 +7,11 @@ import NextImage from "next/image"
 import { useRouter, usePathname } from "next/navigation"
 import { useLoader } from "@/lib"
 import useProduct from "../../context/ProductContext"
-import { useProduct as useShopifyProduct } from "@shopify/hydrogen-react"
 import cn from "clsx"
+import temp from "@/static/brand/placeholder.webp"
 
-import type { SelectedOptions } from "@shopify/hydrogen-react/dist/types/ProductProvider"
+// import { useProduct as useShopifyProduct } from "@shopify/hydrogen-react"
+// import type { SelectedOptions } from "@shopify/hydrogen-react/dist/types/ProductProvider"
 
 import Children from "types"
 
@@ -42,10 +43,10 @@ export default function ProductModal({ price }: { price: ReactNode }) {
         <ModalWrapper handleClose={handleClose}>
             <Dialog.Panel
                 className={`
-                    bg-blur-100 card rounded-box flex
-                    w-full max-w-lg transform flex-col gap-6 overflow-hidden 
-                    p-6 pt-12 text-left align-middle shadow-box transition-all 
-                    lg:card-side lg:max-w-xl lg:flex-row xl:max-w-3xl
+                    bg-blur-100 card rounded-box flex max-w-[16rem]
+                    transform flex-col gap-6 overflow-hidden
+                    p-6 pt-12 text-left align-middle shadow-box transition-all
+                    lg:card-side sm:max-w-sm lg:max-w-xl lg:flex-row xl:max-w-3xl
                 `}
             >
                 <CloseButtonX handleClose={handleClose} />
@@ -135,6 +136,7 @@ function ProductTitle() {
 function ProductImage() {
     const { loaderComponent, setLoading } = useLoader()
     const { currentImage } = useProduct()
+    const nullImage = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3C/svg%3E`
 
     return (
         <figure className="bg-glass">
@@ -142,13 +144,25 @@ function ProductImage() {
             {currentImage !== null ? (
                 <NextImage
                     onLoadingComplete={() => setLoading(false)}
-                    src={currentImage.url ?? ""}
-                    alt={currentImage.altText ?? ""}
-                    width={currentImage.width ?? 0}
-                    height={currentImage.height ?? 0}
-                    key={currentImage.id ?? ""}
+                    src={currentImage.url ?? nullImage}
+                    alt={currentImage.altText ?? "temporary placeholder image"}
+                    width={currentImage.width ?? 1024}
+                    height={currentImage.height ?? 1024}
+                    key={currentImage.id ?? "temp"}
+                    placeholder="blur"
+                    blurDataURL={temp.blurDataURL}
                 />
-            ) : null}
+            ) : (
+                <NextImage
+                    src={nullImage}
+                    alt="temporary placeholder image"
+                    key="temp"
+                    width={1024}
+                    height={1024}
+                    placeholder="blur"
+                    blurDataURL={temp.blurDataURL}
+                />
+            )}
         </figure>
     )
 }
@@ -179,6 +193,7 @@ function ColorSelect() {
                 sm:gap-4 sm:rounded-2xl
             `}
         >
+            <h4 className="sr-only pl-2 text-xs">Color</h4>
             {hexCodes.map((code, i) => {
                 return (
                     <RadioGroup.Option
@@ -225,6 +240,7 @@ function SizeSelect() {
                 sm:gap-4 sm:rounded-2xl
             `}
         >
+            <h4 className="sr-only pl-2 text-xs">Size</h4>
             {sizeOptions.map((size, i) => {
                 return (
                     <RadioGroup.Option
