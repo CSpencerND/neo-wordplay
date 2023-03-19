@@ -1,17 +1,21 @@
 "use client"
 
 import { RadioGroup, Dialog, Transition } from "@headlessui/react"
-import { Fragment, ReactNode } from "react"
+import { Fragment, ReactNode, useEffect, useState } from "react"
 import { ArrowLeftSquare, CloseSquare, Plus } from "react-iconly"
 import NextImage from "next/image"
 import { useRouter, usePathname } from "next/navigation"
 import { useLoader } from "@/lib"
 import useProduct from "../../context/ProductContext"
+import { useCart } from "@/lib/shopifyContext"
+import { getVariantIdBySelectedOptions } from "@/lib"
+
 import cn from "clsx"
 import temp from "@/static/brand/placeholder.webp"
 
-// import { useProduct as useShopifyProduct } from "@shopify/hydrogen-react"
-// import type { SelectedOptions } from "@shopify/hydrogen-react/dist/types/ProductProvider"
+import { useProduct as useShopifyProduct, AddToCartButton } from "@shopify/hydrogen-react"
+import type { SelectedOptions } from "@shopify/hydrogen-react/dist/types/ProductProvider"
+import type { SelectedOptionInput } from "@shopify/hydrogen-react/storefront-api-types"
 
 import Children from "types"
 
@@ -20,10 +24,19 @@ type HandleClose = { handleClose: () => void }
 type OptionStrings = {
     size?: string
     color?: string
+    onClick?: () => void
+    variantID?: string
 }
 
 export default function ProductModal({ price }: { price: ReactNode }) {
-    const { closeModal } = useProduct()
+    const [variantID, setVariantID] = useState<string>("")
+
+    const {
+        closeModal,
+        info: { handle },
+    } = useProduct()
+
+    const { status, totalQuantity, cost, error } = useCart()
 
     const router = useRouter()
     const pathname = usePathname()
@@ -35,9 +48,36 @@ export default function ProductModal({ price }: { price: ReactNode }) {
         }, 300)
     }
 
-    // const selectedOptions = useShopifyProduct().selectedOptions as SelectedOptions
-    // const colorOptionString = selectedOptions.Size
-    // const sizeOptionString = selectedOptions.Color
+    const selectedOptions = useShopifyProduct().selectedOptions as SelectedOptions
+    const colorOptionString = selectedOptions.Size
+    const sizeOptionString = selectedOptions.Color
+
+    useEffect(() => {
+        const getSelectedVariantID = async () => {
+            const variant = await getVariantIdBySelectedOptions(handle, selectedOptions)
+            const variantID = variant.variantBySelectedOptions?.id
+
+            if (!variantID) {
+                alert("Error: VariantID not found. Unable to update state!")
+                return
+            }
+
+            setVariantID(variantID)
+        }
+        getSelectedVariantID()
+    }, [])
+
+    const handleAddToBag = () => {
+        if (!variantID) {
+            alert("Error: VariantID not found. Unable to add item to bag!")
+            return
+        }
+
+        const cartInfo = { status: status, qty: totalQuantity, cost: cost, error: error }
+
+        console.log(JSON.stringify(cartInfo, null, 2))
+        alert(JSON.stringify(cartInfo, null, 2))
+    }
 
     return (
         <ModalWrapper handleClose={handleClose}>
@@ -61,8 +101,10 @@ export default function ProductModal({ price }: { price: ReactNode }) {
                     </div>
                     <SizeSelect />
                     <AddToBag
-                    // size={sizeOptionString}
-                    // color={colorOptionString}
+                        size={sizeOptionString}
+                        color={colorOptionString}
+                        onClick={handleAddToBag}
+                        variantID={variantID}
                     />
                     <Description />
                     <CloseButtonArrow handleClose={handleClose} />
@@ -267,24 +309,26 @@ function SizeSelect() {
     )
 }
 
-function AddToBag({ size, color }: OptionStrings) {
+function AddToBag({ size, color, onClick, variantID }: OptionStrings) {
     return (
         <section className="space-y-2 p-2 transition-all">
             {size && color ? (
                 <div className="mx-auto max-w-fit divide-x divide-neutral font-bold text-secondary-content">
-                    <span className="whitespace-nowrap px-2">{size}</span>
-                    <span className="whitespace-nowrap px-2">{color}</span>
+                    {/* <span className="whitespace-nowrap px-2">{size}</span> */}
+                    {/* <span className="whitespace-nowrap px-2">{color}</span> */}
                 </div>
             ) : null}
-            <button
+            <AddToCartButton
+                variantId={variantID}
                 className={`
                     btn-secondary btn-block btn-sm btn
                     flex gap-2 !text-xs !shadow-box
                 `}
+                onClick={onClick}
             >
                 <Plus set="curved" />
                 Add to Bag
-            </button>
+            </AddToCartButton>
         </section>
     )
 }

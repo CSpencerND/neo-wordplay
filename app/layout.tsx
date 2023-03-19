@@ -5,6 +5,7 @@ import type Children from "types"
 /** components */
 import Header from "./components/Navbar/Header"
 import Footer from "./components/Footer"
+import { CartProvider, ShopifyProvider } from "@/lib/shopifyContext"
 
 /** style */
 import cn from "clsx"
@@ -31,7 +32,11 @@ export const metadata: Metadata = {
 /** content */
 export default function RootLayout({ children }: Children) {
     return (
-        <html lang="en" className={cn("bg-black text-base", inter.className)} data-theme="next">
+        <html
+            lang="en"
+            className={cn("bg-black text-base", inter.className)}
+            data-theme="next"
+        >
             <head />
             <body
                 className={cn(
@@ -56,10 +61,25 @@ export default function RootLayout({ children }: Children) {
                     }}
                     className="fixed -z-10 h-full w-full bg-center bg-no-repeat"
                 ></div>
-                <Header />
-                <main className={cn("container relative", "mx-auto space-y-12 px-6 py-12")}>
-                    {children}
-                </main>
+                <ShopifyProvider
+                    storeDomain="wordplay4lyfe.myshopify.com"
+                    storefrontToken="06479233182de39ca69e466f1837adda"
+                    storefrontApiVersion="2023-01"
+                    countryIsoCode="US"
+                    languageIsoCode="EN"
+                >
+                    <CartProvider>
+                        <Header />
+                        <main
+                            className={cn(
+                                "container relative",
+                                "mx-auto space-y-12 px-6 py-12"
+                            )}
+                        >
+                            {children}
+                        </main>
+                    </CartProvider>
+                </ShopifyProvider>
                 <Footer />
             </body>
         </html>
