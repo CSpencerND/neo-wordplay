@@ -8,7 +8,6 @@ import cn from "clsx"
 import { useEffect } from "react"
 import temp from "@/static/brand/placeholder.webp"
 
-
 export default function ProductLabel() {
     const { loaderComponent, setLoading } = useLoader()
     const {
@@ -33,7 +32,7 @@ export default function ProductLabel() {
         const hash = window.location.hash
         if (hash !== `#${handle}`) return
         openModal()
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const nullImage = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3C/svg%3E`
 

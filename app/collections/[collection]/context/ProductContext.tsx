@@ -162,12 +162,12 @@ function ExtendedProductProvider({
     const setSelectedSize = useCallback((size: string) => {
         dispatch({ type: ACTION.SELECT_SIZE, sizePayload: size })
         setSelectedOption("Size", size)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const setSelectedColor = useCallback((color: string) => {
         dispatch({ type: ACTION.SELECT_COLOR, colorPayload: color })
         setSelectedOption("Color", color)
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const openModal = useCallback(() => dispatch({ type: ACTION.OPEN_MODAL }), [])
 
