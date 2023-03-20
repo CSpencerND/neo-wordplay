@@ -15,7 +15,6 @@ import temp from "@/static/brand/placeholder.webp"
 
 import { useProduct as useShopifyProduct, AddToCartButton } from "@shopify/hydrogen-react"
 import type { SelectedOptions } from "@shopify/hydrogen-react/dist/types/ProductProvider"
-import type { SelectedOptionInput } from "@shopify/hydrogen-react/storefront-api-types"
 
 import Children from "types"
 
@@ -83,7 +82,7 @@ export default function ProductModal({ price }: { price: ReactNode }) {
         <ModalWrapper handleClose={handleClose}>
             <Dialog.Panel
                 className={`
-                    bg-blur-100 card rounded-box flex max-w-[16rem]
+                    bg-blur-100 card rounded-box flex max-w-xs
                     transform flex-col gap-6 overflow-hidden
                     p-6 pt-12 text-left align-middle shadow-box transition-all
                     lg:card-side sm:max-w-sm lg:max-w-xl lg:flex-row xl:max-w-3xl

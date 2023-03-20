@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     themeColor: "hsl(204, 55%, 5%)", // ios
 }
 
+const token = process.env.storefrontToken as string
+const domain = process.env.storefrontDomain as string
+
 /** content */
 export default function RootLayout({ children }: Children) {
     return (
@@ -62,8 +65,8 @@ export default function RootLayout({ children }: Children) {
                     className="fixed -z-10 h-full w-full bg-center bg-no-repeat"
                 ></div>
                 <ShopifyProvider
-                    storeDomain="wordplay4lyfe.myshopify.com"
-                    storefrontToken="06479233182de39ca69e466f1837adda"
+                    storeDomain={domain}
+                    storefrontToken={token}
                     storefrontApiVersion="2023-01"
                     countryIsoCode="US"
                     languageIsoCode="EN"

@@ -6,6 +6,10 @@ const nextConfig = {
     images: {
         domains: ["cdn.shopify.com"],
     },
+    env: {
+        storefrontToken: process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN,
+        storefrontDomain: process.env.SHOPIFY_STOREFRONT_DOMAIN,
+    },
 }
 
 module.exports = nextConfig
