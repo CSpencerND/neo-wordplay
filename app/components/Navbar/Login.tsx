@@ -1,8 +1,11 @@
 "use client"
 
-import { Login as LoginIcon, IconProps } from "react-iconly"
+import { Login as LoginIcon } from "react-iconly"
 
-export function Login (props: IconProps) {
-    return <LoginIcon {...props} />
+export function Login() {
+    return (
+        <button className="btn-ghost btn-square btn">
+            <LoginIcon set="curved" />
+        </button>
+    )
 }
-

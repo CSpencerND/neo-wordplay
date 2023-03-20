@@ -28,7 +28,7 @@ export function NavMenu({ links }: { links: NavLinkData[] }) {
         <>
             <button
                 id="menuToggle"
-                className="btn-ghost btn-square btn z-50"
+                className="btn-ghost btn-square btn z-40"
                 onClick={() => setIsShowing((isShowing) => !isShowing)}
             >
                 <HamburgerIcon

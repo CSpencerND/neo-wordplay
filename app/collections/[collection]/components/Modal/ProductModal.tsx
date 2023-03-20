@@ -94,10 +94,10 @@ export default function ProductModal({ price }: { price: ReactNode }) {
                 </div>
                 <div className="card-body p-0">
                     <ProductTitle />
-                    <div className="flex flex-row items-center justify-between">
-                        <ColorSelect />
-                        <Price price={price} />
-                    </div>
+                    <Price price={price} />
+                    {/* <div className="flex flex-row items-center justify-between"> */}
+                    <ColorSelect />
+                    {/* </div> */}
                     <SizeSelect />
                     <AddToBag
                         size={sizeOptionString}
@@ -209,7 +209,7 @@ function ProductImage() {
 }
 
 function Price({ price }: { price: ReactNode }) {
-    return <span className="self-center p-2 text-xs font-bold">{price}</span>
+    return <span className="p-2 text-xs font-bold">{price}</span>
 }
 
 function ColorSelect() {

@@ -65,7 +65,7 @@ export default function RootLayout({ children }: Children) {
                     className="fixed -z-10 h-full w-full bg-center bg-no-repeat"
                 ></div>
                 <ShopifyProvider
-                    storeDomain={domain}
+                    storeDomain={`https://${domain}`}
                     storefrontToken={token}
                     storefrontApiVersion="2023-01"
                     countryIsoCode="US"
