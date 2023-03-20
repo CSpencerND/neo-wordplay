@@ -43,7 +43,7 @@ export default async function CollectionDirectoryPage() {
                                         "card-body",
                                         "absolute bottom-0 w-full",
                                         "p-1 sm:p-2",
-                                        "bg-blur-100 rounded-b-box"
+                                        "bg-blur-300 rounded-b-box"
                                     )}
                                 >
                                     <h2 className="card-title mx-auto whitespace-nowrap text-sm">
