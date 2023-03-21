@@ -1,5 +1,7 @@
 "use client"
 
+/******************* TODO: HAND THIS OVER TO A STATE MANAGER ?ZUSTAND? ************************/
+
 import { createContext, useContext, useCallback, useMemo, useReducer, useEffect } from "react"
 import {
     ProductProvider as ShopifyProductProvider,

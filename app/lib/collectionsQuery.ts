@@ -1,28 +1,16 @@
-import type { CollectionEdge } from "@shopify/hydrogen-react/storefront-api-types"
-const gql = String.raw
+import storefrontQuery from "./shopifyClient"
+import { flattenConnection } from "@shopify/hydrogen-react"
+import type { CollectionConnection, Collection } from "@shopify/hydrogen-react/storefront-api-types"
 
-const token = process.env.storefrontToken as string
-const domain = process.env.storefrontDomain as string
+export async function getCollectionNames(): Promise<Collection[]> {
 
-export default async function collectionsQuery(): Promise<CollectionEdge[]> {
-    const response = await fetch(`https://${domain}/api/2023-01/graphql.json`, {
-        body: query,
-        headers: {
-            "content-type": "application/graphql",
-            "X-SDK-Version": "2023-01",
-            "X-Shopify-Storefront-Access-Token": token,
-        },
-        method: "POST",
-    })
-
-    if (!response.ok) {
-        throw new Error("Failed to fetch data")
-    }
-
-    const json = await response.json()
-    return json.data.collections.edges
+    const { data } = await storefrontQuery(query)
+    const collectionConnection: CollectionConnection = data.collections
+    const collections: Collection[] = flattenConnection(collectionConnection)
+    return collections
 }
 
+const gql = String.raw
 const query = gql`
     {
         collections(first: 9) {

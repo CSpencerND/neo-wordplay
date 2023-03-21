@@ -2,6 +2,7 @@
 
 /** components */
 import Link from "next/link"
+import Image from "next/image"
 import { Transition, Dialog } from "@headlessui/react"
 import { Bag2 as CartIcon, ArrowRightSquare } from "react-iconly"
 
@@ -9,6 +10,8 @@ import { Bag2 as CartIcon, ArrowRightSquare } from "react-iconly"
 import { useCart, useCartLine, useShop, CartLineProvider } from "@/lib/shopifyContext"
 import { useEffect, useState, Fragment } from "react"
 import type { ReactNode, Dispatch, SetStateAction } from "react"
+
+import temp from "@/static/brand/placeholder.webp"
 
 const products = [
     {
@@ -18,8 +21,7 @@ const products = [
         color: "Salmon",
         price: "$90.00",
         quantity: 1,
-        imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
+        imageSrc: temp,
         imageAlt:
             "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
     },
@@ -30,8 +32,7 @@ const products = [
         color: "Blue",
         price: "$32.00",
         quantity: 1,
-        imageSrc:
-            "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
+        imageSrc: temp,
         imageAlt:
             "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
     },
@@ -82,9 +83,9 @@ export function Cart() {
                                         key={product.id}
                                         className="flex py-6"
                                     >
-                                        <figure className="h-full w-1/4 flex-shrink-0 overflow-hidden rounded-md">
-                                            <img
-                                                src={product.imageSrc}
+                                        <figure className="bg-glass h-full w-1/4 flex-shrink-0 overflow-hidden rounded-md">
+                                            <Image
+                                                src={temp}
                                                 alt={product.imageAlt}
                                                 className="h-full w-full object-cover object-center"
                                             />
@@ -201,7 +202,7 @@ function CartHeader({ closeCart }: { closeCart: () => void }) {
                 >
                     <span className="sr-only">Close panel</span>
                     <ArrowRightSquare
-                        set="curved"
+                        set="light"
                         aria-hidden="true"
                     />
                 </button>

@@ -36,6 +36,9 @@ module.exports = {
                     900: "#43302b",
                 },
             },
+            borderRadius: {
+                sq: "17.5%"
+            }
         },
     },
 

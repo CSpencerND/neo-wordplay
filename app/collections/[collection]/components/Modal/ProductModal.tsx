@@ -1,19 +1,18 @@
 "use client"
 
-import { RadioGroup, Dialog, Transition } from "@headlessui/react"
+import { getVariantIdBySelectedOptions, useLoader } from "@/lib"
+import { useCart } from "@/lib/shopifyContext"
+import { Dialog, RadioGroup, Transition } from "@headlessui/react"
+import NextImage from "next/image"
+import { usePathname, useRouter } from "next/navigation"
 import { Fragment, ReactNode, useEffect, useState } from "react"
 import { ArrowLeftSquare, CloseSquare, Plus } from "react-iconly"
-import NextImage from "next/image"
-import { useRouter, usePathname } from "next/navigation"
-import { useLoader } from "@/lib"
 import useProduct from "../../context/ProductContext"
-import { useCart } from "@/lib/shopifyContext"
-import { getVariantIdBySelectedOptions } from "@/lib"
 
-import cn from "clsx"
 import temp from "@/static/brand/placeholder.webp"
+import cn from "clsx"
 
-import { useProduct as useShopifyProduct, AddToCartButton } from "@shopify/hydrogen-react"
+import { AddToCartButton, useProduct as useShopifyProduct } from "@shopify/hydrogen-react"
 import type { SelectedOptions } from "@shopify/hydrogen-react/dist/types/ProductProvider"
 
 import Children from "types"
@@ -41,7 +40,9 @@ export default function ProductModal({ price }: { price: ReactNode }) {
     const pathname = usePathname()
 
     const handleClose = () => {
-        router.push(pathname)
+        if (pathname) {
+            router.push(pathname)
+        }
         setTimeout(() => {
             closeModal()
         }, 300)
@@ -64,7 +65,7 @@ export default function ProductModal({ price }: { price: ReactNode }) {
             setVariantID(variantID)
         }
         getSelectedVariantID()
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleAddToBag = () => {
         if (!variantID) {
@@ -75,7 +76,7 @@ export default function ProductModal({ price }: { price: ReactNode }) {
         const cartInfo = { status: status, qty: totalQuantity, cost: cost, error: error }
 
         console.log(JSON.stringify(cartInfo, null, 2))
-        alert(JSON.stringify(cartInfo, null, 2))
+        // alert(JSON.stringify(cartInfo, null, 2))
     }
 
     return (
@@ -124,7 +125,6 @@ function ModalWrapper({ children, handleClose }: Children & HandleClose) {
         >
             <Dialog
                 id={handle}
-                role="dialog"
                 as="div"
                 className="relative z-40"
                 onClose={handleClose}
@@ -142,7 +142,10 @@ function ModalWrapper({ children, handleClose }: Children & HandleClose) {
                     className="bg-blur-black fixed inset-0"
                 />
 
-                <div className="fixed inset-0 overflow-y-auto">
+                <div
+                    role="dialog"
+                    className="fixed inset-0 overflow-y-auto"
+                >
                     <Transition.Child
                         as="div"
                         className="flex items-center justify-center p-4 text-center"
@@ -167,7 +170,7 @@ function ProductTitle() {
     return (
         <Dialog.Title
             as="h3"
-            className="p-2 text-sm font-bold"
+            className="-mb-2 p-2 text-sm font-bold"
         >
             {title}
         </Dialog.Title>
@@ -225,11 +228,10 @@ function ColorSelect() {
         <RadioGroup
             value={selectedColor}
             onChange={setSelectedColor}
-            role="radiogroup"
             as="span"
             className={`
                 inline-flex h-fit w-fit
-                gap-3 rounded-xl p-3 transition
+                gap-4 rounded-xl p-2 transition
                 focus-within:bg-neutral-focus/40
                 sm:gap-4 sm:rounded-2xl
             `}
@@ -239,7 +241,6 @@ function ColorSelect() {
                 return (
                     <RadioGroup.Option
                         key={i}
-                        role="radio"
                         value={colorOptions[i]}
                         style={{
                             backgroundColor:
@@ -247,11 +248,11 @@ function ColorSelect() {
                         }}
                         className={({ checked }) =>
                             cn(
-                                `cursor-pointer rounded-md p-3 
+                                `h-7 w-7 cursor-pointer rounded-sq
                                 ring-1 ring-white ring-offset-base-100 
                                 transition-all duration-200
                                 focus-visible:ring-1 focus-visible:ring-white
-                                sm:rounded-[0.4375rem]`,
+                                `,
                                 checked
                                     ? "ring-white ring-offset-[5px] sm:ring-offset-[7px]"
                                     : ""
@@ -272,10 +273,9 @@ function SizeSelect() {
         <RadioGroup
             value={selectedSize}
             onChange={setSelectedSize}
-            role="radiogroup"
             as="span"
             className={`
-                flex flex-wrap gap-3 rounded-xl
+                flex flex-wrap gap-4 rounded-xl
                 p-2 transition
                 focus-within:bg-neutral-focus/40
                 sm:gap-4 sm:rounded-2xl
@@ -286,16 +286,15 @@ function SizeSelect() {
                 return (
                     <RadioGroup.Option
                         key={i}
-                        role="radio"
                         value={size}
                         className={({ checked }) =>
                             cn(
-                                "btn-square btn-sm btn bg-base-100",
-                                "cursor-pointer rounded-md !text-xs",
+                                "grid h-7 w-7 place-items-center rounded-sq bg-base-100",
+                                "cursor-pointer rounded-md text-xs",
                                 "transition-all duration-200",
                                 "hover:!bg-secondary-focus",
                                 "focus-visible:ring-1 focus-visible:ring-white",
-                                "sm:rounded-lg md:text-base",
+                                "md:text-base",
                                 checked ? "bg-secondary text-secondary-content" : ""
                             )
                         }
@@ -321,7 +320,7 @@ function AddToBag({ size, color, onClick, variantID }: OptionStrings) {
                 variantId={variantID}
                 className={`
                     btn-secondary btn-block btn-sm btn
-                    flex gap-2 !text-xs !shadow-box
+                    !mt-0 flex gap-2 !text-xs !shadow-box
                 `}
                 onClick={onClick}
             >
@@ -350,14 +349,12 @@ function CloseButtonArrow({ handleClose }: HandleClose) {
     return (
         <button
             type="button"
-            className={`
-                btn-ghost btn-square btn-sm btn rounded-xl text-primary-content hover:bg-primary
-                focus-visible:bg-primary focus-visible:outline-none focus-visible:ring-0
-            `}
+            className="btn-primary btn-square btn-sm btn"
             onClick={handleClose}
         >
+            <span className="sr-only">Close panel</span>
             <ArrowLeftSquare
-                set="curved"
+                set="light"
                 size="large"
             />
         </button>
@@ -369,14 +366,12 @@ function CloseButtonX({ handleClose }: HandleClose) {
         <div className="absolute top-1 right-1">
             <button
                 type="button"
-                className={`
-                    btn-ghost btn-square btn-sm btn rounded-xl text-primary-content hover:bg-primary
-                    focus-visible:bg-primary focus-visible:outline-none focus-visible:ring-0
-                `}
+                className="btn-primary btn-square btn-sm btn"
                 onClick={handleClose}
             >
+                <span className="sr-only">Close panel</span>
                 <CloseSquare
-                    set="curved"
+                    set="light"
                     size="large"
                 />
             </button>

@@ -17,7 +17,6 @@ export default function Swatch() {
         <RadioGroup
             value={selectedColor}
             onChange={setSelectedColor}
-            role="radiogroup"
             as="span"
             className={`
                 m-2 inline-flex h-fit max-w-fit gap-2
@@ -29,7 +28,6 @@ export default function Swatch() {
                 return (
                     <RadioGroup.Option
                         key={i}
-                        role="radio"
                         value={colorOptions[i]}
                         style={{
                             backgroundColor:
@@ -38,11 +36,11 @@ export default function Swatch() {
                         className={({ checked }) =>
                             cn(
                                 `
-                                cursor-pointer rounded-[4px] p-2
+                                h-6 w-6 cursor-pointer rounded-sq
                                 ring-1 ring-white ring-offset-base-100
                                 transition-all duration-200
                                 focus-visible:ring-1 focus-visible:ring-white
-                                sm:rounded sm:p-3`,
+                                sm:p-3`,
                                 checked
                                     ? "ring-white ring-offset-[3px] sm:ring-offset-[5px]"
                                     : ""

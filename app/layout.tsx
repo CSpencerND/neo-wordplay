@@ -7,6 +7,9 @@ import Header from "./components/Navbar/Header"
 import Footer from "./components/Footer"
 import { CartProvider, ShopifyProvider } from "@/lib/shopifyContext"
 
+/** utils */
+// import { shopifyClient } from "@/lib"
+
 /** style */
 import cn from "clsx"
 import "./globals.css"
@@ -28,9 +31,6 @@ export const metadata: Metadata = {
     manifest: "/site.webmanifest",
     themeColor: "hsl(204, 55%, 5%)", // ios
 }
-
-const token = process.env.storefrontToken as string
-const domain = process.env.storefrontDomain as string
 
 /** content */
 export default function RootLayout({ children }: Children) {
@@ -64,25 +64,21 @@ export default function RootLayout({ children }: Children) {
                     }}
                     className="fixed -z-10 h-full w-full bg-center bg-no-repeat"
                 ></div>
-                <ShopifyProvider
-                    storeDomain={`https://${domain}`}
-                    storefrontToken={token}
-                    storefrontApiVersion="2023-01"
-                    countryIsoCode="US"
-                    languageIsoCode="EN"
-                >
-                    <CartProvider>
-                        <Header />
-                        <main
-                            className={cn(
-                                "container relative",
-                                "mx-auto space-y-12 px-6 py-12"
-                            )}
-                        >
-                            {children}
-                        </main>
-                    </CartProvider>
-                </ShopifyProvider>
+                {/* <ShopifyProvider */}
+                {/*     storeDomain="https://wordplay4lyfe.myshopify.com" */}
+                {/*     storefrontToken="06479233182de39ca69e466f1837adda" */}
+                {/*     storefrontApiVersion="2023-01" */}
+                {/*     countryIsoCode="US" */}
+                {/*     languageIsoCode="EN" */}
+                {/*     // TODO: storefrontId="" env variable */}
+                {/* > */}
+                    {/* <CartProvider> */}
+                <Header />
+                <main className={cn("container relative", "mx-auto space-y-12 px-6 py-12")}>
+                    {children}
+                </main>
+                {/*     </CartProvider> */}
+                {/* </ShopifyProvider> */}
                 <Footer />
             </body>
         </html>

@@ -1,35 +1,19 @@
-import type { ProductEdge } from "@shopify/hydrogen-react/storefront-api-types"
-const gql = String.raw
+import storefrontQuery from "./shopifyClient"
+import { flattenConnection } from "@shopify/hydrogen-react"
+import type { ProductConnection, Product } from "@shopify/hydrogen-react/storefront-api-types"
 
-const token = process.env.storefrontToken as string
-const domain = process.env.storefrontDomain as string
+type ProductsQuery = { collectionTitle: string; products: Product[] }
 
-type ProductsQuery = { collectionTitle: string; productEdges: ProductEdge[] }
+export async function getProductsByCollection(handle: string): Promise<ProductsQuery> {
+    const { data } = await storefrontQuery(query, { handle })
 
-export async function productsQuery(handle: string): Promise<ProductsQuery> {
-    const response = await fetch(`https://${domain}/api/2023-01/graphql.json`, {
-        body: JSON.stringify({
-            query,
-            variables: { handle },
-        }),
-        headers: {
-            "content-type": "application/json",
-            "X-SDK-Version": "2023-01",
-            "X-Shopify-Storefront-Access-Token": token,
-        },
-        method: "POST",
-    })
-
-    if (!response.ok) {
-        throw new Error("Failed to fetch data")
-    }
-
-    const json = await response.json()
-    const collectionTitle = json.data.collection.title
-    const productEdges = json.data.collection.products.edges
-    return { collectionTitle, productEdges }
+    const collectionTitle: string = data.collection.title
+    const productConnection: ProductConnection = data.collection.products
+    const products: Product[] = flattenConnection(productConnection)
+    return { collectionTitle, products }
 }
 
+const gql = String.raw
 const query = gql`
     query getProductsByCollection($handle: String!) {
         collection(handle: $handle) {

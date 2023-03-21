@@ -84,7 +84,7 @@ export default function Header() {
                 </div>
                 <div className="navbar-end">
                     <Login />
-                    <Cart />
+                    {/* <Cart /> */}
                     <NavMenu links={linkData} />
                 </div>
             </nav>
