@@ -1,2 +1,2 @@
 export { useLoader } from "./useLoader"
-export { useInnerWidth } from "./useInnerWidth"
+export { useLog } from "./useLog"

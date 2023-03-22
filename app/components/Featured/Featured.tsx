@@ -8,8 +8,9 @@ import ProductImage from "../ProductImage"
 import Link from "next/link"
 
 /** utils */
-import { useInnerWidth, useLoader } from "@/lib/hooks"
+import { useLoader } from "@/lib/hooks"
 import { useRef } from "react"
+import { useWindowSize } from "@react-hookz/web/esm/useWindowSize"
 
 /** assets */
 import { ChevronLeft, ChevronRight } from "react-iconly"
@@ -20,7 +21,7 @@ import "./carousel.css"
 
 export default function Featured({ featured }: { featured: Product[] }) {
     const sliderRef = useRef<AliceCarousel>(null)
-    const innerWidth = useInnerWidth()
+    const { width } = useWindowSize(undefined, true)
     const { loaderComponent, setLoading } = useLoader()
 
     const carouselItems = featured.map(({ featuredImage, title }) => (
@@ -56,7 +57,7 @@ export default function Featured({ featured }: { featured: Product[] }) {
                 autoPlay
                 autoPlayStrategy="all"
                 autoPlayInterval={1250}
-                innerWidth={innerWidth}
+                innerWidth={width}
                 responsive={{
                     0: {
                         items: 1,
