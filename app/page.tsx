@@ -2,17 +2,16 @@ import Hero from "./components/Hero"
 import Featured from "./components/Featured"
 import Gallery from "./components/Gallery"
 import Blob from "./components/Blob"
+import { getFeaturedCollectionProducts } from "./lib/server"
 
-export default function HomePage() {
+export default async function HomePage() {
+    const featured = await getFeaturedCollectionProducts()
+
     return (
         <>
-            <section>
-                <Hero />
-            </section>
+            <Hero />
 
-            <section className="bg-blur-200 card space-y-6 py-6">
-                <Featured />
-            </section>
+            <Featured featured={featured} />
 
             <section className="relative">
                 <Blob
@@ -49,9 +48,7 @@ export default function HomePage() {
                 </article>
             </section>
 
-            <section>
-                <Gallery />
-            </section>
+            <Gallery />
         </>
     )
 }

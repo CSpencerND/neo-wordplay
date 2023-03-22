@@ -1,54 +1,14 @@
-import Link from "next/link"
-import Image from "next/image"
 import { BlobScene } from "@/components/Blob"
-
+import ProductImage from "@/components/ProductImage"
+import { getCollections } from "@/lib/server"
 import cn from "clsx"
-import temp from "@/static/brand/placeholder.webp"
-import { getCollectionNames } from "@/lib"
+import Link from "next/link"
 
 export default async function CollectionDirectoryPage() {
-    // const collections = await getCollectionNames()
-    const collections = [
-        {
-            id: "gid://shopify/Collection/123456789",
-            handle: "staff-picks",
-            title: "Staff Picks",
-        },
-        {
-            id: "gid://shopify/Collection/123477877",
-            handle: "summer-22",
-            title: "Summer 22",
-        },
-        {
-            id: "gid://shopify/Collection/444477877",
-            handle: "mindset",
-            title: "Mindset",
-        },
-        {
-            id: "gid://shopify/Collection/222277877",
-            handle: "lifestyle",
-            title: "Lifestyle",
-        },
-        {
-            id: "gid://shopify/Collection/138887877",
-            handle: "creativity",
-            title: "Creativity",
-        },
-        {
-            id: "gid://shopify/Collection/128887877",
-            handle: "full-catalog",
-            title: "Full Catalog",
-        },
-        // "staff-picks",
-        // "summer-22",
-        // "mindset",
-        // "lifestyle",
-        // "creativity",
-        // "full-catalog",
-    ]
+    const collections = await getCollections()
 
     return (
-        <section className="mx-auto max-w-2xl space-y-12">
+        <section className="mx-auto max-w-2xl space-y-8">
             <h1 className="text-center text-xl font-bold text-accent-content">
                 Collections Directory
             </h1>
@@ -57,32 +17,26 @@ export default async function CollectionDirectoryPage() {
                 <BlobScene />
 
                 {collections.map((collection) => {
-                    const { id, handle, title } = collection
+                    const { id, handle, title, image } = collection
                     return (
                         <li key={id}>
                             <Link
                                 href={`collections/${handle}`}
-                                className={cn(
-                                    "card relative h-full",
-                                    "text-primary-content transition-all",
-                                    "hover:scale-105 hover:brightness-105",
-                                    "active:scale-95"
-                                )}
+                                className={cn(`
+                                    card rounded-2xl relative h-full overflow-hidden
+                                    text-primary-content transition-all
+                                    hover:scale-105 hover:brightness-105
+                                    active:scale-95
+                                `)}
                             >
-                                <Image
-                                    src={temp}
-                                    alt={"placeholder image"}
-                                    // width={image?.width || 1024}
-                                    // height={image?.height || 1024}
-                                    className="bg-glass rounded-box"
-                                />
+                                <ProductImage image={image} />
                                 <div
-                                    className={cn(
-                                        "card-body",
-                                        "absolute bottom-0 w-full",
-                                        "p-1 sm:p-2",
-                                        "bg-blur-300 rounded-b-box"
-                                    )}
+                                    className={`
+                                        bg-blur-300 border-t border-base-100
+                                        card-body absolute bottom-0
+                                        w-full p-1
+                                        sm:p-2
+                                    `}
                                 >
                                     <h2 className="card-title mx-auto whitespace-nowrap text-sm">
                                         {title}

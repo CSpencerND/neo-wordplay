@@ -1,19 +1,17 @@
 /** types */
 import type { Metadata } from "next"
 import type Children from "types"
+import { storefront } from "./lib/server"
 
 /** components */
-import Header from "./components/Navbar/Header"
+import { ShopifyProvider, CartProvider } from "@/lib/providers"
 import Footer from "./components/Footer"
-import { CartProvider, ShopifyProvider } from "@/lib/shopifyContext"
-
-/** utils */
-// import { shopifyClient } from "@/lib"
+import Header from "./components/Navbar/Header"
 
 /** style */
 import cn from "clsx"
-import "./globals.css"
 import { Inter } from "next/font/google"
+import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 /** metadata */
@@ -34,6 +32,8 @@ export const metadata: Metadata = {
 
 /** content */
 export default function RootLayout({ children }: Children) {
+    const {id, token, domain, version} = storefront
+
     return (
         <html
             lang="en"
@@ -63,22 +63,27 @@ export default function RootLayout({ children }: Children) {
                     `,
                     }}
                     className="fixed -z-10 h-full w-full bg-center bg-no-repeat"
-                ></div>
-                {/* <ShopifyProvider */}
-                {/*     storeDomain="https://wordplay4lyfe.myshopify.com" */}
-                {/*     storefrontToken="06479233182de39ca69e466f1837adda" */}
-                {/*     storefrontApiVersion="2023-01" */}
-                {/*     countryIsoCode="US" */}
-                {/*     languageIsoCode="EN" */}
-                {/*     // TODO: storefrontId="" env variable */}
-                {/* > */}
-                    {/* <CartProvider> */}
-                <Header />
-                <main className={cn("container relative", "mx-auto space-y-12 px-6 py-12")}>
-                    {children}
-                </main>
-                {/*     </CartProvider> */}
-                {/* </ShopifyProvider> */}
+                />
+                <ShopifyProvider
+                    storefrontId={id}
+                    storefrontToken={token}
+                    storeDomain={domain}
+                    storefrontApiVersion={version}
+                    countryIsoCode="US"
+                    languageIsoCode="EN"
+                >
+                    <CartProvider>
+                        <Header />
+                        <main
+                            className={cn(
+                                "container relative",
+                                "mx-auto space-y-12 px-6 py-12"
+                            )}
+                        >
+                            {children}
+                        </main>
+                    </CartProvider>
+                </ShopifyProvider>
                 <Footer />
             </body>
         </html>

@@ -7,8 +7,10 @@ const nextConfig = {
         domains: ["cdn.shopify.com"],
     },
     env: {
-        storefrontToken: process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN,
-        storefrontDomain: process.env.SHOPIFY_STOREFRONT_DOMAIN,
+        SHOPIFY_STOREFRONT_ID: process.env.SHOPIFY_STOREFRONT_ID,
+        SHOPIFY_STOREFRONT_ACCESSTOKEN: process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN,
+        SHOPIFY_STOREFRONT_DOMAIN: process.env.SHOPIFY_STOREFRONT_DOMAIN,
+        SHOPIFY_STOREFRONT_VERSION: process.env.SHOPIFY_STOREFRONT_VERSION
     },
 }
 

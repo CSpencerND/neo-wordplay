@@ -13,12 +13,9 @@ import cn from "clsx"
 
 export default function Hero() {
     return (
-        <div className="hero rounded-box shadow-box">
+        <section className="hero overflow-hidden rounded-3xl shadow-box">
             <Image
-                className={`
-                    rounded-box aspect-video
-                    max-h-[calc(100vh-196px)] object-cover object-top
-                `}
+                className="aspect-video max-h-[calc(100vh-196px)] object-cover object-top"
                 src={hero}
                 alt="We Play With Words"
                 placeholder="blur"
@@ -26,7 +23,7 @@ export default function Hero() {
             />
             <div
                 aria-hidden
-                className="hero-overlay rounded-box bg-black/30"
+                className="hero-overlay bg-black/30"
             />
             <div className="hero-content">
                 <h1
@@ -38,6 +35,6 @@ export default function Hero() {
                     We Play With Words
                 </h1>
             </div>
-        </div>
+        </section>
     )
 }

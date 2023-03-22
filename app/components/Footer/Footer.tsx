@@ -45,18 +45,24 @@ export default function Footer() {
                         <li>
                             <Link
                                 href="https://www.instagram.com/word_play4lyfe/"
-                                className="btn-ghost btn-square btn"
+                                className="squircle btn-ghost btn-square btn"
                             >
                                 <Instagram />
                             </Link>
                         </li>
                         <li>
-                            <Link href="" className="btn-ghost btn-square btn">
+                            <Link
+                                href=""
+                                className="squircle btn-ghost btn-square btn"
+                            >
                                 <Twitter />
                             </Link>
                         </li>
                         <li>
-                            <Link href="" className="btn-ghost btn-square btn">
+                            <Link
+                                href=""
+                                className="squircle btn-ghost btn-square btn"
+                            >
                                 <Facebook />
                             </Link>
                         </li>
@@ -71,8 +77,15 @@ export default function Footer() {
                 )}
             >
                 <div className="grid-flow-col items-center">
-                    <Link href="/" className="btn-link btn hover:opacity-80">
-                        <Image src={logo} alt="WordPlay4Lyfe" className="h-full w-auto" />
+                    <Link
+                        href="/"
+                        className="btn-link btn hover:opacity-80"
+                    >
+                        <Image
+                            src={logo}
+                            alt="WordPlay4Lyfe"
+                            className="h-full w-auto"
+                        />
                     </Link>
                     <p>Copyright © 2022 - All right reserved wordplay4lyfe</p>
                 </div>

@@ -1,6 +1,0 @@
-export { getCollectionNames } from "./collectionsQuery"
-export { getProductsByCollection } from "./productsQuery"
-export { getVariantIdBySelectedOptions } from "./getVariantBySelectedOptionsQuery"
-export { useInnerWidth } from "./useInnerWidth"
-export { useLoader } from "./useLoader"
-// export { default } from "./shopifyClient"

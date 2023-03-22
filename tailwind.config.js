@@ -37,7 +37,8 @@ module.exports = {
                 },
             },
             borderRadius: {
-                sq: "17.5%"
+                sq: "17.5%",
+                rec: "17.5% / 8.75%"
             }
         },
     },

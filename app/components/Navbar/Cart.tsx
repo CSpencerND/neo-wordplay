@@ -55,7 +55,7 @@ export function Cart() {
     return (
         <>
             <button
-                className="btn-ghost btn-square btn"
+                className="squircle btn-ghost btn-square btn"
                 onClick={openCart}
             >
                 <div className="indicator">
