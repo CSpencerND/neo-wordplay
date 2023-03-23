@@ -1,13 +1,14 @@
-import NextImage from "next/image"
+import NextImage, { ImageProps } from "next/image"
 import nullImage, { placeholder } from "@/static"
 import type { Image, Maybe } from "@shopify/hydrogen-react/storefront-api-types"
+// import type { HTMLAttributes } from "react"
 
-type ProductImageProps = {
+type ProductImageProps = Partial<ImageProps> & {
     image: Maybe<Image> | undefined
     title: string
 }
 
-export default function ProductImage({ image, title }: ProductImageProps) {
+export default function ProductImage({ image, title, ...props }: ProductImageProps) {
     const altText = image?.altText ?? title
 
     return (
@@ -20,6 +21,7 @@ export default function ProductImage({ image, title }: ProductImageProps) {
                 height={image?.height ?? 1024}
                 placeholder="blur"
                 blurDataURL={placeholder.blurDataURL}
+                {...props}
             />
         </figure>
     )

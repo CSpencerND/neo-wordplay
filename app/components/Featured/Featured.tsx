@@ -4,7 +4,7 @@ import type { Product } from "@shopify/hydrogen-react/storefront-api-types"
 
 /** components */
 import AliceCarousel from "react-alice-carousel"
-import ProductImage from "../ProductImage"
+import ProductImage from "@/components/ProductImage"
 import Link from "next/link"
 
 /** utils */
@@ -22,26 +22,24 @@ import "./carousel.css"
 export default function Featured({ featured }: { featured: Product[] }) {
     const sliderRef = useRef<AliceCarousel>(null)
     const { width } = useWindowSize(undefined, true)
-    const { loaderComponent, setLoading } = useLoader()
+    const { LoadingSpinner, setLoading } = useLoader()
 
     const carouselItems = featured.map(({ featuredImage, title }) => (
         <ProductImage
             image={featuredImage}
             key={featuredImage?.id}
             title={title}
+            onDragStart={(e) => e.preventDefault()}
         />
     ))
 
     return (
-        <section
-            className="bg-blur-200 card space-y-6 rounded-3xl py-6"
-            onDragStart={(e) => e.preventDefault()}
-        >
+        <section className="bg-blur-200 card space-y-6 rounded-3xl py-6">
             <h2 className="text-center text-lg font-bold text-accent-content">
                 Featured Items
             </h2>
 
-            {loaderComponent}
+            <LoadingSpinner />
 
             <AliceCarousel
                 onInitialized={() => setLoading(false)}

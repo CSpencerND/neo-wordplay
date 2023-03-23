@@ -1,13 +1,14 @@
 "use client"
 
-import { getVariantIdBySelectedOptions, useLoader } from "@/lib"
-import { useCart } from "@/lib/shopifyContext"
+import { getVariantBySelectedOptions } from "@/lib/server"
+import { useLoader } from "@/lib/hooks"
+import { useCart } from "@/lib/hooks"
 import { Dialog, RadioGroup, Transition } from "@headlessui/react"
 import NextImage from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { Fragment, ReactNode, useEffect, useState } from "react"
 import { ArrowLeftSquare, CloseSquare, Plus } from "react-iconly"
-import useProduct from "../../context/ProductContext"
+// import useProduct from "../../context/ProductContext"
 
 import temp from "@/static/brand/placeholder.webp"
 import cn from "clsx"
@@ -178,13 +179,13 @@ function ProductTitle() {
 }
 
 function ProductImage() {
-    const { loaderComponent, setLoading } = useLoader()
+    const { LoadingSpinner, setLoading } = useLoader()
     const { currentImage } = useProduct()
     const nullImage = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3C/svg%3E`
 
     return (
         <figure className="bg-glass">
-            {loaderComponent}
+            <LoadingSpinner />
             {currentImage !== null ? (
                 <NextImage
                     onLoadingComplete={() => setLoading(false)}

@@ -1,12 +1,13 @@
 "use client"
 
-import NextImage from "next/image"
-import useProduct from "../../context/ProductContext"
-import { useLoader } from "@/lib"
-import { useRouter, usePathname } from "next/navigation"
-import cn from "clsx"
-import { useEffect } from "react"
+// import useProduct from "../../context/ProductContext"
+import ProductImage from "@/components/ProductImage"
+import { useLoader } from "@/lib/hooks"
 import temp from "@/static/brand/placeholder.webp"
+import cn from "clsx"
+import { info } from "console"
+import { usePathname, useRouter } from "next/navigation"
+import { useEffect } from "react"
 
 export default function ProductLabel() {
     const { loaderComponent, setLoading } = useLoader()
@@ -45,18 +46,13 @@ export default function ProductLabel() {
             <figure className="bg-glass rounded-t-box relative cursor-pointer">
                 {loaderComponent}
 
-                {currentImage !== null ? (
-                    <NextImage
-                        onLoadingComplete={() => setLoading(false)}
-                        src={currentImage.url ?? nullImage}
-                        alt={currentImage.altText ?? "temporary placeholder image"}
-                        width={currentImage.width ?? temp.width}
-                        height={currentImage.height ?? temp.height}
-                        key={currentImage.id ?? ""}
-                        placeholder="blur"
-                        blurDataURL={temp.blurDataURL}
-                    />
-                ) : null}
+                <ProductImage
+                    image={currentImage}
+                    title={title}
+                    key={currentImage.id}
+                    onLoadingComplete={() => setLoading(false)}
+                />
+
                 <h2
                     className={cn(
                         "absolute bottom-0 left-0",
