@@ -18,6 +18,7 @@ export async function generateStaticParams() {
 
 export default async function CollectionPage({ params }: { params: { collection: string } }) {
     const { collectionTitle, products } = await getProductsByCollection(params.collection)
+    console.log(collectionTitle + ":\n", products[0])
 
     // if (collectionTitle !== "Full Catalog") {
     return (
@@ -107,15 +108,15 @@ export default async function CollectionPage({ params }: { params: { collection:
 //         )
 //     })
 
-    // return (
-    //     <section className="mx-auto max-w-2xl space-y-12">
-    //         <h1 className="text-center text-xl font-bold text-accent-content">
-    //             {collectionTitle}
-    //         </h1>
-    //         <BlobScene />
-    //         {ProductListElements}
-    //     </section>
-    // )
+// return (
+//     <section className="mx-auto max-w-2xl space-y-12">
+//         <h1 className="text-center text-xl font-bold text-accent-content">
+//             {collectionTitle}
+//         </h1>
+//         <BlobScene />
+//         {ProductListElements}
+//     </section>
+// )
 // }
 
 // function productsSortedByCollection(products: Product[]): Map<string, Product[]> {
