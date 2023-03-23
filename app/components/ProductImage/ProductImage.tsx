@@ -1,7 +1,6 @@
 import NextImage, { ImageProps } from "next/image"
 import nullImage, { placeholder } from "@/static"
 import type { Image, Maybe } from "@shopify/hydrogen-react/storefront-api-types"
-// import type { HTMLAttributes } from "react"
 
 type ProductImageProps = Partial<ImageProps> & {
     image: Maybe<Image> | undefined
