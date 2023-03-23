@@ -54,25 +54,21 @@ const allProductsQuery = gql`
                         }
                     }
                     images(first: 99) {
-                        edges {
-                            node {
-                                url
-                                altText
-                                width
-                                height
-                                id
-                            }
+                        nodes {
+                            url
+                            altText
+                            width
+                            height
+                            id
                         }
                     }
                     variants(first: 99) {
-                        edges {
-                            node {
-                                id
-                                title
-                                selectedOptions {
-                                    name
-                                    value
-                                }
+                        nodes {
+                            id
+                            title
+                            selectedOptions {
+                                name
+                                value
                             }
                         }
                     }
@@ -84,10 +80,8 @@ const allProductsQuery = gql`
                         value
                     }
                     collections(first: 9) {
-                        edges {
-                            node {
-                                title
-                            }
+                        nodes {
+                            title
                         }
                     }
                 }
