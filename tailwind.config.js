@@ -38,12 +38,16 @@ module.exports = {
             },
             borderRadius: {
                 sq: "17.5%",
-                rec: "17.5% / 8.75%"
-            }
+                rec: "17.5% / 8.75%",
+            },
         },
     },
 
-    plugins: [require("daisyui"), require("@tailwindcss/typography")],
+    plugins: [
+        require("daisyui"),
+        require("@tailwindcss/typography"),
+        require("@headlessui/tailwindcss")({ prefix: "ui" }),
+    ],
 
     daisyui: {
         styled: true,

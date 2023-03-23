@@ -1,8 +1,0 @@
-@tailwind utilities;
-
-@layer utilities {
-    .swatch {
-        @apply w-4 h-4 sm:w-6 sm:h-6;
-        @apply border border-neutral rounded; 
-    }
-}
