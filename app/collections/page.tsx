@@ -29,7 +29,7 @@ export default async function CollectionDirectoryPage() {
                                     active:scale-95
                                 `)}
                             >
-                                <ProductImage image={image} />
+                                <ProductImage image={image} title={title} />
                                 <div
                                     className={`
                                         bg-blur-300 border-t border-base-100
