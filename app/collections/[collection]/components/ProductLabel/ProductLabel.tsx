@@ -1,69 +1,82 @@
 "use client"
 
-// import useProduct from "../../context/ProductContext"
 import ProductImage from "@/components/ProductImage"
 import { useLoader } from "@/lib/hooks"
-import temp from "@/static/brand/placeholder.webp"
-import cn from "clsx"
-import { info } from "console"
-import { usePathname, useRouter } from "next/navigation"
-import { useEffect } from "react"
+import useProduct from "@/lib/hooks"
+// import { usePathname, useRouter } from "next/navigation"
+// import { useEffect } from "react"
 
-export default function ProductLabel() {
-    const { loaderComponent, setLoading } = useLoader()
-    const {
-        openModal,
-        currentImage,
-        info: { title, handle },
-    } = useProduct()
+type Title = { title: string }
 
-    const router = useRouter()
-    const pathname = usePathname()
+export default function ProductLabel({ title }: Title) {
+    const { LoadingSpinner, setLoading } = useLoader()
+    const currentImage = useProduct((s) => s.currentImage)
 
-    const handleLabelClick = () => {
-        const idPath = `${pathname}#${handle}`
-        router.push(idPath)
+    // const router = useRouter()
+    // const pathname = usePathname()
 
-        setTimeout(() => {
-            openModal()
-        }, 300)
-    }
+    // const handleLabelClick = () => {
+    //     const idPath = `${pathname}#${handle}`
+    //     router.push(idPath)
 
-    useEffect(() => {
-        const hash = window.location.hash
-        if (hash !== `#${handle}`) return
-        openModal()
-    }, []) // eslint-disable-line react-hooks/exhaustive-deps
+    //     setTimeout(() => {
+    //         openModal()
+    //     }, 300)
+    // }
 
-    const nullImage = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3C/svg%3E`
+    // useEffect(() => {
+    //     const hash = window.location.hash
+    //     if (hash !== `#${handle}`) return
+    //     openModal()
+    // }, [])
 
     return (
         <label
-            id={handle}
-            className="transition hover:brightness-105 active:scale-95"
-            onClick={handleLabelClick}
+        // id={handle}
+
+        // className="transition hover:brightness-105 active:scale-95"
+
+        // className={cn(`
+        //     card rounded-2xl relative h-full overflow-hidden
+        //     text-primary-content transition-all
+        //     hover:scale-105 hover:brightness-105
+        //     active:scale-95
+        // `)}
+
+        // onClick={handleLabelClick}
         >
-            <figure className="bg-glass rounded-t-box relative cursor-pointer">
-                {loaderComponent}
+            <LoadingSpinner />
 
-                <ProductImage
-                    image={currentImage}
-                    title={title}
-                    key={currentImage.id}
-                    onLoadingComplete={() => setLoading(false)}
-                />
-
-                <h2
-                    className={cn(
-                        "absolute bottom-0 left-0",
-                        "overflow-hidden text-ellipsis whitespace-nowrap",
-                        "w-full px-2 py-1 text-xs font-bold lg:text-sm",
-                        "bg-blur-clear-sm text-base-content/80"
-                    )}
-                >
-                    {title}
-                </h2>
-            </figure>
+            <ProductImage
+                image={currentImage}
+                title={title}
+                key={currentImage.id}
+                onLoadingComplete={() => setLoading(false)}
+            />
+            <ProductTitle title={title} />
         </label>
+    )
+}
+
+function ProductTitle({ title }: Title) {
+    return (
+        <div
+            className={`
+                bg-blur-300 card-body
+                absolute bottom-0 w-full
+                border-t border-base-100
+                p-1 sm:p-2
+            `}
+        >
+            <h2
+                className={`
+                    overflow-hidden text-ellipsis whitespace-nowrap
+                    text-xs font-bold text-primary-content
+                    lg:text-sm
+                `}
+            >
+                {title}
+            </h2>
+        </div>
     )
 }

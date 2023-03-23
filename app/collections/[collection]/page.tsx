@@ -2,11 +2,11 @@ import { BlobScene } from "@/components/Blob"
 import { getCollections, getProductsByCollection } from "@/lib/server"
 import { Fragment } from "react"
 // import ProductModal from "./components/Modal/ProductModal"
-// import ProductLabel from "./components/ProductLabel"
+import ProductLabel from "./components/ProductLabel"
 // import Swatch from "./components/Swatch"
 // import { ProductPrice, ProductProvider } from "./context"
-
-// import type { Product, ProductEdge } from "@shopify/hydrogen-react/storefront-api-types"
+// import type { Product } from "@shopify/hydrogen-react/storefront-api-types"
+import ProductProvider from "@/lib/providers"
 
 export async function generateStaticParams() {
     const collections = await getCollections()
@@ -16,10 +16,29 @@ export async function generateStaticParams() {
     }))
 }
 
+// <ProductProvider
+//     product={product}
+//     key={product.id}
+// >
+//     <li className="bg-blur-100 card relative h-full transition hover:scale-105">
+//         <ProductLabel />
+//         <Swatch />
+//         <ProductModal
+//             price={
+//                 <ProductPrice
+//                     as={Fragment}
+//                     data={product}
+//                     priceType="regular"
+//                     valueType="max"
+//                     withoutTrailingZeros
+//                 />
+//             }
+//         />
+//     </li>
+// </ProductProvider>
+
 export default async function CollectionPage({ params }: { params: { collection: string } }) {
     const { collectionTitle, products } = await getProductsByCollection(params.collection)
-    console.log(collectionTitle + ":\n", products[0])
-
     // if (collectionTitle !== "Full Catalog") {
     return (
         <section className="mx-auto max-w-2xl space-y-8">
@@ -29,30 +48,24 @@ export default async function CollectionPage({ params }: { params: { collection:
 
             <ul className="relative grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
                 <BlobScene />
-                {/* {products.map((product) => { */}
-                {/*     return ( */}
-                {/*         <ProductProvider */}
-                {/*             product={product} */}
-                {/*             key={product.id} */}
-                {/*         > */}
-                {/*             <li className="bg-blur-100 card relative h-full transition hover:scale-105"> */}
-                {/*                 <ProductLabel /> */}
-                {/*                 <Swatch /> */}
-                {/*                 <ProductModal */}
-                {/*                     price={ */}
-                {/*                         <ProductPrice */}
-                {/*                             as={Fragment} */}
-                {/*                             data={product} */}
-                {/*                             priceType="regular" */}
-                {/*                             valueType="max" */}
-                {/*                             withoutTrailingZeros */}
-                {/*                         /> */}
-                {/*                     } */}
-                {/*                 /> */}
-                {/*             </li> */}
-                {/*         </ProductProvider> */}
-                {/*     ) */}
-                {/* })} */}
+                {products.map((product) => {
+                    const initProviderProps = {
+                        product: product,
+                        currentImage: product.images.nodes[0],
+                        isModalOpen: false,
+                    }
+
+                    return (
+                        <li
+                            className="bg-blur-100 card relative h-full overflow-hidden rounded-2xl transition hover:scale-105"
+                            key={product.id}
+                        >
+                            <ProductProvider {...initProviderProps}>
+                                <ProductLabel title={product.title} />
+                            </ProductProvider>
+                        </li>
+                    )
+                })}
             </ul>
         </section>
     )
