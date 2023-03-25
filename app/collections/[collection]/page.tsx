@@ -1,12 +1,8 @@
 import { BlobScene } from "@/components/Blob"
+import type { ProductProviderProps } from "@/lib/ProductStore"
 import { getCollections, getProductsByCollection } from "@/lib/server"
 import { Fragment } from "react"
-// import ProductModal from "./components/Modal/ProductModal"
-import ProductLabel from "./components/ProductLabel"
-// import Swatch from "./components/Swatch"
-// import { ProductPrice, ProductProvider } from "./context"
-// import type { Product } from "@shopify/hydrogen-react/storefront-api-types"
-import ProductProvider from "@/lib/providers"
+import { Product } from "./components/Product"
 
 export async function generateStaticParams() {
     const collections = await getCollections()
@@ -15,27 +11,6 @@ export async function generateStaticParams() {
         collection: collection.handle,
     }))
 }
-
-// <ProductProvider
-//     product={product}
-//     key={product.id}
-// >
-//     <li className="bg-blur-100 card relative h-full transition hover:scale-105">
-//         <ProductLabel />
-//         <Swatch />
-//         <ProductModal
-//             price={
-//                 <ProductPrice
-//                     as={Fragment}
-//                     data={product}
-//                     priceType="regular"
-//                     valueType="max"
-//                     withoutTrailingZeros
-//                 />
-//             }
-//         />
-//     </li>
-// </ProductProvider>
 
 export default async function CollectionPage({ params }: { params: { collection: string } }) {
     const { collectionTitle, products } = await getProductsByCollection(params.collection)
@@ -48,22 +23,20 @@ export default async function CollectionPage({ params }: { params: { collection:
 
             <ul className="relative grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
                 <BlobScene />
+
                 {products.map((product) => {
-                    const initProviderProps = {
+                    const hexCodes = JSON.parse(product.metafield!.value)
+                    const initProviderProps: Partial<ProductProviderProps> = {
                         product: product,
                         currentImage: product.images.nodes[0],
                         isModalOpen: false,
+                        images: product.images.nodes,
                     }
-
                     return (
-                        <li
-                            className="bg-blur-100 card relative h-full overflow-hidden rounded-2xl transition hover:scale-105"
-                            key={product.id}
-                        >
-                            <ProductProvider {...initProviderProps}>
-                                <ProductLabel title={product.title} />
-                            </ProductProvider>
-                        </li>
+                        <Product
+                            hexCodes={hexCodes}
+                            {...initProviderProps}
+                        />
                     )
                 })}
             </ul>

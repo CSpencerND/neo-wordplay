@@ -1,10 +1,9 @@
 "use client"
 
-import { useMountEffect } from '@react-hookz/web/esm/useMountEffect';
+import { useEffect } from "react"
 
 export function useLog<T>(value: T): void {
-
-    useMountEffect(() => {
+    useEffect(() => {
         console.log(value)
-    })
+    }, [value])
 }

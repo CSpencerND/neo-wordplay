@@ -1,3 +1,3 @@
 "use client"
 
-export { CartProvider, CartLineProvider, ShopifyProvider } from "@shopify/hydrogen-react"
+export { CartProvider, CartLineProvider, ShopifyProvider, ProductProvider as ShopifyProductProvider } from "@shopify/hydrogen-react"

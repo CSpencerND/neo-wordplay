@@ -5,8 +5,9 @@ import { createProductStore, ProductContext } from "../_ProductStore.zustand"
 
 import type { PropsWithChildren } from "react"
 import type { ProductProps, ProductStore } from "../ProductStore"
+import { ProductProvider as ShopifyProductProvider } from "@shopify/hydrogen-react"
 
-type ProductProviderProps = PropsWithChildren<ProductProps>
+export type ProductProviderProps = PropsWithChildren<ProductProps>
 
 export default function ProductProvider({ children, ...props }: ProductProviderProps) {
     const storeRef = useRef<ProductStore>()
@@ -16,8 +17,10 @@ export default function ProductProvider({ children, ...props }: ProductProviderP
     }
 
     return (
-        <ProductContext.Provider value={storeRef.current}>
-            {children}
-        </ProductContext.Provider> // prettier-ignore
+        <ShopifyProductProvider data={props.product}>
+            <ProductContext.Provider value={storeRef.current}>
+                {children}
+            </ProductContext.Provider>
+        </ShopifyProductProvider>
     )
 }

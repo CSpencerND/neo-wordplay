@@ -1,8 +1,8 @@
 "use client"
 
 import ProductImage from "@/components/ProductImage"
-import { useLoader } from "@/lib/hooks"
-import useProduct from "@/lib/hooks"
+import useProduct, { useLoader, useLog } from "@/lib/hooks"
+import { useEffect } from "react"
 // import { usePathname, useRouter } from "next/navigation"
 // import { useEffect } from "react"
 
@@ -11,7 +11,7 @@ type Title = { title: string }
 export default function ProductLabel({ title }: Title) {
     const { LoadingSpinner, setLoading } = useLoader()
     const currentImage = useProduct((s) => s.currentImage)
-
+    
     // const router = useRouter()
     // const pathname = usePathname()
 
@@ -32,18 +32,9 @@ export default function ProductLabel({ title }: Title) {
 
     return (
         <label
-        // id={handle}
-
-        // className="transition hover:brightness-105 active:scale-95"
-
-        // className={cn(`
-        //     card rounded-2xl relative h-full overflow-hidden
-        //     text-primary-content transition-all
-        //     hover:scale-105 hover:brightness-105
-        //     active:scale-95
-        // `)}
-
-        // onClick={handleLabelClick}
+            id={title}
+            className="relative transition hover:scale-105 active:scale-95"
+            // onClick={handleLabelClick}
         >
             <LoadingSpinner />
 
@@ -51,6 +42,7 @@ export default function ProductLabel({ title }: Title) {
                 image={currentImage}
                 title={title}
                 key={currentImage.id}
+                rounded={false}
                 onLoadingComplete={() => setLoading(false)}
             />
             <ProductTitle title={title} />

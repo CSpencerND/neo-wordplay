@@ -1,17 +1,24 @@
-import NextImage, { ImageProps } from "next/image"
 import nullImage, { placeholder } from "@/static"
 import type { Image, Maybe } from "@shopify/hydrogen-react/storefront-api-types"
+import cn from "clsx"
+import NextImage, { ImageProps } from "next/image"
 
 type ProductImageProps = Partial<ImageProps> & {
     image: Maybe<Image> | undefined
     title: string
+    rounded?: boolean
 }
 
-export default function ProductImage({ image, title, ...props }: ProductImageProps) {
+export default function ProductImage({
+    image,
+    title,
+    rounded = true,
+    ...props
+}: ProductImageProps) {
     const altText = image?.altText ?? title
 
     return (
-        <figure className="bg-glass overflow-hidden rounded-2xl">
+        <figure className={cn("bg-glass overflow-hidden", rounded ? "rounded-2xl" : "")}>
             <NextImage
                 role="presentation"
                 src={image?.url ?? nullImage}
