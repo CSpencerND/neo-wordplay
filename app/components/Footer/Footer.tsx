@@ -45,7 +45,7 @@ export default function Footer() {
                         <li>
                             <Link
                                 href="https://www.instagram.com/word_play4lyfe/"
-                                className="squircle btn-ghost btn-square btn"
+                                className="btn-ghost btn-square btn"
                             >
                                 <Instagram />
                             </Link>
@@ -53,7 +53,7 @@ export default function Footer() {
                         <li>
                             <Link
                                 href=""
-                                className="squircle btn-ghost btn-square btn"
+                                className="btn-ghost btn-square btn rounded-md"
                             >
                                 <Twitter />
                             </Link>
@@ -61,7 +61,7 @@ export default function Footer() {
                         <li>
                             <Link
                                 href=""
-                                className="squircle btn-ghost btn-square btn"
+                                className="btn-ghost btn-square btn rounded-md"
                             >
                                 <Facebook />
                             </Link>

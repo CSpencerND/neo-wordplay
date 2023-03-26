@@ -55,7 +55,7 @@ export function Cart() {
     return (
         <>
             <button
-                className="squircle btn-ghost btn-square btn"
+                className="btn-ghost btn-square btn rounded-md"
                 onClick={openCart}
             >
                 <div className="indicator">

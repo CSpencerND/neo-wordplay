@@ -82,7 +82,7 @@ export default function Featured({ featured }: { featured: Product[] }) {
                 <span className="flex gap-2">
                     <button
                         aria-controls="alice-carousel"
-                        className="squircle btn-square btn-sm btn bg-base-100"
+                        className="btn-square btn-sm btn rounded-md bg-base-100"
                         onClick={() => sliderRef?.current?.slidePrev() || null}
                     >
                         <ChevronLeft set="curved" />
@@ -90,7 +90,7 @@ export default function Featured({ featured }: { featured: Product[] }) {
 
                     <button
                         aria-controls="alice-carousel"
-                        className="squircle btn-square btn-sm btn bg-base-100"
+                        className="btn-square btn-sm btn rounded-md bg-base-100"
                         onClick={() => sliderRef?.current?.slideNext() || null}
                     >
                         <ChevronRight set="curved" />
