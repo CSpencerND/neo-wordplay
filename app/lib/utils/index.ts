@@ -1,0 +1,1 @@
+export {sizeText} from "./sizeOptionsText"
