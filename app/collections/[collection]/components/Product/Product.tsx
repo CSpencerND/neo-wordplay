@@ -1,5 +1,3 @@
-"use client"
-
 import type { ProductProps } from "@/lib/ProductStore"
 import { ShopifyProductProvider } from "@/lib/providers"
 import ProductProvider from "@/lib/providers/ProductProvider"
