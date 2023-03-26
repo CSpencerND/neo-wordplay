@@ -6,7 +6,7 @@ import NextImage, { ImageProps } from "next/image"
 type ProductImageProps = Partial<ImageProps> & {
     image: Maybe<Image> | undefined
     title: string
-    rounded?: boolean
+    rounded?: true | false | "top" | "bottom"
 }
 
 export default function ProductImage({
@@ -18,7 +18,14 @@ export default function ProductImage({
     const altText = image?.altText ?? title
 
     return (
-        <figure className={cn("bg-glass overflow-hidden", rounded ? "rounded-2xl" : "")}>
+        <figure
+            className={cn(
+                "bg-glass overflow-hidden",
+                rounded === true ? "rounded-2xl" : "",
+                rounded === "top" ? "rounded-t-2xl" : "",
+                rounded === "bottom" ? "rounded-b-2xl" : ""
+            )}
+        >
             <NextImage
                 role="presentation"
                 src={image?.url ?? nullImage}
