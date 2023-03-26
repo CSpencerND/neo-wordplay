@@ -1,40 +1,40 @@
 "use client"
 
 import ProductImage from "@/components/ProductImage"
-import useProduct, { useLoader, useLog } from "@/lib/hooks"
-import { useEffect } from "react"
-// import { usePathname, useRouter } from "next/navigation"
-// import { useEffect } from "react"
+import useProduct, { useLoader } from "@/lib/hooks"
+import { useMountEffect } from "@react-hookz/web"
+import { usePathname, useRouter } from "next/navigation"
 
 export default function ProductLabel() {
     const { LoadingSpinner, setLoading } = useLoader()
     const currentImage = useProduct((s) => s.currentImage)
     const setModalOpen = useProduct((s) => s.setModalOpen)
     const title = useProduct((s) => s.product.title!)
+    const handle = useProduct((s) => s.product.handle)
 
-    // const router = useRouter()
-    // const pathname = usePathname()
+    const router = useRouter()
+    const pathname = usePathname()
 
-    // const handleLabelClick = () => {
-    //     const idPath = `${pathname}#${handle}`
-    //     router.push(idPath)
+    const handleModalOpen = () => {
+        const idPath = `${pathname}#${handle}`
+        router.push(idPath)
 
-    //     setTimeout(() => {
-    //         openModal()
-    //     }, 300)
-    // }
+        setTimeout(() => {
+            setModalOpen()
+        }, 300)
+    }
 
-    // useEffect(() => {
-    //     const hash = window.location.hash
-    //     if (hash !== `#${handle}`) return
-    //     openModal()
-    // }, [])
+    useMountEffect(() => {
+        const hash = window.location.hash
+        if (hash !== `#${handle}`) return
+        setModalOpen()
+    })
 
     return (
         <label
             id={title}
             className="relative cursor-pointer transition hover:scale-105 active:scale-95"
-            onClick={setModalOpen}
+            onClick={handleModalOpen}
         >
             <LoadingSpinner />
 

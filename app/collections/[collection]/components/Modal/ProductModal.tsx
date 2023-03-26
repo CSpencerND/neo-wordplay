@@ -1,20 +1,44 @@
 "use client"
 
 import CloseButton from "@/components/CloseButton"
-import useProduct from "@/lib/hooks/useProduct"
+import { Dialog } from "@headlessui/react"
 import { ProductPrice } from "@shopify/hydrogen-react"
+import SizeSelect from "../SizeSelect"
 import Swatch from "../Swatch"
 import ModalProductImage from "./_ModalProductImage"
 import ModalWrapper from "./_ModalWrapper"
-import SizeSelect from "../SizeSelect"
+
+import useProduct from "@/lib/hooks/useProduct"
+import { useMountEffect } from "@react-hookz/web"
+import { sanitize } from "dompurify"
+import { useState } from "react"
+import { usePathname, useRouter } from "next/navigation"
 
 export default function ProductModal() {
     const title = useProduct((s) => s.product.title)
     const data = useProduct((s) => s.product)
 
+    const [sanitizedDescription, setSanitezedDescription] = useState<string>("")
+    useMountEffect(() => {
+        if (!data.descriptionHtml) return
+        const desc = sanitize(data.descriptionHtml)
+        setSanitezedDescription(desc)
+    })
+
+    const router = useRouter()
+    const pathname = usePathname()
+    const setPathName = () => {
+        if (pathname) {
+            router.push(pathname)
+        }
+    }
+
     return (
         <ModalWrapper>
-            <div className="absolute top-1 right-1">
+            <div
+                className="absolute top-2 right-2"
+                onClick={setPathName}
+            >
                 <CloseButton />
             </div>
             <section>
@@ -34,6 +58,16 @@ export default function ProductModal() {
                 </div>
                 <Swatch className="ml-0.5 [&_#swatchColor]:h-7 [&_#swatchColor]:w-7" />
                 <SizeSelect />
+                <Dialog.Description
+                    as="article"
+                    className="prose [&_strong]:text-accent-content"
+                    dangerouslySetInnerHTML={{
+                        __html: sanitizedDescription,
+                    }}
+                />
+                <div onClick={setPathName}>
+                    <CloseButton icon="arrowLeft" />
+                </div>
             </section>
         </ModalWrapper>
     )

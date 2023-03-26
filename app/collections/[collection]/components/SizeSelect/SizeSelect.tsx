@@ -27,18 +27,23 @@ export default function SizeSelect({ ...props }) {
                             cn(
                                 `grid h-7 w-7 cursor-pointer place-items-center
                                     rounded-md bg-base-100 text-xs
+                                    ring-neutral ring-offset-base-200
                                     transition-all duration-200
-                                    hover:!bg-secondary-focus
+                                    hover:!bg-secondary-focus 
                                     focus:outline-none md:text-base`,
 
                                 active && checked
-                                    ? "focus-visible:ring-2 focus-visible:ring-primary-content"
+                                    ? "focus-visible:ring-2 focus-visible:ring-primary-content focus-visible:ring-offset-2"
                                     : "",
-                                checked ? "bg-secondary text-secondary-content border border-secondary-content" : ""
+                                checked
+                                    ? "bg-secondary text-secondary-content ring-2 ring-offset-2"
+                                    : ""
                             )
                         }
                     >
-                        <RadioGroup.Label>{sizeText[size]}</RadioGroup.Label>
+                        <RadioGroup.Label className="cursor-pointer">
+                            {sizeText[size]}
+                        </RadioGroup.Label>
                     </RadioGroup.Option>
                 ))}
             </span>

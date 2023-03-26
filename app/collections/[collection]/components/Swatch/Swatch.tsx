@@ -28,8 +28,8 @@ export default function Swatch({ ...props }) {
                             cn(
                                 `relative -m-0.5 flex cursor-pointer
                                 items-center justify-center rounded-md
-                                ring-neutral ring-offset-base-200
-                                transition-all focus:outline-none`,
+                                ring-neutral ring-offset-base-200 transition-all
+                                hover:brightness-125 focus:outline-none`,
 
                                 active && checked
                                     ? "focus-visible:ring-2 focus-visible:ring-primary-content"
@@ -54,7 +54,8 @@ export default function Swatch({ ...props }) {
                                 backgroundColor:
                                     code === "#212226" || code === "0D0D0D" ? "#070707" : code,
                             }}
-                            className="h-6 w-6 rounded-md border border-neutral ui-checked:border-0"
+                            className="h-6 w-6 rounded-md"
+                            // className="h-6 w-6 rounded-md border border-neutral ui-checked:border-0"
                         />
                     </RadioGroup.Option>
                 ))}
