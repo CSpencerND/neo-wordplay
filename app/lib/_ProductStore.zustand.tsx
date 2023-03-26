@@ -15,6 +15,7 @@ export const createProductStore = (initProps?: Partial<ProductProps>) => {
         selectedColor: "",
         colorOptions: [""],
         hexCodes: [""],
+        selectedSize: "",
     }
 
     return createStore<ProductState>()((set) => ({
@@ -24,6 +25,7 @@ export const createProductStore = (initProps?: Partial<ProductProps>) => {
         setSelectedColor: (color) => set(() => ({ selectedColor: color })),
         setModalOpen: () => set(() => ({ isModalOpen: true })),
         setModalClose: () => set(() => ({ isModalOpen: false })),
+        setSelectedSize: (size) => set(() => ({ selectedSize: size })),
     }))
 }
 

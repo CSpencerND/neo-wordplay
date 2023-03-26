@@ -29,11 +29,21 @@ export type SwatchState = SwatchProps & {
     setSelectedColor: (color: string) => void
 }
 
-export type ProductProps = PropsWithChildren<ImageProps & ModalProps & SwatchProps> & {
+export type SizeProps = {
+    selectedSize?: string
+}
+
+export type SizeState = SizeProps & {
+    setSelectedSize: (size: string) => void
+}
+
+export type ProductProps = PropsWithChildren<
+    ImageProps & ModalProps & SwatchProps & SizeProps
+> & {
     product: Partial<Product>
 }
 
-export type ProductState = ProductProps & ImageState & ModalState & SwatchState
+export type ProductState = ProductProps & ImageState & ModalState & SwatchState & SizeState
 
 export type ProductProviderProps = PropsWithChildren<ProductProps>
 
