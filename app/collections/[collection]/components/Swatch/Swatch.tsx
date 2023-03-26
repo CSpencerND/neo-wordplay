@@ -32,7 +32,7 @@ export default function Swatch({ ...props }) {
                                 transition-all focus:outline-none`,
 
                                 active && checked
-                                    ? "ring-2 focus-visible:ring-primary-content focus-visible:ring-offset-2"
+                                    ? "focus-visible:ring-2 focus-visible:ring-primary-content"
                                     : "",
                                 checked ? "ring-2 ring-offset-2" : ""
                             )

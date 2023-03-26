@@ -34,7 +34,7 @@ export default function SizeSelect({ ...props }) {
                                 active && checked
                                     ? "focus-visible:ring-2 focus-visible:ring-primary-content"
                                     : "",
-                                checked ? "bg-secondary text-secondary-content" : ""
+                                checked ? "bg-secondary text-secondary-content border border-secondary-content" : ""
                             )
                         }
                     >
