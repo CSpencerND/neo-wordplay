@@ -1,8 +1,9 @@
 import { BlobScene } from "@/components/Blob"
-import type { ProductProviderProps } from "@/lib/ProductStore"
+import type { ProductProviderProps, SwatchProps } from "@/lib/ProductStore"
 import { getCollections, getProductsByCollection } from "@/lib/server"
 import { Fragment } from "react"
 import { Product } from "./components/Product"
+// import type { SwatchProps } from "@/lib/ProductStore"
 
 export async function generateStaticParams() {
     const collections = await getCollections()
@@ -26,15 +27,15 @@ export default async function CollectionPage({ params }: { params: { collection:
 
                 {products.map((product) => {
                     const hexCodes = JSON.parse(product.metafield!.value)
-                    const initProviderProps: Partial<ProductProviderProps> = {
+                    const initProviderProps: ProductProviderProps = {
                         product: product,
                         currentImage: product.images.nodes[0],
                         isModalOpen: false,
                         images: product.images.nodes,
+                        hexCodes: hexCodes
                     }
                     return (
                         <Product
-                            hexCodes={hexCodes}
                             {...initProviderProps}
                         />
                     )

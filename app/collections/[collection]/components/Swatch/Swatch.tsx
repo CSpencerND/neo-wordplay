@@ -3,11 +3,12 @@
 import { RadioGroup } from "@headlessui/react"
 import useProduct from "@/lib/hooks"
 
-export default function Swatch({ hexCodes }: { hexCodes: string[] }) {
+export default function Swatch() {
     const colorOptions = useProduct((s) => s.colorOptions)
     const selectedColor = useProduct((s) => s.selectedColor)
     const setSelectedColor = useProduct((s) => s.setSelectedColor)
     const setCurrentImage = useProduct((s) => s.setCurrentImage)
+    const hexCodes = useProduct((s) => s.hexCodes)
 
     return (
         <RadioGroup
@@ -17,10 +18,10 @@ export default function Swatch({ hexCodes }: { hexCodes: string[] }) {
         >
             <RadioGroup.Label className="sr-only"> Choose a color </RadioGroup.Label>
             <span className="flex items-center space-x-3">
-                {hexCodes.map((code, i) => (
+                {hexCodes!.map((code, i) => (
                     <RadioGroup.Option
-                        key={colorOptions[i]}
-                        value={colorOptions[i]}
+                        key={colorOptions![i]}
+                        value={colorOptions![i]}
                         className={({ active, checked }) =>
                             classNames(
                                 "ring-neutral ring-offset-base-200 transition-all",
@@ -36,7 +37,7 @@ export default function Swatch({ hexCodes }: { hexCodes: string[] }) {
                             className="sr-only"
                         >
                             {" "}
-                            {colorOptions[i]}{" "}
+                            {colorOptions![i]}{" "}
                         </RadioGroup.Label>
 
                         <span
