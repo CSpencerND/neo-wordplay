@@ -11,7 +11,8 @@ type Title = { title: string }
 export default function ProductLabel({ title }: Title) {
     const { LoadingSpinner, setLoading } = useLoader()
     const currentImage = useProduct((s) => s.currentImage)
-    
+    const setModalOpen = useProduct((s) => s.setModalOpen)
+
     // const router = useRouter()
     // const pathname = usePathname()
 
@@ -34,7 +35,7 @@ export default function ProductLabel({ title }: Title) {
         <label
             id={title}
             className="relative transition hover:scale-105 active:scale-95"
-            // onClick={handleLabelClick}
+            onClick={() => setModalOpen}
         >
             <LoadingSpinner />
 
