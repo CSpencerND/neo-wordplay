@@ -1,40 +1,40 @@
 import type { Image, Product } from "@shopify/hydrogen-react/storefront-api-types"
-import type { ReactNode } from "react"
-import type { Transition } from "@headlessui/react"
+import type { PropsWithChildren } from "react"
 
-type ImageProps = {
+export type ImageProps = {
     images: Image[]
     currentImage: Image
 }
 
-type ImageState = ImageProps & {
+export type ImageState = ImageProps & {
     setCurrentImage: (i: number) => void
 }
 
-type ModalProps = {
+export type ModalProps = {
     isModalOpen: boolean
 }
 
-type ModalState = ModalProps & {
+export type ModalState = ModalProps & {
     setModalOpen: () => void
     setModalClose: () => void
 }
 
-type SwatchProps = {
-    selectedColor: string
-    colorOptions: string[]
+export type SwatchProps = {
+    selectedColor?: string
+    colorOptions?: string[]
+    hexCodes?: string[]
 }
 
-type SwatchState = SwatchProps & {
+export type SwatchState = SwatchProps & {
     setSelectedColor: (color: string) => void
 }
 
-export type ProductProps = ImageProps & ModalProps & SwatchProps & {
-    children?: ReactNode
+export type ProductProps = PropsWithChildren<ImageProps & ModalProps & SwatchProps> & {
     product: Partial<Product>
-} // prettier-ignore
+}
 
 export type ProductState = ProductProps & ImageState & ModalState & SwatchState
 
+export type ProductProviderProps = PropsWithChildren<ProductProps>
+
 export type { ProductStore } from "./ProductStore.zustand"
-export type { ProductProviderProps } from "./providers/ProductProvider"

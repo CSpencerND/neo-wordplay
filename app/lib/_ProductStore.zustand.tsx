@@ -5,7 +5,6 @@ import { createStore } from "zustand"
 
 import type { Image, Product } from "@shopify/hydrogen-react/storefront-api-types"
 import type { ProductState, ProductProps } from "./ProductStore"
-export type ProductStore = ReturnType<typeof createProductStore>
 
 export const createProductStore = (initProps?: Partial<ProductProps>) => {
     const DEFAULT_PROPS: ProductProps = {
@@ -14,7 +13,8 @@ export const createProductStore = (initProps?: Partial<ProductProps>) => {
         currentImage: {} as Image,
         isModalOpen: false,
         selectedColor: "",
-        colorOptions: [""]
+        colorOptions: [""],
+        hexCodes: [""],
     }
 
     return createStore<ProductState>()((set) => ({
@@ -22,10 +22,10 @@ export const createProductStore = (initProps?: Partial<ProductProps>) => {
         ...initProps,
         setCurrentImage: (i) => set((state) => ({ currentImage: state.images[i] })),
         setSelectedColor: (color) => set(() => ({ selectedColor: color })),
-        setModalOpen: () => set((state) => ({ isModalOpen: state.isModalOpen })),
-        setModalClose: () => set((state) => ({ isModalOpen: state.isModalOpen })),
-        // setImageByIndex: () => set((state) => ({ currentImage: state.currentImage })),
+        setModalOpen: () => set(() => ({ isModalOpen: true })),
+        setModalClose: () => set(() => ({ isModalOpen: false })),
     }))
 }
 
+export type ProductStore = ReturnType<typeof createProductStore>
 export const ProductContext = createContext<ProductStore | null>(null)

@@ -3,11 +3,7 @@
 import { useRef } from "react"
 import { createProductStore, ProductContext } from "../_ProductStore.zustand"
 
-import type { PropsWithChildren } from "react"
-import type { ProductProps, ProductStore } from "../ProductStore"
-import { ProductProvider as ShopifyProductProvider } from "@shopify/hydrogen-react"
-
-export type ProductProviderProps = PropsWithChildren<ProductProps>
+import type { ProductProviderProps, ProductStore } from "@/lib/ProductStore"
 
 export default function ProductProvider({ children, ...props }: ProductProviderProps) {
     const storeRef = useRef<ProductStore>()
@@ -17,10 +13,8 @@ export default function ProductProvider({ children, ...props }: ProductProviderP
     }
 
     return (
-        <ShopifyProductProvider data={props.product}>
-            <ProductContext.Provider value={storeRef.current}>
-                {children}
-            </ProductContext.Provider>
-        </ShopifyProductProvider>
+        <ProductContext.Provider value={storeRef.current}>
+            {children}
+        </ProductContext.Provider>
     )
 }
