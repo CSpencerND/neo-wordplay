@@ -6,12 +6,11 @@ import { useEffect } from "react"
 // import { usePathname, useRouter } from "next/navigation"
 // import { useEffect } from "react"
 
-type Title = { title: string }
-
-export default function ProductLabel({ title }: Title) {
+export default function ProductLabel() {
     const { LoadingSpinner, setLoading } = useLoader()
     const currentImage = useProduct((s) => s.currentImage)
     const setModalOpen = useProduct((s) => s.setModalOpen)
+    const title = useProduct((s) => s.product.title!)
 
     // const router = useRouter()
     // const pathname = usePathname()
@@ -34,8 +33,8 @@ export default function ProductLabel({ title }: Title) {
     return (
         <label
             id={title}
-            className="relative transition hover:scale-105 active:scale-95"
-            onClick={() => setModalOpen}
+            className="relative cursor-pointer transition hover:scale-105 active:scale-95"
+            onClick={setModalOpen}
         >
             <LoadingSpinner />
 
@@ -43,15 +42,16 @@ export default function ProductLabel({ title }: Title) {
                 image={currentImage}
                 title={title}
                 key={currentImage.id}
-                rounded={false}
+                rounded="top"
                 onLoadingComplete={() => setLoading(false)}
             />
-            <ProductTitle title={title} />
+            <ProductTitle />
         </label>
     )
 }
 
-function ProductTitle({ title }: Title) {
+function ProductTitle() {
+    const title = useProduct((s) => s.product.title!)
     return (
         <div
             className={`
