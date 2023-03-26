@@ -2,32 +2,39 @@
 
 import { RadioGroup } from "@headlessui/react"
 import useProduct from "@/lib/hooks"
+import cn from "clsx"
 
-export default function Swatch() {
+export default function Swatch({ ...props }) {
     const colorOptions = useProduct((s) => s.colorOptions)
     const selectedColor = useProduct((s) => s.selectedColor)
     const setSelectedColor = useProduct((s) => s.setSelectedColor)
-    const setCurrentImage = useProduct((s) => s.setCurrentImage)
+
     const hexCodes = useProduct((s) => s.hexCodes)
+    const setCurrentImage = useProduct((s) => s.setCurrentImage)
 
     return (
         <RadioGroup
             value={selectedColor}
             onChange={setSelectedColor}
-            className="m-3"
+            {...props}
         >
-            <RadioGroup.Label className="sr-only"> Choose a color </RadioGroup.Label>
-            <span className="flex items-center space-x-3">
+            <RadioGroup.Label className="sr-only"> Select a color </RadioGroup.Label>
+            <span className="flex gap-4">
                 {hexCodes!.map((code, i) => (
                     <RadioGroup.Option
                         key={colorOptions![i]}
                         value={colorOptions![i]}
                         className={({ active, checked }) =>
-                            classNames(
-                                "ring-neutral ring-offset-base-200 transition-all",
-                                active && checked ? "ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-content" : "",
-                                checked ? "ring-2 ring-offset-2" : "",
-                                "relative -m-0.5 flex cursor-pointer items-center justify-center rounded-md focus:outline-none"
+                            cn(
+                                `relative -m-0.5 flex cursor-pointer
+                                items-center justify-center rounded-md
+                                ring-neutral ring-offset-base-200
+                                transition-all focus:outline-none`,
+
+                                active && checked
+                                    ? "ring-2 focus-visible:ring-primary-content focus-visible:ring-offset-2"
+                                    : "",
+                                checked ? "ring-2 ring-offset-2" : ""
                             )
                         }
                         onFocus={() => setCurrentImage(i)}
@@ -41,6 +48,7 @@ export default function Swatch() {
                         </RadioGroup.Label>
 
                         <span
+                            id="swatchColor"
                             aria-hidden="true"
                             style={{
                                 backgroundColor:
@@ -53,8 +61,4 @@ export default function Swatch() {
             </span>
         </RadioGroup>
     )
-}
-
-function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(" ")
 }
