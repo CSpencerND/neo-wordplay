@@ -9,21 +9,18 @@ import ModalProductImage from "./_ModalProductImage"
 import ModalWrapper from "./_ModalWrapper"
 
 import useProduct from "@/lib/hooks/useProduct"
-import { useMountEffect } from "@react-hookz/web"
+import { useIsomorphicLayoutEffect, useUpdateEffect } from "@react-hookz/web"
+import { useProduct as useShopifyProduct } from "@shopify/hydrogen-react"
 import { sanitize } from "dompurify"
-import { useState } from "react"
 import { usePathname, useRouter } from "next/navigation"
+import { useState } from "react"
 
 export default function ProductModal() {
     const title = useProduct((s) => s.product.title)
     const data = useProduct((s) => s.product)
 
-    const [sanitizedDescription, setSanitezedDescription] = useState<string>("")
-    useMountEffect(() => {
-        if (!data.descriptionHtml) return
-        const desc = sanitize(data.descriptionHtml)
-        setSanitezedDescription(desc)
-    })
+    const sanitizedDescription = useSanitizedDescription()
+    const selectedOptions = useSelectedOptions()
 
     const router = useRouter()
     const pathname = usePathname()
@@ -71,6 +68,35 @@ export default function ProductModal() {
             </section>
         </ModalWrapper>
     )
+}
+
+function useSanitizedDescription() {
+    const { descriptionHtml } = useProduct((s) => s.product)
+    const [sanitizedDescription, setSanitezedDescription] = useState<string>("")
+    useIsomorphicLayoutEffect(() => {
+        if (!descriptionHtml) return
+        const desc = sanitize(descriptionHtml)
+        setSanitezedDescription(desc)
+    }, [])
+    return sanitizedDescription
+}
+
+function useSelectedOptions() {
+    const { setSelectedOption, selectedOptions } = useShopifyProduct()
+
+    const selectedColor = useProduct((s) => s.selectedColor)
+    useUpdateEffect(() => {
+        if (!selectedColor) return
+        setSelectedOption("Color", selectedColor)
+    }, [selectedColor])
+
+    const selectedSize = useProduct((s) => s.selectedSize)
+    useUpdateEffect(() => {
+        if (!selectedSize) return
+        setSelectedOption("Size", selectedSize)
+    }, [selectedSize])
+
+    return selectedOptions
 }
 
 // <div className="rounded-box h-fit overflow-hidden">
