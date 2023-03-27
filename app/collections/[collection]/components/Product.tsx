@@ -2,11 +2,11 @@ import type { ProductProps } from "@/lib/ProductStore"
 import { ShopifyProductProvider } from "@/lib/providers"
 import ProductProvider from "@/lib/providers/ProductProvider"
 import type { ProductOption } from "@shopify/hydrogen-react/storefront-api-types"
-import ProductModal from "../Modal/ProductModal"
-import ProductLabel from "../ProductLabel"
-import Swatch from "../Swatch"
+import ProductModal from "./Modal/ProductModal"
+import ProductLabel from "./ProductLabel"
+import Swatch from "./Swatch"
 
-function ProductWrapper({ ...initProviderProps }: ProductProps) {
+export default function Product({ ...initProviderProps }: ProductProps) {
     const product = initProviderProps.product
     return (
         <ShopifyProductProvider data={product}>
@@ -48,5 +48,3 @@ function ProductInner({ ...initProviderProps }: ProductProps) {
         </ProductProvider>
     )
 }
-
-export default ProductWrapper

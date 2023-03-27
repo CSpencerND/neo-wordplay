@@ -1,5 +1,5 @@
 import { BlobScene } from "@/components/Blob"
-import { Product } from "./components/Product"
+import Product from "./components"
 
 import { getCollections, getProductsByCollection } from "@/lib/server"
 
