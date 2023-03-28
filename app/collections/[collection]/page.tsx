@@ -34,7 +34,7 @@ export default async function CollectionPage({ params }: { params: { collection:
                         images: product.images.nodes,
                         hexCodes: hexCodes,
                     }
-                    return <Product {...initProviderProps} />
+                    return <Product {...initProviderProps} key={product.id} />
                 })}
             </ul>
         </section>
