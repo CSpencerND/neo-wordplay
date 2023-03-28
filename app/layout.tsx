@@ -1,7 +1,7 @@
 /** types */
 import type { Metadata } from "next"
 import type Children from "types"
-import { storefront } from "./lib/server"
+import { storefront } from "./lib/queries"
 
 /** components */
 import { ShopifyProvider, CartProvider } from "@/lib/providers"

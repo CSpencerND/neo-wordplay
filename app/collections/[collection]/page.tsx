@@ -1,7 +1,7 @@
 import { BlobScene } from "@/components/Blob"
 import Product from "./components"
 
-import { getCollections, getProductsByCollection } from "@/lib/server"
+import { getCollections, getProductsByCollection } from "@/lib/queries"
 
 import type { ProductProviderProps } from "@/lib/ProductStore"
 

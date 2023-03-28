@@ -1,6 +1,6 @@
 import { BlobScene } from "@/components/Blob"
 import ProductImage from "@/components/ProductImage"
-import { getCollections } from "@/lib/server"
+import { getCollections } from "@/lib/queries"
 import cn from "clsx"
 import Link from "next/link"
 

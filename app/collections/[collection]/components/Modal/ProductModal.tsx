@@ -3,10 +3,7 @@
 import CloseButton from "@/components/CloseButton"
 import { Dialog } from "@headlessui/react"
 import { ProductPrice } from "@shopify/hydrogen-react"
-import SizeSelect from "../SizeSelect"
-import Swatch from "../Swatch"
-import ModalProductImage from "./_ModalProductImage"
-import ModalWrapper from "./_ModalWrapper"
+import Modal from "./_Modal"
 
 import useProduct from "@/lib/hooks/useProduct"
 import { useIsomorphicLayoutEffect, useUpdateEffect } from "@react-hookz/web"
@@ -31,7 +28,7 @@ export default function ProductModal() {
     }
 
     return (
-        <ModalWrapper>
+        <Modal.Wrapper>
             <div
                 className="absolute top-2 right-2"
                 onClick={setPathName}
@@ -39,7 +36,7 @@ export default function ProductModal() {
                 <CloseButton />
             </div>
             <section>
-                <ModalProductImage />
+                <Modal.Image />
             </section>
             <section className="card-body space-y-3 p-0 text-sm font-bold lg:text-sm">
                 <div className="space-y-2">
@@ -53,8 +50,8 @@ export default function ProductModal() {
                         withoutTrailingZeros
                     />
                 </div>
-                <Swatch className="ml-0.5 [&_#swatchColor]:h-7 [&_#swatchColor]:w-7" />
-                <SizeSelect />
+                <Modal.Swatch className="ml-0.5 [&_#swatchColor]:h-7 [&_#swatchColor]:w-7" />
+                <Modal.Size />
                 <Dialog.Description
                     as="article"
                     className="prose [&_strong]:text-accent-content"
@@ -66,7 +63,7 @@ export default function ProductModal() {
                     <CloseButton icon="arrowLeft" />
                 </div>
             </section>
-        </ModalWrapper>
+        </Modal.Wrapper>
     )
 }
 
@@ -99,22 +96,3 @@ function useSelectedOptions() {
     return selectedOptions
 }
 
-// <div className="rounded-box h-fit overflow-hidden">
-//     <ProductImage />
-// </div>
-// <div className="card-body p-0">
-//     <ProductTitle />
-//     <Price price={price} />
-//     {/* <div className="flex flex-row items-center justify-between"> */}
-//     <ColorSelect />
-//     {/* </div> */}
-//     <SizeSelect />
-//     <AddToBag
-//         size={sizeOptionString}
-//         color={colorOptionString}
-//         onClick={handleAddToBag}
-//         variantID={variantID}
-//     />
-//     <Description />
-//     <CloseButtonArrow handleClose={handleClose} />
-// </div>

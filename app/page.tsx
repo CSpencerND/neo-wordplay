@@ -2,7 +2,7 @@ import Hero from "./components/Hero"
 import Featured from "./components/Featured"
 import Gallery from "./components/Gallery"
 import Blob from "./components/Blob"
-import { getFeaturedCollectionProducts } from "./lib/server"
+import { getFeaturedCollectionProducts } from "./lib/queries"
 
 export default async function HomePage() {
     const featured = await getFeaturedCollectionProducts()
