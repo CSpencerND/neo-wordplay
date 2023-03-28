@@ -101,10 +101,9 @@ type VariantData = {
 
 function useSelectedOptions(): VariantData {
     const { variants } = useShopifyProduct()
-    if (!variants) return {} as VariantData
     const [data, setData] = useState<VariantData>({
-        variantName: variants[0]!.selectedOptions![0]!.name as string,
-        variantID: variants[0]!.id as string,
+        variantName: variants?.[0]?.selectedOptions?.[0]?.name,
+        variantID: variants?.[0]?.id,
     })
 
     const { setSelectedOption, selectedOptions } = useShopifyProduct()
