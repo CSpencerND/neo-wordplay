@@ -1,15 +1,15 @@
 "use client"
 
-/** components */
-import Link from "next/link"
+import { Dialog, Transition } from "@headlessui/react"
 import Image from "next/image"
-import { Transition, Dialog } from "@headlessui/react"
-import { Bag2 as CartIcon, ArrowRightSquare } from "react-iconly"
+import Link from "next/link"
+import { Fragment, useState } from "react"
+import { ArrowRightSquare, Bag2 as CartIcon } from "react-iconly"
 
-/** utils */
-import { useCart, useCartLine, useShop, CartLineProvider } from "@/lib/shopifyContext"
-import { useEffect, useState, Fragment } from "react"
-import type { ReactNode, Dispatch, SetStateAction } from "react"
+import { useCart, useCartLine, useShop } from "@/lib/hooks"
+import { CartLineProvider } from "@/lib/providers"
+
+import type { Dispatch, ReactNode, SetStateAction } from "react"
 
 import temp from "@/static/brand/placeholder.webp"
 

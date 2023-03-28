@@ -1,21 +1,16 @@
+import Image from "next/image"
+import Link from "next/link"
+import { Cart } from "./Cart"
+import { Login } from "./Login"
+import { NavMenu } from "./NavMenu"
+
+import logo from "@/static/brand/wp4l.webp"
+
 type NavLinkData = {
     title: string
     href: string
     delay: string
 }
-
-/** components */
-import Link from "next/link"
-import Image from "next/image"
-import { NavMenu } from "./NavMenu"
-import { Cart } from "./Cart"
-import { Login } from "./Login"
-
-/** utils */
-import cn from "clsx"
-
-/** assets */
-import logo from "@/static/brand/wp4l.webp"
 
 export default function Header() {
     const getLinkData = (): NavLinkData[] => {
@@ -62,14 +57,8 @@ export default function Header() {
     const linkData = getLinkData()
 
     return (
-        <header className={cn("sticky top-0 z-40", "before-blur-black")}>
-            <nav
-                className={cn(
-                    "navbar",
-                    "isolate mx-auto max-w-7xl",
-                    "border-b border-base-200"
-                )}
-            >
+        <header className="before-blur-black sticky top-0 z-40">
+            <nav className="navbar isolate mx-auto max-w-7xl border-b border-base-200">
                 <div className="navbar-start">
                     <Link
                         href="/"
@@ -84,7 +73,7 @@ export default function Header() {
                 </div>
                 <div className="navbar-end">
                     <Login />
-                    {/* <Cart /> */}
+                    <Cart />
                     <NavMenu links={linkData} />
                 </div>
             </nav>
