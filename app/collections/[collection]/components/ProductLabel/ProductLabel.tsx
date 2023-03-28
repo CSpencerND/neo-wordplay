@@ -57,15 +57,13 @@ function ProductTitle() {
             className={`
                 bg-blur-300 card-body
                 absolute bottom-0 w-full
-                border-t border-base-100
-                p-1 sm:p-2
+                border-t border-base-100 p-1
             `}
         >
             <h2
                 className={`
                     overflow-hidden text-ellipsis whitespace-nowrap
                     text-xs font-bold text-primary-content
-                    lg:text-sm
                 `}
             >
                 {title}

@@ -1,7 +1,6 @@
 import useProduct from "@/lib/hooks/useProduct"
 import { sizeText } from "@/lib/utils"
 import { RadioGroup } from "@headlessui/react"
-// import { useProduct as useShopifyProduct } from "@shopify/hydrogen-react"
 import cn from "clsx"
 
 export default function SizeSelect({ ...props }) {
@@ -30,7 +29,7 @@ export default function SizeSelect({ ...props }) {
                                     ring-neutral ring-offset-base-200
                                     transition-all duration-200
                                     hover:!bg-secondary-focus 
-                                    focus:outline-none md:text-base`,
+                                    focus:outline-none`,
 
                                 active && checked
                                     ? "focus-visible:ring-2 focus-visible:ring-primary-content focus-visible:ring-offset-2"
