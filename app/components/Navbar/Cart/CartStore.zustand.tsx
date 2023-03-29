@@ -7,7 +7,7 @@ type CartStore = {
 }
 
 const useCartStore = create<CartStore>()((set) => ({
-    isCartOpen: true,
+    isCartOpen: false,
     setCartOpen: () => set({ isCartOpen: true }),
     setCartClose: () => set({ isCartOpen: false }),
 }))

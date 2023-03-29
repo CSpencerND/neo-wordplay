@@ -1,17 +1,22 @@
 "use client"
 
+// TODO: Add Transition to each CartItem just like the NavMenu
+
 import ProductImage from "@/components/ProductImage"
-import Link from "next/link"
-import NextImage from "next/image"
-import { Plus, Delete } from "react-iconly"
 import { CartLineQuantity, CartLineQuantityAdjustButton, Money } from "@shopify/hydrogen-react"
+import NextImage from "next/image"
+import Link from "next/link"
+import { Delete, Plus } from "react-iconly"
+import { Minus } from "@/static"
+import { Transition } from "@headlessui/react"
 
 import { CartLineProvider, useCart, useCartLine } from "@shopify/hydrogen-react"
 
-import type { CartLine, Image } from "@shopify/hydrogen-react/storefront-api-types"
+import type { CartLine } from "@shopify/hydrogen-react/storefront-api-types"
 import type { HTMLAttributes } from "react"
 import type Children from "types"
-import { Minus } from "@/static"
+
+const baseDelay = 300
 
 export default function CartProducts() {
     const { lines } = useCart()
@@ -21,15 +26,26 @@ export default function CartProducts() {
             role="list"
             className="divide-y divide-base-100"
         >
-            {lines?.map((line) => {
+            {lines?.map((line, i) => {
                 if (!line) throw new Error("No line found!")
+                const delay = `${baseDelay + i * 50}ms`
+
                 return (
-                    <CartLineProvider
-                        line={line}
+                    <Transition
+                        appear
                         key={line.id}
+                        enter="transition-all ease-out"
+                        enterFrom="opacity-0 translate-x-6"
+                        enterTo="opacity-100 translate-x-0"
+                        leave="transition-all"
+                        leaveFrom="opacity-100 translate-x-0"
+                        leaveTo="opacity-0 translate-x-6"
+                        style={{ transitionDelay: delay }}
                     >
-                        <CartLineItem />
-                    </CartLineProvider>
+                        <CartLineProvider line={line}>
+                            <CartLineItem />
+                        </CartLineProvider>
+                    </Transition>
                 )
             })}
         </ul>
