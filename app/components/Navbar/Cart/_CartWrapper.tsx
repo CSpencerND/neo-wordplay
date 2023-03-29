@@ -6,7 +6,7 @@ import useCartStore from "./CartStore.zustand"
 
 export default function CartWrapper({ children }: { children: React.ReactNode }) {
     const isCartOpen = useCartStore((s) => s.isCartOpen)
-    const setCartOpen = useCartStore((s) => s.setCartOpen)
+    const setCartClose = useCartStore((s) => s.setCartClose)
 
     return (
         <Transition.Root
@@ -16,19 +16,18 @@ export default function CartWrapper({ children }: { children: React.ReactNode })
             <Dialog
                 as="div"
                 className="relative z-50"
-                onClose={setCartOpen}
+                onClose={setCartClose}
             >
                 <Transition.Child
-                    as={Fragment}
+                    as="label"
                     enter="ease-out duration-300 delay-75"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
                     leave="ease-in duration-300 delay-75"
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
-                >
-                    <div className="bg-blur-clear fixed inset-0 cursor-pointer transition-opacity" />
-                </Transition.Child>
+                    className="bg-blur-clear fixed inset-0 cursor-pointer transition-opacity"
+                />
 
                 <div className="fixed inset-0 overflow-hidden">
                     <div className="absolute inset-0 overflow-hidden">
