@@ -1,18 +1,18 @@
 import storefrontQuery from "./storefront"
-import type { Product } from "@shopify/hydrogen-react/storefront-api-types"
+import type { Product, Collection } from "@shopify/hydrogen-react/storefront-api-types"
 
-type ProductsByCollection = Awaited<{ collectionTitle: string; products: Product[] }>
+type ProductsByCollection = { collectionTitle: string; products: Product[] }
 
 export async function getProductsByCollection(handle: string): Promise<ProductsByCollection> {
-    const data = await storefrontQuery(allProductsQuery, { handle })
+    const data = await storefrontQuery<"collection", Collection>(allProductsQuery, { handle })
 
     const collectionTitle: string = data.collection.title
     const products: Product[] = data.collection.products.nodes
     return { collectionTitle, products }
 }
 
-export async function getFeaturedCollectionProducts(): Promise<Awaited<Product[]>> {
-    const data = await storefrontQuery(featuredQuery)
+export async function getFeaturedCollectionProducts(): Promise<Product[]> {
+    const data = await storefrontQuery<"collection", Collection>(featuredQuery)
     return data.collection.products.nodes
 }
 

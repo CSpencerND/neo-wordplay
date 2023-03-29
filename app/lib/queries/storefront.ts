@@ -1,3 +1,8 @@
+import {
+    CollectionConnection,
+    ProductConnection,
+} from "@shopify/hydrogen-react/storefront-api-types"
+
 export const storefront = {
     id: process.env.SHOPIFY_STOREFRONT_ID as string,
     token: process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN as string,
@@ -13,7 +18,7 @@ const storefrontHeaders = {
 
 const storefrontQueryURL = `${storefront.domain}/api/${storefront.version}/graphql.json`
 
-export default async function storefrontQuery(query: string, vars = {}) {
+export default async function storefrontQuery<K extends string, V>(query: string, vars = {}): Promise<Record<K, V>> {
     const response = await fetch(storefrontQueryURL, {
         body: JSON.stringify({ query, variables: vars }),
         headers: storefrontHeaders,
@@ -24,7 +29,7 @@ export default async function storefrontQuery(query: string, vars = {}) {
         throw new Error(response.statusText)
     }
 
-    const { data } = await response.json()
+    const { data } = (await response.json()) as {data: Record<K, V>}
 
     return data
 }
