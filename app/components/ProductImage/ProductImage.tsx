@@ -4,15 +4,17 @@ import cn from "clsx"
 import NextImage, { ImageProps } from "next/image"
 
 type ProductImageProps = Partial<ImageProps> & {
-    image: Maybe<Image> | undefined
+    image: Maybe<Partial<Image>> | undefined
     title: string
     rounded?: true | false | "top" | "bottom"
+    containerProps?: React.HTMLAttributes<HTMLDivElement>
 }
 
 export default function ProductImage({
     image,
     title,
     rounded = true,
+    containerProps,
     ...props
 }: ProductImageProps) {
     const altText = image?.altText ?? title
@@ -23,15 +25,16 @@ export default function ProductImage({
                 "bg-glass overflow-hidden",
                 rounded === true ? "rounded-2xl" : "",
                 rounded === "top" ? "rounded-t-2xl" : "",
-                rounded === "bottom" ? "rounded-b-2xl" : ""
+                rounded === "bottom" ? "rounded-b-2xl" : "",
+                containerProps?.className ?? ""
             )}
         >
             <NextImage
                 role="presentation"
                 src={image?.url ?? nullImage}
-                alt={altText ?? "loading"}
                 width={image?.width ?? 1024}
                 height={image?.height ?? 1024}
+                alt={altText ?? "loading"}
                 placeholder="blur"
                 blurDataURL={placeholder.blurDataURL}
                 {...props}
