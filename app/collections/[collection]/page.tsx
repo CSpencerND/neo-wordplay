@@ -26,7 +26,10 @@ export default async function CollectionPage({ params }: { params: { collection:
                 <BlobScene />
 
                 {products.map((product) => {
-                    const hexCodes = JSON.parse(product.metafield!.value)
+                    if(!product) throw new Error("No product found!")
+                    const hexCodes = JSON.parse(product.metafield!.value) as string[]
+                    if(!hexCodes) throw new Error("No hex codes found!")
+
                     const initProviderProps: ProductProviderProps = {
                         product: product,
                         currentImage: product.images.nodes[0],
