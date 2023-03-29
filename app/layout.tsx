@@ -1,7 +1,8 @@
 import { getCollections } from "@/lib/queries"
+import "@total-typescript/ts-reset"
 
 /** components */
-import { ShopifyProvider, CartProvider } from "@/lib/providers"
+import { CartProvider, ShopifyProvider } from "@/lib/providers"
 import Footer from "./components/Footer"
 import Header from "./components/Navbar/Header"
 
@@ -12,10 +13,10 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 /** types */
+import { Collection } from "@shopify/hydrogen-react/storefront-api-types"
 import type { Metadata } from "next"
 import type Children from "types"
 import { storefront } from "./lib/queries"
-import "@total-typescript/ts-reset"
 
 type NavLinkData = {
     title: string
@@ -44,6 +45,11 @@ export const metadata: Metadata = {
 /** content */
 export default async function RootLayout({ children }: Children) {
     const collections = await getCollections()
+
+    collections.unshift({
+        title: "Collections Directory",
+        handle: "collections",
+    } as Collection)
 
     const linkData: NavLinkData[] = collections.map((c, i) => {
         return {

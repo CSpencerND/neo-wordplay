@@ -28,7 +28,7 @@ export default function Header({ links }: { links: NavLinkData[] }) {
                         />
                     </Link>
                 </div>
-                <div className="navbar-end">
+                <div className="navbar-end relative">
                     <UserLogin />
                     <ShoppingCart />
                     <NavMenu links={links} />
