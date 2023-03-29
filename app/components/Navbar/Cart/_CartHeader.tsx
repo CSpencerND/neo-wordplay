@@ -7,7 +7,7 @@ import useCartStore from "./CartStore.zustand"
 export default function CartHeader() {
     const setCartClose = useCartStore((s) => s.setCartClose)
     return (
-        <header className="flex items-start justify-between border-b border-base-100 p-4">
+        <header className="flex items-center justify-between border-b border-base-100 px-4 py-3">
             <Dialog.Title className="text-lg font-medium">In Your Bag</Dialog.Title>
             <CloseButton
                 icon="arrowRight"

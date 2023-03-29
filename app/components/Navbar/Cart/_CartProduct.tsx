@@ -2,19 +2,16 @@
 
 import ProductImage from "@/components/ProductImage"
 import Link from "next/link"
-import {
-    CartLineQuantity,
-    CartCost,
-    CartCheckoutButton,
-    CartLineQuantityAdjustButton,
-    Money,
-} from "@shopify/hydrogen-react"
+import NextImage from "next/image"
+import { Plus, Delete } from "react-iconly"
+import { CartLineQuantity, CartLineQuantityAdjustButton, Money } from "@shopify/hydrogen-react"
 
 import { CartLineProvider, useCart, useCartLine } from "@shopify/hydrogen-react"
 
 import type { CartLine, Image } from "@shopify/hydrogen-react/storefront-api-types"
 import type { HTMLAttributes } from "react"
 import type Children from "types"
+import { Minus } from "@/static"
 
 export default function CartProducts() {
     const { lines } = useCart()
@@ -40,10 +37,9 @@ export default function CartProducts() {
 }
 
 function CartLineItem() {
-    const { merchandise, quantity, cost } = useCartLine() as CartLine
+    const { merchandise } = useCartLine() as CartLine
     const { product, title: variantTitle, image, price } = merchandise
     const { title: productTitle, handle } = product
-    const { totalAmount, subtotalAmount, amountPerQuantity } = cost
 
     const productURL = `/collections/${handle}`
 
@@ -57,7 +53,7 @@ function CartLineItem() {
 
             <CartItemBody>
                 <div className="flex items-baseline justify-between">
-                    <h3 className="text-sm">
+                    <h3 className="w-2/3 overflow-hidden text-ellipsis whitespace-nowrap text-sm">
                         {/* <Link href={productURL}>{productTitle}</Link> */}
                         {productTitle}
                     </h3>
@@ -71,19 +67,40 @@ function CartLineItem() {
                     <span>{variantTitle}</span>
                 </div>
 
-                <div className="flex flex-1 items-end justify-between">
+                <div className="relative flex flex-1 items-end justify-between">
                     <p className="">
                         <span>Qty </span>
-                        <span>{quantity}</span>
+                        <CartLineQuantity />
                     </p>
 
-                    <div className="flex">
-                        <button
-                            type="button"
-                            className="font-medium text-secondary-content hover:text-opacity-80"
+                    <div className="relative -bottom-1.5 grid grid-cols-3 gap-3">
+                        <CartLineQuantityAdjustButton
+                            adjust="decrease"
+                            className="btn-secondary btn-square btn-xs btn rounded-md"
                         >
-                            Remove
-                        </button>
+                            <span className="sr-only">Decrease Quantity</span>
+                            <NextImage
+                                className="pl-[1px]"
+                                src={Minus}
+                                alt="minus"
+                            />
+                        </CartLineQuantityAdjustButton>
+
+                        <CartLineQuantityAdjustButton
+                            adjust="increase"
+                            className="btn-secondary btn-square btn-xs btn rounded-md"
+                        >
+                            <span className="sr-only">Increase Quantity</span>
+                            <Plus set="light" />
+                        </CartLineQuantityAdjustButton>
+
+                        <CartLineQuantityAdjustButton
+                            adjust="remove"
+                            className="btn-secondary btn-square btn-xs btn rounded-md"
+                        >
+                            <span className="sr-only">Remove Item</span>
+                            <Delete set="light" />
+                        </CartLineQuantityAdjustButton>
                     </div>
                 </div>
             </CartItemBody>

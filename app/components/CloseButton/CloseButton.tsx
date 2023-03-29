@@ -10,7 +10,7 @@ type CloseButtonProps = {
 
 const iconProps: IconProps = {
     set: "light",
-    size: "large",
+    // size: "large",
 }
 
 export default function CloseButton({ icon, onClick, ...props }: CloseButtonProps) {
@@ -52,7 +52,7 @@ export default function CloseButton({ icon, onClick, ...props }: CloseButtonProp
     return (
         <button
             type="button"
-            className="btn-primary btn-square btn-sm btn"
+            className="btn-primary btn-square btn-xs btn rounded-md"
             onClick={onClick}
         >
             <span className="sr-only">Close panel</span>

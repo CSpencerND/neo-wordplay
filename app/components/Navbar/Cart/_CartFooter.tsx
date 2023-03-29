@@ -1,25 +1,27 @@
 "use client"
 
-import { useCart } from "@shopify/hydrogen-react"
+import { CartCost, CartCheckoutButton } from "@shopify/hydrogen-react"
 import useCartStore from "./CartStore.zustand"
 
 export default function CartFooter() {
     const setCartClose = useCartStore((s) => s.setCartClose)
-    const { cost } = useCart()
 
     return (
         <footer className="border-t border-base-100 py-6 px-4 sm:px-6">
             <div className="flex justify-between text-sm font-medium">
-                <p>
+                <p className="flex justify-between w-full">
                     Subtotal
-                    {cost?.subtotalAmount?.amount}
+                    <CartCost
+                        as="span"
+                        amountType="subtotal"
+                    />
                 </p>
             </div>
             <p className="mt-2 text-xs">Shipping and taxes calculated at checkout.</p>
             <div className="mt-6">
                 <a
                     href="#"
-                    className="btn-secondary btn-block btn"
+                    className="btn-secondary btn-block btn btn-sm"
                 >
                     Checkout
                 </a>
