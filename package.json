@@ -13,6 +13,7 @@
     "@headlessui/tailwindcss": "^0.1.2",
     "@react-hookz/web": "^22.0.0",
     "@shopify/hydrogen-react": "^2023.1.6",
+    "@total-typescript/ts-reset": "^0.4.2",
     "@types/dompurify": "^2.4.0",
     "@types/node": "18.13.0",
     "@types/react": "18.0.28",

@@ -2,6 +2,7 @@
 import type { Metadata } from "next"
 import type Children from "types"
 import { storefront } from "./lib/queries"
+import "@total-typescript/ts-reset"
 
 /** components */
 import { ShopifyProvider, CartProvider } from "@/lib/providers"
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
 
 /** content */
 export default function RootLayout({ children }: Children) {
-    const {id, token, domain, version} = storefront
+    const { id, token, domain, version } = storefront
 
     return (
         <html
