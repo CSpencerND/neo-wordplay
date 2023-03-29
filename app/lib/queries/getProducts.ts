@@ -47,12 +47,6 @@ const allProductsQuery = gql`
                     handle
                     title
                     descriptionHtml
-                    priceRange {
-                        maxVariantPrice {
-                            amount
-                            currencyCode
-                        }
-                    }
                     images(first: 99) {
                         nodes {
                             url
@@ -70,6 +64,13 @@ const allProductsQuery = gql`
                                 name
                                 value
                             }
+                            sellingPlanAllocations(first: 1) {
+                                nodes {
+                                    sellingPlan {
+                                        name
+                                    }
+                                }
+                            }
                         }
                     }
                     options(first: 99) {
@@ -82,6 +83,11 @@ const allProductsQuery = gql`
                     collections(first: 9) {
                         nodes {
                             title
+                        }
+                    }
+                    sellingPlanGroups(first: 1) {
+                        nodes {
+                            name
                         }
                     }
                 }
