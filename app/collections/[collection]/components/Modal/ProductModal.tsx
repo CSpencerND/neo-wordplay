@@ -16,6 +16,7 @@ import { useState } from "react"
 export default function ProductModal() {
     const title = useProduct((s) => s.product.title)
     const data = useProduct((s) => s.product)
+    const setModalClose = useProduct((s) => s.setModalClose)
 
     const sanitizedDescription = useSanitizedDescription()
 
@@ -35,7 +36,7 @@ export default function ProductModal() {
                 className="absolute top-2 right-2"
                 onClick={setPathName}
             >
-                <CloseButton />
+                <CloseButton onClick={setModalClose} />
             </div>
             <section className="h-fit overflow-hidden rounded-2xl">
                 <Modal.Image />
@@ -76,7 +77,7 @@ export default function ProductModal() {
                     }}
                 />
                 <div onClick={setPathName}>
-                    <CloseButton icon="arrowLeft" />
+                    <CloseButton icon="arrowLeft" onClick={setModalClose} />
                 </div>
             </section>
         </Modal.Wrapper>

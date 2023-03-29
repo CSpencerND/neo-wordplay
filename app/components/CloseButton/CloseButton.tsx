@@ -1,10 +1,8 @@
-"use client"
-
-import useProduct from "@/lib/hooks"
 import type { IconProps } from "react-iconly"
 import { ArrowLeftSquare, ArrowRightSquare, CloseSquare } from "react-iconly"
 
 type CloseButtonProps = {
+    onClick: () => void
     children?: React.ReactNode
     icon?: "arrowLeft" | "arrowRight" | "x"
     props?: React.HTMLAttributes<HTMLButtonElement>
@@ -15,9 +13,7 @@ const iconProps: IconProps = {
     size: "large",
 }
 
-export default function CloseButton({ icon, ...props }: CloseButtonProps) {
-    const setModalClose = useProduct((s) => s.setModalClose)
-
+export default function CloseButton({ icon, onClick, ...props }: CloseButtonProps) {
     const Icon = () => {
         let buttonIcon: JSX.Element
 
@@ -57,7 +53,7 @@ export default function CloseButton({ icon, ...props }: CloseButtonProps) {
         <button
             type="button"
             className="btn-primary btn-square btn-sm btn"
-            onClick={setModalClose}
+            onClick={onClick}
         >
             <span className="sr-only">Close panel</span>
             <Icon />
