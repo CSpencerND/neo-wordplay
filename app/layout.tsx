@@ -1,8 +1,4 @@
-/** types */
-import type { Metadata } from "next"
-import type Children from "types"
-import { storefront } from "./lib/queries"
-import "@total-typescript/ts-reset"
+import { getCollections } from "@/lib/queries"
 
 /** components */
 import { ShopifyProvider, CartProvider } from "@/lib/providers"
@@ -14,6 +10,20 @@ import cn from "clsx"
 import { Inter } from "next/font/google"
 import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
+
+/** types */
+import type { Metadata } from "next"
+import type Children from "types"
+import { storefront } from "./lib/queries"
+import "@total-typescript/ts-reset"
+
+type NavLinkData = {
+    title: string
+    href: string
+    delay: string
+}
+
+const baseDelay = 300
 
 /** metadata */
 export const metadata: Metadata = {
@@ -32,7 +42,17 @@ export const metadata: Metadata = {
 }
 
 /** content */
-export default function RootLayout({ children }: Children) {
+export default async function RootLayout({ children }: Children) {
+    const collections = await getCollections()
+
+    const linkData: NavLinkData[] = collections.map((c, i) => {
+        return {
+            title: c.title,
+            href: c.handle,
+            delay: `${baseDelay + i * 50}ms`,
+        }
+    })
+
     const { id, token, domain, version } = storefront
 
     return (
@@ -74,13 +94,8 @@ export default function RootLayout({ children }: Children) {
                     languageIsoCode="EN"
                 >
                     <CartProvider>
-                        <Header />
-                        <main
-                            className={cn(
-                                "container relative",
-                                "mx-auto space-y-12 px-6 py-12"
-                            )}
-                        >
+                        <Header links={linkData} />
+                        <main className="container relative mx-auto space-y-12 px-6 py-12">
                             {children}
                         </main>
                     </CartProvider>
