@@ -6,17 +6,14 @@ type NavLinkData = {
     delay: string
 }
 
-/** components */
-import Link from "next/link"
 import { Transition } from "@headlessui/react"
 import { Spiral as HamburgerIcon } from "hamburger-react"
+import Link from "next/link"
 
-/** utils */
-import { useEffect, useState } from "react"
 import { usePathname } from "next/navigation"
-import cn from "clsx"
+import { useEffect, useState } from "react"
 
-export function NavMenu({ links }: { links: NavLinkData[] }) {
+export default function NavMenu({ links }: { links: NavLinkData[] }) {
     const [isShowing, setIsShowing] = useState<boolean>(false)
 
     const pathname = usePathname()
@@ -42,11 +39,11 @@ export function NavMenu({ links }: { links: NavLinkData[] }) {
 
             <Transition show={isShowing}>
                 <Transition.Child
-                    className={cn(
-                        "absolute top-0 left-0 z-40",
-                        "flex h-screen flex-row",
-                        "border-r border-base-200 bg-black/60"
-                    )}
+                    className={`
+                        absolute top-0 left-0 z-40
+                        flex h-screen flex-row
+                        border-r border-base-200 bg-black/60
+                    `}
                     enter="transition ease-out duration-300 transform"
                     enterFrom="-translate-x-[100vw]"
                     enterTo="-translate-x-0"
@@ -57,14 +54,14 @@ export function NavMenu({ links }: { links: NavLinkData[] }) {
                     <ul
                         id="navMenu"
                         tabIndex={0}
-                        className={cn("menu self-center p-4", `w-[calc(100vw-1rem-58px)]`)}
+                        className="menu w-[calc(100vw-1rem-58px)] self-center p-4"
                     >
                         {links.map(({ title, href, delay }, i) => {
                             return (
                                 <Transition.Child
                                     as="li"
                                     key={i}
-                                    enter={cn("transition-all ease-out")}
+                                    enter="transition-all ease-out"
                                     enterFrom="opacity-0 -translate-x-6"
                                     enterTo="opacity-100 -translate-x-0"
                                     leave="transition-all"
@@ -87,12 +84,11 @@ export function NavMenu({ links }: { links: NavLinkData[] }) {
                 <Transition.Child
                     as="label"
                     onClick={() => setIsShowing(false)}
-                    className={cn(
-                        "absolute top-0 right-0",
-                        "h-screen w-screen",
-                        "after-blur-clear",
-                        "hover:cursor-pointer"
-                    )}
+                    className={`
+                        after-blur-clear absolute top-0
+                        right-0 h-screen w-screen
+                        hover:cursor-pointer
+                    `}
                     enter="transition-opacity duration-75"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"

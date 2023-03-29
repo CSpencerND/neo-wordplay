@@ -1,9 +1,10 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Cart } from "./Cart"
-import { Login } from "./Login"
-import { NavMenu } from "./NavMenu"
+import ShoppingCart from "./Cart"
+import UserLogin from "./Login"
+import NavMenu from "./NavMenu"
 
+import { getCollections } from "@/lib/queries"
 import logo from "@/static/brand/wp4l.webp"
 
 type NavLinkData = {
@@ -12,49 +13,18 @@ type NavLinkData = {
     delay: string
 }
 
-export default function Header() {
-    const getLinkData = (): NavLinkData[] => {
-        const linkData: Partial<NavLinkData>[] = [
-            {
-                title: "Collections Directory",
-                href: "collections",
-            },
-            {
-                title: "Staff Picks",
-                href: "collections/staff-picks",
-            },
-            {
-                title: "Summer '22",
-                href: "collections/summer-22",
-            },
-            {
-                title: "Mindset",
-                href: "collections/mindset",
-            },
-            {
-                title: "Creativity",
-                href: "collections/creativity",
-            },
-            {
-                title: "Lifestyle",
-                href: "collections/lifestyle",
-            },
-            {
-                title: "Full Catalog",
-                href: "collections/full-catalog",
-            },
-        ]
+const baseDelay = 300
 
-        linkData[0].delay = "300ms"
+export default async function Header() {
+    const collections = await getCollections()
 
-        for (let i = 1; i < linkData.length; i++) {
-            linkData[i].delay = `${300 + i * 50}ms`
+    const linkData: NavLinkData[] = collections.map((c, i) => {
+        return {
+            title: c.title,
+            href: c.handle,
+            delay: `${baseDelay + i * 50}ms`,
         }
-
-        return linkData as NavLinkData[]
-    }
-
-    const linkData = getLinkData()
+    })
 
     return (
         <header className="before-blur-black sticky top-0 z-40">
@@ -72,8 +42,8 @@ export default function Header() {
                     </Link>
                 </div>
                 <div className="navbar-end">
-                    <Login />
-                    <Cart />
+                    <UserLogin />
+                    <ShoppingCart />
                     <NavMenu links={linkData} />
                 </div>
             </nav>

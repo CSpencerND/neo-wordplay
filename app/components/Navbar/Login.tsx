@@ -2,10 +2,10 @@
 
 import { Login as LoginIcon } from "react-iconly"
 
-export function Login() {
+export default function UserLogin() {
     return (
         <button className="btn-ghost btn-square btn rounded-md">
-            <LoginIcon set="curved" />
+            <LoginIcon set="light" />
         </button>
     )
 }
