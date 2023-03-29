@@ -13,7 +13,6 @@ import { Transition } from "@headlessui/react"
 import { CartLineProvider, useCart, useCartLine } from "@shopify/hydrogen-react"
 
 import type { CartLine } from "@shopify/hydrogen-react/storefront-api-types"
-import type { HTMLAttributes } from "react"
 import type Children from "types"
 
 const baseDelay = 300
@@ -31,28 +30,19 @@ export default function CartProducts() {
                 const delay = `${baseDelay + i * 50}ms`
 
                 return (
-                    <Transition
-                        appear
+                    <CartLineProvider
+                        line={line}
                         key={line.id}
-                        enter="transition-all ease-out"
-                        enterFrom="opacity-0 translate-x-6"
-                        enterTo="opacity-100 translate-x-0"
-                        leave="transition-all"
-                        leaveFrom="opacity-100 translate-x-0"
-                        leaveTo="opacity-0 translate-x-6"
-                        style={{ transitionDelay: delay }}
                     >
-                        <CartLineProvider line={line}>
-                            <CartLineItem />
-                        </CartLineProvider>
-                    </Transition>
+                        <CartLineItem delay={delay} />
+                    </CartLineProvider>
                 )
             })}
         </ul>
     )
 }
 
-function CartLineItem() {
+function CartLineItem({ delay }: { delay: string }) {
     const { merchandise } = useCartLine() as CartLine
     const { product, title: variantTitle, image, price } = merchandise
     const { title: productTitle, handle } = product
@@ -60,7 +50,18 @@ function CartLineItem() {
     const productURL = `/collections/${handle}`
 
     return (
-        <CartItem className="flex py-4">
+        <Transition
+            as="li"
+            appear
+            enter="transition-all ease-out"
+            enterFrom="opacity-0 translate-x-6"
+            enterTo="opacity-100 translate-x-0"
+            leave="transition-all"
+            leaveFrom="opacity-100 translate-x-0"
+            leaveTo="opacity-0 translate-x-6"
+            className="flex py-4"
+            style={{ transitionDelay: delay }}
+        >
             <ProductImage
                 containerProps={{ className: "w-1/4" }}
                 image={image}
@@ -120,14 +121,10 @@ function CartLineItem() {
                     </div>
                 </div>
             </CartItemBody>
-        </CartItem>
+        </Transition>
     )
 }
 
 function CartItemBody({ children }: Children) {
     return <div className="ml-4 flex flex-1 flex-col text-xs">{children}</div>
-}
-
-function CartItem({ children, ...props }: Children & HTMLAttributes<HTMLLIElement>) {
-    return <li {...props}>{children}</li>
 }
