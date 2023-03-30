@@ -6,9 +6,8 @@ type NavLinkData = {
     delay: string
 }
 
-import { Dialog, Transition } from "@headlessui/react"
+import { Dialog, Menu, Transition } from "@headlessui/react"
 import { Spiral as HamburgerIcon } from "hamburger-react"
-import { X } from "react-feather"
 import Link from "next/link"
 
 import { usePathname } from "next/navigation"
@@ -57,26 +56,12 @@ export default function NavMenu({ links }: { links: NavLinkData[] }) {
                         leave="ease-in duration-300 delay-75"
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
-                        className="bg-blur-clear fixed inset-0 z-40 cursor-pointer transition-opacity"
-                    >
-                        <button
-                            id="menuToggle"
-                            className="btn-ghost btn-square btn absolute top-2 right-2 rounded-md"
-                            onClick={() => setIsShowing((isShowing) => !isShowing)}
-                        >
-                            <HamburgerIcon
-                                toggled={isShowing}
-                                size={24}
-                                distance="lg"
-                                rounded
-                                label="Toggle Menu"
-                            />
-                        </button>
-                    </Transition.Child>
+                        className="bg-blur-clear fixed inset-0 z-40 mr-16 w-full"
+                    />
 
                     <div className="fixed inset-0 z-40 overflow-hidden">
                         <div className="absolute inset-0 overflow-hidden">
-                            <div className="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+                            <div className="pointer-events-none fixed inset-y-0 left-0 flex w-full pr-16">
                                 <Transition.Child
                                     as={Fragment}
                                     enter="transform transition ease-out duration-300 delay-75"
@@ -86,12 +71,38 @@ export default function NavMenu({ links }: { links: NavLinkData[] }) {
                                     leaveFrom="-translate-x-0"
                                     leaveTo="-translate-x-full"
                                 >
-                                    <Dialog.Panel className="pointer-events-auto h-screen w-[calc(100vw-1rem-58px)] max-w-md border-r border-base-100 bg-black/60">
-                                        <div className="flex h-full items-center overflow-y-scroll shadow-xl">
-                                            <ul
+                                    <Dialog.Panel className="pointer-events-auto h-screen w-full border-r border-base-100 bg-black/60">
+                                        <Transition.Child
+                                            as={Fragment}
+                                            enter="ease-out duration-300 delay-300"
+                                            enterFrom="opacity-0"
+                                            enterTo="opacity-100"
+                                            leave=""
+                                            leaveFrom="opacity-100"
+                                            leaveTo="opacity-0"
+                                        >
+                                            <button
+                                                id="menuToggle"
+                                                className="btn-ghost btn-square btn absolute top-2 -right-14 rounded-md"
+                                                onClick={() =>
+                                                    setIsShowing((isShowing) => !isShowing)
+                                                }
+                                            >
+                                                <HamburgerIcon
+                                                    toggled={isShowing}
+                                                    size={24}
+                                                    distance="lg"
+                                                    rounded
+                                                    label="Toggle Menu"
+                                                />
+                                            </button>
+                                        </Transition.Child>
+                                        <div className="flex h-full w-full items-center overflow-y-scroll shadow-xl">
+                                            <Menu
+                                                as="ul"
                                                 id="navMenu"
                                                 tabIndex={0}
-                                                className="menu w-[calc(100vw-1rem-58px)] p-4"
+                                                className="menu w-full p-4"
                                             >
                                                 {links.map(({ title, href, delay }, i) => {
                                                     return (
@@ -118,7 +129,7 @@ export default function NavMenu({ links }: { links: NavLinkData[] }) {
                                                         </Transition.Child>
                                                     )
                                                 })}
-                                            </ul>
+                                            </Menu>
                                         </div>
                                     </Dialog.Panel>
                                 </Transition.Child>
@@ -130,82 +141,3 @@ export default function NavMenu({ links }: { links: NavLinkData[] }) {
         </>
     )
 }
-
-// return (
-//     <>
-//         <button
-//             id="menuToggle"
-//             className="btn-ghost btn-square btn z-40 rounded-md"
-//             onClick={() => setIsShowing((isShowing) => !isShowing)}
-//         >
-//             <HamburgerIcon
-//                 toggled={isShowing}
-//                 size={24}
-//                 distance="lg"
-//                 rounded
-//                 label="Toggle Menu"
-//             />
-//         </button>
-
-//         <Transition show={isShowing}>
-//             <Transition.Child
-//                 className={`
-//                     absolute top-0 left-0 z-40
-//                     flex h-screen flex-row
-//                     border-r border-base-200 bg-black/60
-//                 `}
-//                 enter="transition ease-out duration-300 transform"
-//                 enterFrom="-translate-x-[100vw]"
-//                 enterTo="-translate-x-0"
-//                 leave="transition ease-out duration-300 transform"
-//                 leaveFrom="-translate-x-0"
-//                 leaveTo="-translate-x-[100vw]"
-//             >
-//                 <ul
-//                     id="navMenu"
-//                     tabIndex={0}
-//                     className="menu w-[calc(100vw-1rem-58px)] self-center p-4"
-//                 >
-//                     {links.map(({ title, href, delay }, i) => {
-//                         return (
-//                             <Transition.Child
-//                                 as="li"
-//                                 key={i}
-//                                 enter="transition-all ease-out"
-//                                 enterFrom="opacity-0 -translate-x-6"
-//                                 enterTo="opacity-100 -translate-x-0"
-//                                 leave="transition-all"
-//                                 leaveFrom="opacity-100 -translate-x-0"
-//                                 leaveTo="opacity-0 -translate-x-6"
-//                                 style={{ transitionDelay: delay }}
-//                             >
-//                                 <Link
-//                                     className="font-bold"
-//                                     href={href}
-//                                     onClick={() => setIsShowing(false)}
-//                                 >
-//                                     {title}
-//                                 </Link>
-//                             </Transition.Child>
-//                         )
-//                     })}
-//                 </ul>
-//             </Transition.Child>
-//             <Transition.Child
-//                 as="label"
-//                 onClick={() => setIsShowing(false)}
-//                 className={`
-//                     after-blur-clear absolute top-0
-//                     right-0 h-screen w-screen
-//                     hover:cursor-pointer
-//                 `}
-//                 enter="transition-opacity duration-75"
-//                 enterFrom="opacity-0"
-//                 enterTo="opacity-100"
-//                 leave="transition-opacity duration-150"
-//                 leaveFrom="opacity-100"
-//                 leaveTo="opacity-0"
-//             />
-//         </Transition>
-//     </>
-// )
