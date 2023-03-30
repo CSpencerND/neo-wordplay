@@ -2,7 +2,8 @@ import { getCollections } from "@/lib/queries"
 import "@total-typescript/ts-reset"
 
 /** components */
-import { CartProvider, ShopifyProvider } from "@/lib/providers"
+import { ShopifyProvider } from "@/lib/providers"
+import CartProvider from "./CartProvider"
 import Footer from "./components/Footer"
 import Header from "./components/Navbar/Header"
 
