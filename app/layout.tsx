@@ -55,7 +55,7 @@ export default async function RootLayout({ children }: Children) {
     const linkData: NavLinkData[] = collections.map((c, i) => {
         return {
             title: c.title,
-            href: c.handle,
+            href: `/collections/${c.handle}`,
             delay: `${baseDelay + i * 50}ms`,
         }
     })
