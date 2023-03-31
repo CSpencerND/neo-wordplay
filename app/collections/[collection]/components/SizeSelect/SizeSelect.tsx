@@ -1,5 +1,6 @@
-import useProduct from "@/lib/hooks/useProduct"
 import { RadioGroup } from "@headlessui/react"
+
+import useProduct, { useSelectedSize } from "@/lib/hooks"
 
 import { sizeText } from "@/lib/utils"
 import cn from "clsx"
@@ -9,6 +10,8 @@ export default function SizeSelect({ ...props }) {
     const sizeOptions = options!.find((option) => option!.name === "Size")!.values as string[]
     const selectedSize = useProduct((s) => s.selectedSize)
     const setSelectedSize = useProduct((s) => s.setSelectedSize)
+
+    useSelectedSize()
 
     return (
         <RadioGroup

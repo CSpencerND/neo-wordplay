@@ -1,6 +1,6 @@
 "use client"
 
-// TODO: Add Transition to each CartItem just like the NavMenu
+// TODO: Get the links for the products
 
 import ProductImage from "@/components/ProductImage"
 import { CartLineQuantity, CartLineQuantityAdjustButton, Money } from "@shopify/hydrogen-react"
@@ -12,7 +12,7 @@ import { Transition } from "@headlessui/react"
 
 import { CartLineProvider, useCart, useCartLine } from "@shopify/hydrogen-react"
 
-import type { CartLine } from "@shopify/hydrogen-react/storefront-api-types"
+import type { ProductVariant } from "@shopify/hydrogen-react/storefront-api-types"
 import type Children from "types"
 
 const baseDelay = 300
@@ -43,7 +43,7 @@ export default function CartProducts() {
 }
 
 function CartLineItem({ delay }: { delay: string }) {
-    const { merchandise } = useCartLine() as CartLine
+    const merchandise = useCartLine().merchandise as ProductVariant
     const { product, title: variantTitle, image, price } = merchandise
     const { title: productTitle, handle } = product
 

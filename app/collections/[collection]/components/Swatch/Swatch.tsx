@@ -1,8 +1,9 @@
 "use client"
 
 import { RadioGroup } from "@headlessui/react"
-import useProduct from "@/lib/hooks"
 import cn from "clsx"
+
+import useProduct, { useSelectedColor } from "@/lib/hooks"
 
 export default function Swatch({ ...props }) {
     const colorOptions = useProduct((s) => s.colorOptions)
@@ -11,6 +12,8 @@ export default function Swatch({ ...props }) {
 
     const hexCodes = useProduct((s) => s.hexCodes)
     const setCurrentImage = useProduct((s) => s.setCurrentImage)
+
+    useSelectedColor()
 
     return (
         <RadioGroup
