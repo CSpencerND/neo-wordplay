@@ -30,7 +30,7 @@ const useNotification = create<NotificationStore>()((set) => ({
         }),
 }))
 
-export default function CartProvider({ children }: Children) {
+export function CartProvider({ children }: Children) {
     const showNotification = useNotification((s) => s.showNotification)
 
     const onStart = "Cart updating..."
