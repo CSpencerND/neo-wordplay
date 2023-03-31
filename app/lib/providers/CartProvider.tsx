@@ -75,10 +75,15 @@ function Notification() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
         >
-            <Popover className="toast-end toast toast-top z-[99] m-4 overflow-hidden rounded-xl p-0">
+            <Popover className="toast toast-top z-[99] m-4 overflow-hidden rounded-xl p-0">
                 <Popover.Panel
                     static
-                    className="bg-blur-300 alert border border-base-100 font-semibold text-info"
+                    className={`
+                        bg-blur-300 alert cursor-pointer
+                        border border-info border-opacity-10
+                        font-semibold text-info
+                    `}
+                    onClick={hideNotification}
                 >
                     <p className="text-sm">{message}</p>
                 </Popover.Panel>
