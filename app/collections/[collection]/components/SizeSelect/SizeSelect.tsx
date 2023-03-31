@@ -1,6 +1,7 @@
 import useProduct from "@/lib/hooks/useProduct"
-import { sizeText } from "@/lib/utils"
 import { RadioGroup } from "@headlessui/react"
+
+import { sizeText } from "@/lib/utils"
 import cn from "clsx"
 
 export default function SizeSelect({ ...props }) {
