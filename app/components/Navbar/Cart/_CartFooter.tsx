@@ -1,6 +1,6 @@
 "use client"
 
-import { CartCost, CartCheckoutButton, /* useCartLine */ } from "@shopify/hydrogen-react"
+import { CartCost, CartCheckoutButton /* useCartLine */ } from "@shopify/hydrogen-react"
 import useCartStore from "./CartStore.zustand"
 
 export default function CartFooter() {
@@ -32,7 +32,7 @@ export default function CartFooter() {
                         className="pl-2 font-medium text-primary-content hover:text-opacity-80"
                         onClick={setCartClose}
                     >
-                        Continue Shopping <span aria-hidden="true">&rarr;</span>
+                        Continue Shopping
                     </button>
                 </p>
             </div>
