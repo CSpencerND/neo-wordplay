@@ -3,6 +3,7 @@
 import ProductImage from "@/components/ProductImage"
 import useProduct, { useLoader } from "@/lib/hooks"
 import { useMountEffect } from "@react-hookz/web"
+import { Image } from "@shopify/hydrogen-react/storefront-api-types"
 import { usePathname, useRouter } from "next/navigation"
 
 export default function ProductLabel() {
@@ -39,7 +40,7 @@ export default function ProductLabel() {
             <LoadingSpinner />
 
             <ProductImage
-                image={currentImage}
+                image={currentImage as Image}
                 title={title}
                 key={currentImage.id}
                 rounded="top"
