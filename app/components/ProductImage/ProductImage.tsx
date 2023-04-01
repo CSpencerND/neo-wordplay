@@ -1,4 +1,4 @@
-import nullImage, { placeholder } from "@/static"
+import nullImage from "@/static"
 import type { Image, Maybe } from "@shopify/hydrogen-react/storefront-api-types"
 import cn from "clsx"
 import NextImage, { ImageProps } from "next/image"
@@ -35,8 +35,8 @@ export default function ProductImage({
                 width={image?.width ?? 1024}
                 height={image?.height ?? 1024}
                 alt={altText ?? "loading"}
-                placeholder="blur"
-                blurDataURL={placeholder.blurDataURL}
+                // placeholder="blur"
+                // blurDataURL={placeholder.blurDataURL}
                 {...props}
             />
         </figure>

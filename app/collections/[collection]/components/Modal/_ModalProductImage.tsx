@@ -1,6 +1,7 @@
 import ProductImage from "@/components/ProductImage"
 import { useLoader } from "@/lib/hooks"
 import useProduct from "@/lib/hooks/useProduct"
+import { Image } from "@shopify/hydrogen-react/storefront-api-types"
 
 export default function ModalProductImage() {
     const { LoadingSpinner, setLoading } = useLoader()
@@ -12,7 +13,7 @@ export default function ModalProductImage() {
             <LoadingSpinner />
 
             <ProductImage
-                image={currentImage}
+                image={currentImage as Image}
                 title={title}
                 key={currentImage.id}
                 onLoadingComplete={() => setLoading(false)}

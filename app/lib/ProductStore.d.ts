@@ -1,9 +1,17 @@
 import type { Image, Product } from "@shopify/hydrogen-react/storefront-api-types"
 import type { PropsWithChildren } from "react"
 
+export type NullImage = {
+    altText: string
+    width: string
+    height: string
+    src: string
+    id: string
+}
+
 export type ImageProps = {
     images: Image[]
-    currentImage: Image
+    currentImage: Image | NullImage
 }
 
 export type ImageState = ImageProps & {
