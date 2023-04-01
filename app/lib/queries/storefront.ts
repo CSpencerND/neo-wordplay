@@ -1,8 +1,3 @@
-import {
-    CollectionConnection,
-    ProductConnection,
-} from "@shopify/hydrogen-react/storefront-api-types"
-
 export const storefront = {
     id: process.env.SHOPIFY_STOREFRONT_ID as string,
     token: process.env.SHOPIFY_STOREFRONT_ACCESSTOKEN as string,

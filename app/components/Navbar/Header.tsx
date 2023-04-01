@@ -1,8 +1,8 @@
 import Image from "next/image"
 import Link from "next/link"
 import ShoppingCart from "./Cart"
-import UserLogin from "./Login"
 import NavMenu from "./NavMenu"
+import UserAccount from "./UserAccount"
 
 import logo from "@/static/brand/wp4l.webp"
 
@@ -29,7 +29,7 @@ export default function Header({ links }: { links: NavLinkData[] }) {
                     </Link>
                 </div>
                 <div className="navbar-end relative">
-                    <UserLogin />
+                    <UserAccount />
                     <ShoppingCart />
                     <NavMenu links={links} />
                 </div>
