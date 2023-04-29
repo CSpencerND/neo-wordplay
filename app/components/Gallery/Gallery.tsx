@@ -10,7 +10,7 @@ const galleryImages = galleryImageData.map(({ src, alt }, i) => {
             src={src}
             alt={alt}
             key={i}
-            className="rounded-box shadow-box"
+            className="rounded-2xl shadow-box"
         />
     )
 })
