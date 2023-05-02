@@ -71,9 +71,9 @@ export function FeaturedCollection({ featured, ...props }: FeaturedProps) {
                 mouseTracking
                 paddingLeft={70}
                 paddingRight={70}
-                autoPlay
-                autoPlayStrategy="all"
-                autoPlayInterval={1250}
+                // autoPlay
+                // autoPlayStrategy="all"
+                // autoPlayInterval={1250}
                 innerWidth={width}
                 responsive={{
                     0: {
