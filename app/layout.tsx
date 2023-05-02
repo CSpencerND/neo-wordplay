@@ -50,9 +50,10 @@ export default async function RootLayout({ children }: Children) {
             lang="en"
         >
             <body
-                className="relative isolate bg-base-300 text-sm sm:px-6"
+                className="relative isolate bg-base-300 text-sm sm:px-6 bg-cover bg-center bg-fixed"
                 style={{
                     paddingBottom: "env(safe-area-inset-bottom)", // ios
+                    backgroundImage: "url('/mesh-gradient.webp')",
                 }}
             >
                 <RootProvider>
