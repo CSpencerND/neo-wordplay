@@ -12,7 +12,7 @@ interface GalleryImage {
     alt: string
 }
 
-const galleryImageData: GalleryImage[] = [
+export const galleryImageData: GalleryImage[] = [
     {
         src: creativity,
         alt: "Creativity",
@@ -38,5 +38,3 @@ const galleryImageData: GalleryImage[] = [
         alt: "Savage",
     },
 ]
-
-export default galleryImageData

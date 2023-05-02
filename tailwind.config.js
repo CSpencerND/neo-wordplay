@@ -15,30 +15,33 @@ module.exports = {
                 "5xl": ["clamp(2.28rem, calc(0.94rem + 6.71vw), 5.72rem)", "1"],
                 "6xl": ["clamp(2.57rem, calc(0.78rem + 8.95vw), 7.15rem)", "1"],
             },
+            borderRadius: {
+                sq: "21%",
+            },
             boxShadow: {
-                box: "0 0 10px rgb(0 0 0 / 0.2), 0 0 5px rgb(0 0 0 / 0.2)",
+                box: "0 0 12px 0 rgb(0 0 0 / 0.2), 0 0 6px 0 rgb(0 0 0 / 0.2)",
+            },
+            maxWidth: {
+                "prose-narrow": "45ch",
+                "prose-wide": "80ch",
             },
             transitionProperty: {
                 height: "height",
                 spacing: "margin, padding",
             },
-            colors: {
-                brown: {
-                    50: "#fdf8f6",
-                    100: "#f2e8e5",
-                    200: "#eaddd7",
-                    300: "#e0cec7",
-                    400: "#d2bab0",
-                    500: "#bfa094",
-                    600: "#a18072",
-                    700: "#977669",
-                    800: "#846358",
-                    900: "#43302b",
+            keyframes: {
+                "accordion-down": {
+                    from: { height: 0 },
+                    to: { height: "var(--radix-accordion-content-height)" },
+                },
+                "accordion-up": {
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: 0 },
                 },
             },
-            borderRadius: {
-                sq: "17.5%",
-                rec: "17.5% / 8.75%",
+            animation: {
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "accordion-up": "accordion-up 0.2s ease-out",
             },
         },
     },
@@ -47,6 +50,29 @@ module.exports = {
         require("daisyui"),
         require("@tailwindcss/typography"),
         require("@headlessui/tailwindcss")({ prefix: "ui" }),
+        require("tailwindcss-animate"),
+
+        function ({ addComponents }) {
+            addComponents({
+                ".bg-blur": {
+                    position: "relative",
+                    overflow: "hidden",
+
+                    "&::before": {
+                        content: `""`,
+                        position: "absolute",
+                        top: "0",
+                        left: "0",
+                        width: "100%",
+                        height: "100%",
+                        zIndex: "-1",
+                        backdropFilter: "blur(16px) saturate(1.8)",
+                        pointerEvents: "none",
+                        borderRadius: "inherit"
+                    },
+                },
+            })
+        },
     ],
 
     daisyui: {

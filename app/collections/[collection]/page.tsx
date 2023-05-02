@@ -1,45 +1,56 @@
-import { BlobScene } from "@/components/Blob"
-import Product from "./components"
+import { getProductsByCollection } from "@/lib/storefront"
 
-import { getCollections, getProductsByCollection } from "@/lib/queries"
+import Collection from "@/components/collection"
+import Product from "@/components/product"
+import { LoadingSpinner } from "@/components/ui"
+import { ProductProvider } from "@/lib/state"
+import { Suspense } from "react"
 
-import type { ProductProviderProps } from "@/lib/ProductStore"
+import type { CollectionSegmentParams } from "./layout"
 
-export async function generateStaticParams() {
-    const collections = await getCollections()
-
-    return collections.map((collection) => ({
-        collection: collection.handle,
-    }))
-}
-
-export default async function CollectionPage({ params }: { params: { collection: string } }) {
-    const { collectionTitle, products } = await getProductsByCollection(params.collection)
+export default async function CollectionDynamicSegment({ params }: CollectionSegmentParams) {
+    const data = await getProductsByCollection(params.collection)
+    const { collectionTitle, collectionDescription, products } = data
 
     return (
-        <section className="mx-auto max-w-2xl space-y-8">
-            <h1 className="text-center text-xl font-bold text-accent-content">
-                {collectionTitle}
-            </h1>
-
-            <ul className="relative grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
-                <BlobScene />
-
-                {products.map((product) => {
-                    if(!product) throw new Error("No product found!")
-                    const hexCodes = JSON.parse(product.metafield!.value) as string[]
-                    if(!hexCodes) throw new Error("No hex codes found!")
-
-                    const initProviderProps: ProductProviderProps = {
-                        product: product,
-                        currentImage: product.images.nodes[0],
-                        isModalOpen: false,
-                        images: product.images.nodes,
-                        hexCodes: hexCodes,
-                    }
-                    return <Product {...initProviderProps} key={product.id} />
-                })}
-            </ul>
-        </section>
+        <>
+            <Collection.Section>
+                <Collection.Heading
+                    collectionTitle={collectionTitle}
+                    collectionDescription={collectionDescription}
+                />
+                <Collection.Grid>
+                    {products.map((p) => {
+                        if (!p) throw new Error("No product found!")
+                        return (
+                            <ProductProvider
+                                product={p}
+                                key={p.id}
+                            >
+                                <Product.Card>
+                                    <Product.Link
+                                        href={`/collections/${params.collection}/${p.handle}`}
+                                    >
+                                        <Suspense fallback={<LoadingSpinner />}>
+                                            <Product.Image
+                                                rounded="top"
+                                                title={p.title}
+                                            />
+                                            <Product.Title.Overlay>
+                                                <Product.Title
+                                                    truncate
+                                                    title={p.title}
+                                                />
+                                            </Product.Title.Overlay>
+                                        </Suspense>
+                                    </Product.Link>
+                                    <Product.Swatch attached />
+                                </Product.Card>
+                            </ProductProvider>
+                        )
+                    })}
+                </Collection.Grid>
+            </Collection.Section>
+        </>
     )
 }
