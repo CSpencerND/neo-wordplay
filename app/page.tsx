@@ -26,7 +26,7 @@ export default async function HomePage() {
                     When we think about WORDPLAY4LYFE what comes to mind is Artistic expression
                     which is being able to express yourself freely and not be judged. We use our
                     Imagination because the fact that you can come up with different ideas for
-                    something that's yours is just amazing. The fact that you can daydream about
+                    something that&apos;s yours is just amazing. The fact that you can daydream about
                     those different ideas and bring them to life is really exciting, which is an
                     excellent way to share my Creativeness with the rest of the world.We want
                     WORDPLAY4LYFE to represent Culture in all walks of life because without
