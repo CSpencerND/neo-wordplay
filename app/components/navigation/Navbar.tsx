@@ -33,7 +33,7 @@ export async function Navbar({ logo }: { logo?: StaticImageData }) {
             <nav
                 className={`
                     navbar relative isolate mx-auto max-w-7xl
-                    border-b border-neutral-focus px-2 py-4
+                    border-b border-neutral-focus px-3 sm:px-6
                 `}
             >
                 <div
