@@ -17,12 +17,13 @@ const getData = async () => {
         }
     })
 
-    linkData.unshift({
-        title: "Collections Directory",
-        href: "/collections",
-    })
-
-    return linkData
+    return [
+        {
+            title: "Collections Directory",
+            href: "/collections",
+        },
+        ...linkData,
+    ]
 }
 
 export async function Navbar({ logo }: { logo?: StaticImageData }) {
