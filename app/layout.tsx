@@ -49,13 +49,7 @@ export default async function RootLayout({ children }: Children) {
             data-theme="next"
             lang="en"
         >
-            <body
-                className="relative isolate bg-base-300 text-sm sm:px-6 bg-cover bg-center bg-fixed"
-                style={{
-                    paddingBottom: "env(safe-area-inset-bottom)", // ios
-                    backgroundImage: "url('/mesh-gradient.webp')",
-                }}
-            >
+            <body className="relative bg-base-300/60 text-sm sm:px-6">
                 <RootProvider>
                     {/*@ts-expect-error Async Component*/}
                     <Navbar logo={logoMain} />
