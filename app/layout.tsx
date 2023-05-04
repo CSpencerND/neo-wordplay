@@ -2,7 +2,7 @@ import type { Metadata } from "next/dist/lib/metadata/types/metadata-interface"
 import type Children from "types"
 
 import { cn } from "./lib/utils"
-import { Inter } from "next/font/google"
+import { Balsamiq_Sans } from "next/font/google"
 import "./globals.css"
 
 import { RootProvider } from "./lib/state"
@@ -13,7 +13,7 @@ import { Footer } from "./components/footer"
 
 import { logoMain, logoSquare } from "@/static"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Balsamiq_Sans({ subsets: ["latin"], weight: ["400", "700"] })
 
 export async function generateMetadata(): Promise<Metadata> {
     const shop = await getStorefrontProps()
