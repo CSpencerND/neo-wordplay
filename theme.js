@@ -77,7 +77,9 @@ module.exports = {
         "neutral-focus": dark.gray4,
         "base-100": dark.gray5,
         "base-200": dark.gray6,
-        "base-300": dark.gray7,
+        "base-300": "#000000",
+        // "base-300": dark.gray7,
+
         info: "hsl(170, 79%, 43%)",
         success: "hsl(145, 70%, 46%)",
         warning: "hsl(49, 88%, 49%)",
@@ -100,7 +102,8 @@ module.exports = {
         "neutral-focus": iosLight.gray4,
         "base-100": iosLight.gray7,
         "base-200": iosLight.gray6,
-        "base-300": iosLight.gray5,
+        "base-300": "#ffffff",
+        // "base-300": iosLight.gray5,
 
         info: iosColors.mint,
         success: iosColors.green,
