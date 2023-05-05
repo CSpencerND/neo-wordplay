@@ -87,14 +87,14 @@ module.exports = {
     },
 
     nextLight: {
-        primary: iosContrast.blue,
-        "primary-content": iosColors.blue,
+        primary: iosContrast.cyan,
+        "primary-content": iosColors.cyan,
 
-        secondary: iosContrast.purple,
-        "secondary-content": iosColors.purple,
+        secondary: iosContrast.indigo,
+        "secondary-content": iosColors.indigo,
 
-        accent: iosContrast.pink,
-        "accent-content": iosColors.pink,
+        accent: iosContrast.purple,
+        "accent-content": iosColors.purple,
 
         neutral: iosLight.gray3,
         "neutral-focus": iosLight.gray4,
@@ -102,7 +102,7 @@ module.exports = {
         "base-200": iosLight.gray6,
         "base-300": iosLight.gray5,
 
-        info: iosColors.teal,
+        info: iosColors.mint,
         success: iosColors.green,
         warning: iosColors.yellow,
         error: iosColors.red,
