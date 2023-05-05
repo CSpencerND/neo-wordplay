@@ -46,7 +46,7 @@ export default async function RootLayout({ children }: Children) {
     return (
         <html
             className={cn(inter.className, "overflow-x-hidden")}
-            data-theme="next"
+            data-theme="nextDark"
             lang="en"
         >
             <body className="relative bg-base-300/60 text-sm sm:px-6">
