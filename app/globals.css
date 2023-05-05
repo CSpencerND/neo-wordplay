@@ -54,6 +54,7 @@ body::before {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     z-index: -1;
+    /* mix-blend-mode: color; */
 }
 
 .glow::before {
@@ -65,6 +66,6 @@ body::before {
     width: 100%;
     height: 100%;
 
-    transform: perspective(.667em) rotateX(40deg) scale(1, 0.25);
+    transform: perspective(0.667em) rotateX(40deg) scale(1, 0.25);
     filter: blur(1em);
 }
